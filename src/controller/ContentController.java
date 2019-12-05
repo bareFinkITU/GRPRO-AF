@@ -118,4 +118,26 @@ public class ContentController {
 
     }
 
+    public HashMap getSeasonAndEpisodesMap(Show show) {
+        //creates hashmap to store key: season, value: episodes
+        HashMap<Integer, Integer> hash_map = new HashMap<>();
+
+        //creates an array of strings that contains "season-episodes"
+        String[] tempString = show.getSeasons().replaceAll(" ", "").split(",");
+
+        for (String s : tempString) {
+            //first defines lastindex of the split charecter '-'
+            int lastIndexOf = s.lastIndexOf( '-' );
+
+            //parses the substring before and after the '-' which correspond to season and episodes
+            int season = Integer.parseInt(s.substring(0, lastIndexOf));
+            int episodes = Integer.parseInt(s.substring(lastIndexOf + 1));
+
+            //adds the season and episodes to the hashmap
+            hash_map.put(season, episodes);
+        }
+        return hash_map;
+    }
+
+
 }

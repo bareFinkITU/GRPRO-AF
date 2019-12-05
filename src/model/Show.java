@@ -15,4 +15,7 @@ public class Show extends Content{
         this.seasons = seasons;
     }
 
+    public String getSeasons() {
+        return seasons;
+    }
 }
