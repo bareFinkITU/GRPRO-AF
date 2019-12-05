@@ -115,8 +115,21 @@ public class ContentController {
 
         }
         return sortArray;
-
     }
+
+
+    public ArrayList searchByGenre(String genre){
+        ArrayList<Content> sortArray = new ArrayList<>();
+        for(Content c: content){
+            for(String s: c.getGenre()){
+                if(genre.equals(s)){
+                    sortArray.add(c);
+                }
+            }
+        }
+        return sortArray;
+    }
+
 
     public HashMap getSeasonAndEpisodesMap(Show show) {
         //creates hashmap to store key: season, value: episodes
