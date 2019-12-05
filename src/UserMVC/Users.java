@@ -39,9 +39,9 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
     public void registerUser(String name, String username, String password, String email, int age){
         for (User u: users){
             // Evt. skriv at oprettelse af bruger er "case sensitive" (til GUI)
-            if (username.toLowerCase().equals(u.getUsername().toLowerCase())) {
+            if (username.trim().toLowerCase().equals(u.getUsername().trim().toLowerCase())) {
                 throw new validRegistration(username + " is already taken, try another username");
-            }else if(email.toLowerCase().equals(u.getEmail().toLowerCase())){
+            }else if(email.toLowerCase().trim().equals(u.getEmail().trim().toLowerCase())){
                 throw new validRegistration(email + " is already taken, try another e-mail.");
             }
         }
@@ -58,8 +58,8 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
         for (User u: users) {
             if(usernameOrEmail == null){
                 throw new NullPointerException("Field is empty");
-            }else if(usernameOrEmail.toLowerCase().equals(u.getUsername().toLowerCase())
-            || usernameOrEmail.toLowerCase().equals(u.getEmail().toLowerCase())){
+            }else if(usernameOrEmail.trim().toLowerCase().equals(u.getUsername().trim().toLowerCase())
+            || usernameOrEmail.trim().toLowerCase().equals(u.getEmail().trim().toLowerCase())){
                 if(password.equals(u.getPassword())){
                     System.out.println("Login Successful");
                     return u;
