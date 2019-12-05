@@ -1,2 +1,2 @@
-# SWU1STREAMING
+# GRPRO AF
 Development of a streaming service as part of 1. semester SWU exam
