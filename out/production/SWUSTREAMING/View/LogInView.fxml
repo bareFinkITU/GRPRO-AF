@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="CENTER" hgap="10.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: DB0505;" vgap="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="491.199951171875" minWidth="10.0" prefWidth="301.6000122070312" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="457.60003662109375" minWidth="10.0" prefWidth="299.1999877929687" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints maxHeight="231.1999938964844" minHeight="10.0" prefHeight="231.1999938964844" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="176.4" minHeight="0.0" prefHeight="34.0000061035156" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="142.40003356933596" minHeight="0.0" prefHeight="41.59998474121096" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="140.0000061035156" minHeight="10.0" prefHeight="91.99998168945314" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <ImageView fitHeight="175.0" fitWidth="575.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <image>
+            <Image url="@../../out/img/logo.jpg" />
+         </image>
+      </ImageView>
+      <Button mnemonicParsing="false" text="Log In" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets top="10.0" />
+         </GridPane.margin>
+      </Button>
+      <TextField GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets left="20.0" right="150.0" />
+         </GridPane.margin>
+      </TextField>
+      <PasswordField GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets left="20.0" right="150.0" />
+         </GridPane.margin>
+      </PasswordField>
+      <Label text="Username" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets right="20.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Label" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets right="20.0" />
+         </GridPane.margin>
+      </Label>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="25.0" right="25.0" top="25.0" />
+   </padding>
+</GridPane>
