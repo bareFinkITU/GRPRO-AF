@@ -35,6 +35,7 @@ public class Gui extends Application{
     @Override
     //Her skrives alt der skal være i interfacet
     public void start(Stage primaryStage) throws Exception {
+
         //Det første er en test.
         ContentController test = new ContentController();
 
