@@ -118,16 +118,18 @@ public class ContentController {
     }
 
 
-    public ArrayList searchByGenre(String genre){
+    public void searchByGenre(String genre){
         ArrayList<Content> sortArray = new ArrayList<>();
+
         for(Content c: content){
-            for(String s: c.getGenre()){
-                if(genre.equals(s)){
+            for(int i = 0; i < c.getGenre().length; i++){
+                if(genre.equals(c.getGenre()[i])){
                     sortArray.add(c);
+                    System.out.println(c.getTitle());
                 }
             }
         }
-        return sortArray;
+
     }
 
 
