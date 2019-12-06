@@ -19,9 +19,10 @@ public class BackendTest {
 
         //TESTAREA
         test.searchByRating(9.0);
-        test.searchByGenre("War");
         test.display();
-
+        System.out.println("=====");
+        test.searchByGenre("drama");
+        test.display();
 
 
         //c.searchByType(2);
