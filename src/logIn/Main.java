@@ -1,4 +1,4 @@
-package view;
+package logIn;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +17,12 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("LogInView.fxml"));
         primaryStage.setTitle("MEGAFLIX");
         primaryStage.setScene(new Scene(root, 1270, 720));
+
+
+        /*Parent startScene = FXMLLoader.load(getClass().getResource("startSceneView.fxml"));
+        Scene startScene2 = new Scene(startScene, 1270, 720);
+        primaryStage.setScene(startScene2);
+*/
         primaryStage.show();
     }
 }
