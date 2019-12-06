@@ -1,3 +1,4 @@
+/*
 import controller.ContentController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -40,8 +41,10 @@ public class Gui extends Application{
         ContentController test = new ContentController();
 
         test.initializeContent();
+*/
 /*      test.customSort(8.5);
-        test.search("k");*/
+        test.search("k");*//*
+
         System.out.println();
         System.out.println();
 
@@ -169,3 +172,4 @@ public class Gui extends Application{
         }
     }
 }
+*/
