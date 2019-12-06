@@ -51,7 +51,12 @@ public class Content implements Comparable<Content> {
     }
 
     public String display() {
-        return title + " " + rating + " genre(s): " + String.join(", ", genre);
+        String preFix = title + " " + rating + " genre(s): " + String.join(", ", genre);
+        if(this instanceof Movie){
+            return "Movie: " + preFix;
+        }else{
+            return "Show: " + preFix;
+        }
     }
 
     public int compareTo(Content c) {

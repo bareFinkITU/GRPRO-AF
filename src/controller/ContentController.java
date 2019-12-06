@@ -24,6 +24,7 @@ public class ContentController {
 
     public ContentController() {
         content = new ArrayList<>();
+
     }
 
     public void initializeContent() throws IOException {
@@ -117,19 +118,34 @@ public class ContentController {
         return sortArray;
     }
 
-
     public void searchByGenre(String genre){
         ArrayList<Content> sortArray = new ArrayList<>();
 
         for(Content c: content){
             for(int i = 0; i < c.getGenre().length; i++){
-                if(genre.equals(c.getGenre()[i])){
+                if(genre.toLowerCase().equals(c.getGenre()[i].toLowerCase())){
                     sortArray.add(c);
-                    System.out.println(c.getTitle());
+                    //REMEMBER TO DELETE SYSTEM.OUT.PRINT IN PRODUCTION
+                    System.out.println(c.display());
                 }
             }
         }
+    }
 
+    public void searchByType(int type){
+        if(type == 1){
+            for(Content c: content){
+                if(c instanceof Movie){
+                    System.out.println(c.display());
+                }
+            }
+        } else if (type == 2) {
+            for(Content c: content){
+                if(c instanceof Show){
+                    System.out.println(c.display());
+                }
+            }
+        }
     }
 
 
@@ -153,6 +169,16 @@ public class ContentController {
         }
         return hash_map;
     }
+
+    public void displaySeasonAndEpisodes(Show show){
+        HashMap hash_map = getSeasonAndEpisodesMap(show);
+        for(Object k: hash_map.keySet()){
+            String key = k.toString();
+            String value = hash_map.get(k).toString();
+            System.out.println(key + " episodes " + value);
+        }
+    }
+
 
 
 }
