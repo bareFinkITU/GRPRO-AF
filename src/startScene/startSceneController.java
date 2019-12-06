@@ -79,6 +79,14 @@ public class startSceneController {
             newButton.setOnAction(e -> {
                 System.out.println(c.getTitle());
             });
+            newButton.setOnMouseEntered(e -> {
+                newButton.setScaleX(1.1);
+                newButton.setScaleY(1.1);
+            });
+            newButton.setOnMouseExited(e -> {
+                newButton.setScaleY(1);
+                newButton.setScaleX(1);
+            });
 
             list.getChildren().addAll(newButton);
         }

@@ -52,7 +52,10 @@
    <center>
       <ScrollPane style="-fx-fit-to-width: true;" BorderPane.alignment="CENTER">
          <content>
-            <FlowPane fx:id="fp" hgap="10.0" style="-fx-background-color: BLACK;" vgap="10.0" />
+            <FlowPane fx:id="fp" hgap="10.0" style="-fx-background-color: #181062;" vgap="10.0">
+               <padding>
+                  <Insets top="18.0" />
+               </padding></FlowPane>
          </content>
       </ScrollPane>
    </center>
