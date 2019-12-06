@@ -77,7 +77,7 @@ public class startSceneController {
             newButton.setGraphic(new ImageView(c.getCover()));
             newButton.setStyle(" -fx-background-color: transparent");
             newButton.setOnAction(e -> {
-                System.out.println("Knapperne virker");
+                System.out.println(c.getTitle());
             });
 
             list.getChildren().addAll(newButton);

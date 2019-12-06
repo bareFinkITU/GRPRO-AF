@@ -17,17 +17,17 @@
          <children>
             <HBox spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" style="-fx-background-color: TRANSPARENT;" text="Home">
+                  <Button fx:id="homeButton" mnemonicParsing="false" style="-fx-background-color: TRANSPARENT;" text="Home">
                      <font>
                         <Font name="Segoe UI" size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#moviesClicked" style="-fx-background-color: TRANSPARENT;" text="Movies">
+                  <Button fx:id="moviesbutton" mnemonicParsing="false" onAction="#moviesClicked" style="-fx-background-color: TRANSPARENT;" text="Movies">
                      <font>
                         <Font name="Segoe UI" size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: TRANSPARENT;" text="TV-Series">
+                  <Button fx:id="showsButton" mnemonicParsing="false" onAction="#showsClicked" style="-fx-background-color: TRANSPARENT;" text="TV-Shows">
                      <font>
                         <Font name="Segoe UI" size="14.0" />
                      </font>
