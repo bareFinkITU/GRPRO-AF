@@ -4,9 +4,14 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
+    private GridPane gp;
+
+    private Stage Megaflix;
 
     public static void main(String[] args) {
         launch(args);
@@ -14,15 +19,16 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("LogInView.fxml"));
-        primaryStage.setTitle("MEGAFLIX");
-        primaryStage.setScene(new Scene(root, 1270, 720));
+
+        Megaflix = primaryStage;
+        Megaflix.setTitle("MEGAFLIX");
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("LogInView.fxml"));
+        gp = loader.load();
+        Megaflix.setScene(new Scene(gp));
 
 
-        /*Parent startScene = FXMLLoader.load(getClass().getResource("startSceneView.fxml"));
-        Scene startScene2 = new Scene(startScene, 1270, 720);
-        primaryStage.setScene(startScene2);
-*/
+
         primaryStage.show();
     }
 }
