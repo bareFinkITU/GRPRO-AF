@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="gp" alignment="CENTER" hgap="10.0" minHeight="400.0" minWidth="600.0" prefHeight="720.0" prefWidth="1270.0" style="-fx-background-color: DB0505;" vgap="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logIn.LogInController">
+<GridPane fx:id="gp" alignment="CENTER" hgap="10.0" minHeight="400.0" minWidth="600.0" prefHeight="720.0" prefWidth="1340.0" style="-fx-background-color: DB0505;" vgap="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logIn.LogInController">
   <columnConstraints>
     <ColumnConstraints maxWidth="491.199951171875" minWidth="10.0" prefWidth="301.6000122070312" />
     <ColumnConstraints maxWidth="457.60003662109375" minWidth="10.0" prefWidth="299.1999877929687" />

@@ -26,7 +26,7 @@ public class ContentController {
     private static ContentController instance;
 
     private ContentController() throws IOException {
-        content = new ArrayList<>();
+        content = new ArrayList<Content>();
         contentSort = new ArrayList<>();
         initializeContent();
     }
@@ -145,8 +145,9 @@ public class ContentController {
         ArrayList<Movie> movieArray = new ArrayList<>();
         for(Content m: content){
             if(m instanceof Movie){
-                contentSort.add(m);
-                movieArray.add((Movie) m);
+                Movie h = (Movie) m;
+                contentSort.add(h);
+                movieArray.add(h);
             }
         }
         return movieArray;

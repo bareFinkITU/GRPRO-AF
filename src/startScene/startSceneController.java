@@ -2,11 +2,15 @@ package startScene;
 
 import controller.ContentController;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import model.Content;
 import model.Movie;
 
@@ -20,12 +24,52 @@ public class startSceneController {
     @FXML
     private FlowPane fp;
 
-    private ContentController cC = new ContentController();
+    @FXML
+    private GridPane gp;
 
-    private ArrayList allContent;
+    @FXML
+    private TextField searchField;
+
+    @FXML
+    private Button logOutButton;
+
+    private ContentController cC = ContentController.getInstanceOf();
+
+    private ArrayList<Content> allContent = cC.getContent();
+
+    public startSceneController() throws IOException {
+    }
 
 
+    public void searchByTitle(){
+        ArrayList<Content> searchByTitleContent =  cC.searchByTitle(searchField.getText());
+        refreshContentList(searchByTitleContent, fp);
+    }
 
+    public void moviesClicked(){
+        ArrayList<Content> searchForMovies = cC.searchForMovies();
+        refreshContentList(searchForMovies,fp);
+        System.out.println("Now it's only movies!");
+    }
+
+    public void showsClicked(){
+        ArrayList<Content> searchForShows = cC.searchForShows();
+        refreshContentList(searchForShows,fp);
+        System.out.println("Now it's only shows!");
+    }
+
+    public void logOut(){
+        FXMLLoader loader = new FXMLLoader();
+        System.out.println("Path: " + this.getClass().getResource("/"));
+        loader.setLocation(getClass().getResource("/logIn/LogInView.fxml"));
+        try {
+            gp = loader.load();
+            Stage Megaflix = (Stage) logOutButton.getScene().getWindow();
+            Megaflix.setScene(new Scene(gp));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void refreshContentList(List<Content> contents,  FlowPane list) {
         for (Content c : contents){
@@ -33,31 +77,17 @@ public class startSceneController {
             newButton.setGraphic(new ImageView(c.getCover()));
             newButton.setStyle(" -fx-background-color: transparent");
             newButton.setOnAction(e -> {
-              /*  BorderPane newBorderPane = new BorderPane();
-                Button newButton2 = new Button("Tryk her for at gå tilbage");
-                newButton2.setStyle(" -fx-background-color: transparent");
-                //newButton.setGraphic(new ImageView(c.getCover()));
-                newButton2.setOnAction(f -> window.setScene(scene));
-                newBorderPane.setTop(newButton2);
-                newBorderPane.setCenter(new ImageView(c.getCover()));
-                newBorderPane.setStyle("-fx-background-color: BLACK;");
-
-                Scene newScene = new Scene(newBorderPane,1270,720);
-
-                window.setScene(newScene);*/
                 System.out.println("Knapperne virker");
             });
 
             list.getChildren().addAll(newButton);
-            System.out.println(c.getTitle());
         }
     }
 
     public void initialize() throws IOException {
-
-        allContent = cC.getContent();
-        refreshContentList(allContent, fp);
+        refreshContentList(allContent,fp);
     }
+
 
 
 }

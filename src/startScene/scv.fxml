@@ -2,9 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
@@ -12,35 +9,38 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1270.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="startScene.startSceneController">
+<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="400.0" prefHeight="720.0" prefWidth="1340.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="startScene.startSceneController">
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
-            <MenuBar>
-              <menus>
-                <Menu mnemonicParsing="false" text="File">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
             <HBox spacing="10.0">
                <children>
-                  <TextField />
+                  <Button fx:id="homeButton" mnemonicParsing="false" style="-fx-background-color: TRANSPARENT;" text="Home">
+                     <font>
+                        <Font name="Segoe UI" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="moviesbutton" mnemonicParsing="false" onAction="#moviesClicked" style="-fx-background-color: TRANSPARENT;" text="Movies">
+                     <font>
+                        <Font name="Segoe UI" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="showsButton" mnemonicParsing="false" onAction="#showsClicked" style="-fx-background-color: TRANSPARENT;" text="TV-Shows">
+                     <font>
+                        <Font name="Segoe UI" size="14.0" />
+                     </font>
+                  </Button>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" text="Log out" />
+                  <TextField fx:id="searchField" onKeyReleased="#searchByTitle" promptText="Search">
+                     <HBox.margin>
+                        <Insets top="2.0" />
+                     </HBox.margin></TextField>
+                  <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#logOut" style="-fx-background-color: TRANSPARENT;" text="Log out">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
                </children>
                <padding>
                   <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
@@ -50,9 +50,9 @@
       </VBox>
    </top>
    <center>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ScrollPane style="-fx-fit-to-width: true;" BorderPane.alignment="CENTER">
          <content>
-            <FlowPane />
+            <FlowPane fx:id="fp" hgap="10.0" style="-fx-background-color: BLACK;" vgap="10.0" />
          </content>
       </ScrollPane>
    </center>
