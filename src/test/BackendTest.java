@@ -13,16 +13,16 @@ public class BackendTest {
         //initialize content
         ContentController test = new ContentController();
         //dummy movie and show
-        Movie m = new Movie("test",  new String[]{"Comedy, Thriller"}, 9.9,null, 2019);
-        Show s = new Show("test", new String[]{"krimi, drama"}, 9.9,null,"1999-2019","1-22, 2-12, 3-17, 4-9");
+        Movie m = new Movie("test",new String[]{"Comedy, Thriller"}, 9.9,null, 2019);
+        Show s = new Show("test", new String[]{"Krimi, Drama"}, 9.9,null,"1999-2019","1-22, 2-12, 3-17, 4-9");
         //initializeContent
         test.initializeContent();
 
 
         //TESTAREA
-        test.searchByGenre("Mystery");
+
+        test.searchByGenre2("Mystery");
         System.out.println("======\n\n");
-        test.searchByType(2);
 
 
 

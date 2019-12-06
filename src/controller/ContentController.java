@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -21,10 +22,11 @@ public class ContentController {
     private ArrayList<Movie> movies;
     private ArrayList<Show> shows;
     private ArrayList<Content> content;
+    private ArrayList<Content> contentSort;
 
     public ContentController() {
         content = new ArrayList<>();
-
+        contentSort = new ArrayList<>();
     }
 
     public void initializeContent() throws IOException {
@@ -71,7 +73,11 @@ public class ContentController {
     }
 
     public ArrayList<Content> getContent() {
-        return content;
+        
+    }
+
+    public ArrayList<Content> getCustomContent(){
+
     }
 
     public void display() {
@@ -118,34 +124,38 @@ public class ContentController {
         return sortArray;
     }
 
-    public void searchByGenre(String genre){
-        ArrayList<Content> sortArray = new ArrayList<>();
+    public void searchByGenre(String sTerm){
+        //capitalize string
+        sTerm = sTerm.substring(0, 1).toUpperCase() + sTerm.substring(1);
 
-        for(Content c: content){
-            for(int i = 0; i < c.getGenre().length; i++){
-                if(genre.toLowerCase().equals(c.getGenre()[i].toLowerCase())){
-                    sortArray.add(c);
-                    //REMEMBER TO DELETE SYSTEM.OUT.PRINT IN PRODUCTION
+        //searchAlgoritme
+        for(Content c: content) {
+            for(int i = 0; i <c.getGenre().length; i++){
+                if(c.getGenre()[i].contains(sTerm)){
                     System.out.println(c.display());
                 }
             }
         }
     }
 
-    public void searchByType(int type){
-        if(type == 1){
-            for(Content c: content){
-                if(c instanceof Movie){
-                    System.out.println(c.display());
-                }
-            }
-        } else if (type == 2) {
-            for(Content c: content){
-                if(c instanceof Show){
-                    System.out.println(c.display());
-                }
+    public ArrayList searchForMovies(){
+        ArrayList<Movie> movieArray = new ArrayList<>();
+        for(Content m: content){
+            if(m instanceof Movie){
+                movieArray.add((Movie) m);
             }
         }
+        return movieArray;
+    }
+
+    public ArrayList searchForShows() {
+        ArrayList<Show> ShowArray = new ArrayList<>();
+        for (Content s : content) {
+            if (s instanceof Show) {
+                ShowArray.add((Show) s);
+            }
+        }
+        return ShowArray;
     }
 
 
