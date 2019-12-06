@@ -23,6 +23,15 @@ public class BackendTest {
         System.out.println("=====");
         test.searchByGenre("drama");
         test.display();
+        test.resetContentSort();
+        System.out.println("=====");
+        test.display();
+        System.out.println("=====");
+        test.searchForShows();
+        test.searchByTitle("Angel");
+        test.display();
+        test.resetContentSort();
+        test.display();
 
 
         //c.searchByType(2);

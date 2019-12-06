@@ -92,6 +92,12 @@ public class ContentController {
         return contentSort;
     }
 
+    public ArrayList<Content> resetContentSort() throws IOException {
+        contentSort.clear();
+        initializeContent();
+        return contentSort;
+    }
+
     public void display() {
         int i = 1;
         for (Content c : contentSort) {
@@ -104,12 +110,13 @@ public class ContentController {
         }
     }
 
-    public void searchByRating(double sTerm) {
+    public ArrayList<Content> searchByRating(double sTerm) {
         // Removes the 'current' item
         contentSort.removeIf(content -> content.getRating() < sTerm);
+        return contentSort;
     }
 
-    public void searchByGenre(String sTerm) {
+    public ArrayList<Content> searchByGenre(String sTerm) {
         //capitalize string and init array
         ArrayList<Content> arrayOfSearchTerm = new ArrayList<>();
         sTerm = sTerm.substring(0, 1).toUpperCase() + sTerm.substring(1);
@@ -126,45 +133,23 @@ public class ContentController {
 
         //finds intersection between contentSort and toBeRemoved
         contentSort.retainAll(arrayOfSearchTerm);
+        return contentSort;
     }
 
     public ArrayList searchByTitle(String sTerm) {
-        ArrayList<Content> sortArray = new ArrayList<>();
-        for (Content c : content) {
-            if (c.getTitle().toLowerCase().contains(sTerm.toLowerCase())) {
-                sortArray.add(c);
-                contentSort.add(c);
-                if (c instanceof Movie) {
-                    System.out.println("film " + c.display());
-                } else {
-                    System.out.println("Serie " + c.display());
-                }
-            }
+        contentSort.removeIf(content -> !content.getTitle().contains(sTerm));
+        return contentSort;
 
-        }
-        return sortArray;
     }
 
     public ArrayList searchForMovies() {
-        ArrayList<Movie> movieArray = new ArrayList<>();
-        for (Content m : content) {
-            if (m instanceof Movie) {
-                contentSort.add(m);
-                movieArray.add((Movie) m);
-            }
-        }
-        return movieArray;
+        contentSort.removeIf(content -> !(content instanceof Movie));
+        return contentSort;
     }
 
     public ArrayList searchForShows() {
-        ArrayList<Show> ShowArray = new ArrayList<>();
-        for (Content s : content) {
-            contentSort.add(s);
-            if (s instanceof Show) {
-                ShowArray.add((Show) s);
-            }
-        }
-        return ShowArray;
+        contentSort.removeIf(content -> !(content instanceof Show));
+        return contentSort;
     }
 
 
