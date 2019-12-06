@@ -1,4 +1,5 @@
 package controller;
+
 import javafx.scene.image.Image;
 import model.Content;
 import model.Movie;
@@ -6,6 +7,7 @@ import model.Show;
 import model.Show;
 
 import javafx.scene.image.Image;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -32,7 +34,7 @@ public class ContentController {
     }
 
     public static ContentController getInstanceOf() throws IOException {
-        if(instance == null) {
+        if (instance == null) {
             instance = new ContentController();
         }
         return instance;
@@ -45,13 +47,12 @@ public class ContentController {
         mReader.useDelimiter(";");
 
         while (mReader.hasNext()) {
-            String        title  = mReader.next().trim();
-            int           year   = Integer.parseInt(mReader.next().trim());
-            String        genre  = mReader.next().trim();
+            String title = mReader.next().trim();
+            int year = Integer.parseInt(mReader.next().trim());
+            String genre = mReader.next().trim();
             String[] arrOfGenres = genre.split(Pattern.quote(",").trim());
-            double        rating = Double.parseDouble(mReader.next().trim().replaceAll(",", "."));
-            Image cover   = new Image(new FileInputStream("out/movies/" + title + ".jpg"));
-
+            double rating = Double.parseDouble(mReader.next().trim().replaceAll(",", "."));
+            Image cover = new Image(new FileInputStream("out/movies/" + title + ".jpg"));
 
 
             content.add(new Movie(title, arrOfGenres, rating, cover, year));
@@ -64,13 +65,13 @@ public class ContentController {
         sReader.useDelimiter(";");
 
         while (sReader.hasNext()) {
-            String        title   = sReader.next().trim();
-            String        runtime = sReader.next().trim();
-            String        genre  = sReader.next().trim();
+            String title = sReader.next().trim();
+            String runtime = sReader.next().trim();
+            String genre = sReader.next().trim();
             String[] arrOfGenres = genre.split(Pattern.quote(",").trim());
-            double        rating  = Double.parseDouble(sReader.next().trim().replaceAll(",", "."));
-            String        seasons = sReader.next().trim();
-            Image          cover   = new Image(new FileInputStream("out/shows/" + title + ".jpg"));
+            double rating = Double.parseDouble(sReader.next().trim().replaceAll(",", "."));
+            String seasons = sReader.next().trim();
+            Image cover = new Image(new FileInputStream("out/shows/" + title + ".jpg"));
 
 
             content.add(new Show(title, arrOfGenres, rating, cover, runtime, seasons));
@@ -87,7 +88,7 @@ public class ContentController {
         return content;
     }
 
-    public ArrayList<Content> customContent(){
+    public ArrayList<Content> getContentSort() {
         return contentSort;
     }
 
@@ -95,7 +96,7 @@ public class ContentController {
         int i = 1;
         for (Content c : contentSort) {
             if (c instanceof Movie) {
-                System.out.println(i + " film "+ c.display());
+                System.out.println(i + " film " + c.display());
             } else {
                 System.out.println(i + " Serie " + c.display());
             }
@@ -105,23 +106,26 @@ public class ContentController {
 
     public void searchByRating(double sTerm) {
         // Removes the 'current' item
-        contentSort.removeIf(c -> c.getRating() < sTerm);
+        contentSort.removeIf(content -> content.getRating() < sTerm);
     }
 
-    public void searchByGenre(String sTerm){
-        //capitalize string
+    public void searchByGenre(String sTerm) {
+        //capitalize string and init array
+        ArrayList<Content> arrayOfSearchTerm = new ArrayList<>();
         sTerm = sTerm.substring(0, 1).toUpperCase() + sTerm.substring(1);
 
         //searchAlgoritme
-        Iterator<Content> c = contentSort.iterator();
-        while(c.hasNext()) {
-            Content con = c.next();
-            for(int i = 0; i < con.getGenre().length; i++){
-                if(!con.getGenre()[i].contains(sTerm)) {
-                    c.remove();
+        for (Content c : contentSort) {
+            for (int i = 0; i < c.getGenre().length; i++) {
+                if(c.getGenre()[i].contains(sTerm)){
+                    arrayOfSearchTerm.add(c);
                 }
             }
+
         }
+
+        //finds intersection between contentSort and toBeRemoved
+        contentSort.retainAll(arrayOfSearchTerm);
     }
 
     public ArrayList searchByTitle(String sTerm) {
@@ -141,13 +145,13 @@ public class ContentController {
         return sortArray;
     }
 
-    public ArrayList searchForMovies(){
+    public ArrayList searchForMovies() {
         ArrayList<Movie> movieArray = new ArrayList<>();
-        for(Content m: content){
-            if(m instanceof Movie){
-                Movie h = (Movie) m;
-                contentSort.add(h);
-                movieArray.add(h);
+        for (Content m : content) {
+            if (m instanceof Movie) {
+                contentSort.add(m);
+                movieArray.add((Movie) m);
+
             }
         }
         return movieArray;
@@ -174,7 +178,7 @@ public class ContentController {
 
         for (String s : tempString) {
             //first defines lastindex of the split charecter '-'
-            int lastIndexOf = s.lastIndexOf( '-' );
+            int lastIndexOf = s.lastIndexOf('-');
 
             //parses the substring before and after the '-' which correspond to season and episodes
             int season = Integer.parseInt(s.substring(0, lastIndexOf));
@@ -186,15 +190,14 @@ public class ContentController {
         return hash_map;
     }
 
-    public void displaySeasonAndEpisodes(Show show){
+    public void displaySeasonAndEpisodes(Show show) {
         HashMap hash_map = getSeasonAndEpisodesMap(show);
-        for(Object k: hash_map.keySet()){
+        for (Object k : hash_map.keySet()) {
             String key = k.toString();
             String value = hash_map.get(k).toString();
             System.out.println(key + " episodes " + value);
         }
     }
-
 
 
 }
