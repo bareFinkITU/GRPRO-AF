@@ -25,6 +25,10 @@ public class LogInController {
     private PasswordField passwordField;
     @FXML
     private BorderPane bp;
+    @FXML
+    private GridPane registerGP;
+    @FXML
+    private Button registerButton;
 
     private Users brugere =  Users.getInstanceOf();
 
@@ -43,13 +47,21 @@ public class LogInController {
                 e.printStackTrace();
             }
         } catch (loginException e){
-            System.out.println("Dette er ikke et gyldigt log in!");
+            System.out.println(e.getMessage());
         }
+    }
 
-
-
-
-
+    public void registerPressed(){
+        FXMLLoader loader = new FXMLLoader();
+        System.out.println("Path: " + this.getClass().getResource("/"));
+        loader.setLocation(this.getClass().getResource("/register/RegisterView.fxml"));
+        try {
+            GridPane registerGP = loader.load();
+            Stage Megaflix = (Stage) registerButton.getScene().getWindow();
+            Megaflix.setScene(new Scene(registerGP));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void detHerErEnMetode(String username, String password){
