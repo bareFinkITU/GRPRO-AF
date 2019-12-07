@@ -37,8 +37,8 @@ public class LogInController {
     public void logInPressed() {
 
         try {
-            List<User> opdatedList = brugere.getUsers();
-            if(brugere.login(usernameField.getText(),passwordField.getText(), opdatedList) != null){
+           // List<User> opdatedList = brugere.getUsers();
+            if(brugere.login(usernameField.getText(),passwordField.getText()) != null){
                 FXMLLoader loader = new FXMLLoader();
                 System.out.println("Path: " + this.getClass().getResource("/"));
                 loader.setLocation(this.getClass().getResource("/startScene/scv.fxml"));

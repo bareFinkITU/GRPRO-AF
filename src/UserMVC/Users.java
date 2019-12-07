@@ -19,10 +19,6 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
         return instance;
     }
 
-    public List<User> getUsers(){
-        return users;
-    }
-
     public void addUser(User e){
         users.add(e);
     }
@@ -66,9 +62,9 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
         }
     }
 
-    public User login(String usernameOrEmail, String password, List<User> list){
+    public User login(String usernameOrEmail, String password){
         //sout("indtast brugernavn/email");
-        for (User u: list) {
+        for (User u: users) {
             if(usernameOrEmail == null){
                 throw new NullPointerException("Field is empty");
             }else if(usernameOrEmail.trim().toLowerCase().equals(u.getUsername().trim().toLowerCase())
@@ -84,7 +80,7 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
                 //System.out.println("Username var forkert");
             }
         }
-        throw new loginException(usernameOrEmail);
+        throw new loginException("The following username/e-mail doesnt exist: " + usernameOrEmail);
     }
 
 
