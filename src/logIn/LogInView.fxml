@@ -60,7 +60,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Register" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+      <Button fx:id="registerButton" mnemonicParsing="false" onAction="#registerPressed" prefHeight="25.0" prefWidth="60.0" text="Register" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets right="20.0" />
          </GridPane.margin>

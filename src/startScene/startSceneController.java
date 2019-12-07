@@ -41,18 +41,26 @@ public class startSceneController {
     }
 
 
-    public void searchByTitle(){
+    public void searchByTitle() throws IOException {
+        //cC.resetContentSort();
         ArrayList<Content> searchByTitleContent =  cC.searchByTitle(searchField.getText());
         refreshContentList(searchByTitleContent, fp);
     }
 
-    public void moviesClicked(){
+    public void homeClicked() throws IOException {
+        cC.resetContentSort();
+        refreshContentList(allContent,fp);
+    }
+
+    public void moviesClicked() throws IOException {
+        cC.resetContentSort();
         ArrayList<Content> searchForMovies = cC.searchForMovies();
         refreshContentList(searchForMovies,fp);
         System.out.println("Now it's only movies!");
     }
 
-    public void showsClicked(){
+    public void showsClicked() throws IOException {
+        cC.resetContentSort();
         ArrayList<Content> searchForShows = cC.searchForShows();
         refreshContentList(searchForShows,fp);
         System.out.println("Now it's only shows!");
@@ -72,6 +80,7 @@ public class startSceneController {
     }
 
     private void refreshContentList(List<Content> contents,  FlowPane list) {
+        list.getChildren().clear();
         for (Content c : contents){
             Button newButton = new Button();
             newButton.setGraphic(new ImageView(c.getCover()));
@@ -79,12 +88,21 @@ public class startSceneController {
             newButton.setOnAction(e -> {
                 System.out.println(c.getTitle());
             });
+            newButton.setOnMouseEntered(e -> {
+                newButton.setScaleX(1.1);
+                newButton.setScaleY(1.1);
+            });
+            newButton.setOnMouseExited(e -> {
+                newButton.setScaleY(1);
+                newButton.setScaleX(1);
+            });
 
             list.getChildren().addAll(newButton);
         }
     }
 
     public void initialize() throws IOException {
+        cC.resetContentSort();
         refreshContentList(allContent,fp);
     }
 

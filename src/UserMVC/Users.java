@@ -6,9 +6,17 @@ import java.util.List;
 public class Users { //***DENNE KLASSE SKAL TIL MODEL***
 
     List<User> users;
+    private static Users instance;
 
-    public Users(){
+    private Users(){
         users = new ArrayList<>();
+        users.add(new User("Oskar", "flotfyr23", "rakso23", "oskarjensen23@gmail.com",23));
+    }
+    public static Users getInstanceOf() {
+        if (instance == null) {
+            instance = new Users();
+        }
+        return instance;
     }
 
     public void addUser(User e){
@@ -45,9 +53,12 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
                 throw new validRegistration(email + " is already taken, try another e-mail.");
             }
         }
-        if(username != null || email != null) {
+        if(username != null && email != null) {
             User user = new User(name, username, password, email, age);
             addUser(user);
+            for (User a : users) {
+                System.out.println(a.getName());
+            }
         }else{
             throw new NullPointerException("Field is empty");
         }

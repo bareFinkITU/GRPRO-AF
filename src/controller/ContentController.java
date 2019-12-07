@@ -143,8 +143,10 @@ public class ContentController {
     }
 
     public ArrayList searchForMovies() {
+
         contentSort.removeIf(content -> !(content instanceof Movie));
         return contentSort;
+
     }
 
     public ArrayList searchForShows() {
