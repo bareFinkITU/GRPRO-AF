@@ -28,7 +28,7 @@ public class ContentController {
     private static ContentController instance;
 
     private ContentController() throws IOException {
-        content = new ArrayList<>();
+        content = new ArrayList<Content>();
         contentSort = new ArrayList<>();
         initializeContent();
     }
