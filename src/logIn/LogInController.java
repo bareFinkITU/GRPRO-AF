@@ -1,5 +1,6 @@
 package logIn;
 
+import UserMVC.User;
 import UserMVC.Users;
 import UserMVC.loginException;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 
 public class LogInController {
@@ -35,17 +37,20 @@ public class LogInController {
     public void logInPressed() {
 
         try {
-            brugere.login(usernameField.getText(),passwordField.getText());
-            FXMLLoader loader = new FXMLLoader();
-            System.out.println("Path: " + this.getClass().getResource("/"));
-            loader.setLocation(this.getClass().getResource("/startScene/scv.fxml"));
-            try {
-                BorderPane bp = loader.load();
-                Stage Megaflix = (Stage) logInButton.getScene().getWindow();
-                Megaflix.setScene(new Scene(bp));
-            } catch (IOException e) {
-                e.printStackTrace();
+            List<User> opdatedList = brugere.getUsers();
+            if(brugere.login(usernameField.getText(),passwordField.getText(), opdatedList) != null){
+                FXMLLoader loader = new FXMLLoader();
+                System.out.println("Path: " + this.getClass().getResource("/"));
+                loader.setLocation(this.getClass().getResource("/startScene/scv.fxml"));
+                try {
+                    BorderPane bp = loader.load();
+                    Stage Megaflix = (Stage) logInButton.getScene().getWindow();
+                    Megaflix.setScene(new Scene(bp));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+
         } catch (loginException e){
             System.out.println(e.getMessage());
         }

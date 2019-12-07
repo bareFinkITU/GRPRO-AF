@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Users { //***DENNE KLASSE SKAL TIL MODEL***
 
-    List<User> users;
+    static List<User> users;
     private static Users instance;
 
     private Users(){
@@ -19,6 +19,10 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
         return instance;
     }
 
+    public List<User> getUsers(){
+        return users;
+    }
+
     public void addUser(User e){
         users.add(e);
     }
@@ -27,9 +31,7 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
         users.remove(e);
     }
 
-    public void getUserr(User e){
-
-    }
+    public void getUserr(User e){ }
 
     public User getUser(User username) {
         System.out.println(username);
@@ -64,9 +66,9 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
         }
     }
 
-    public User login(String usernameOrEmail, String password){
+    public User login(String usernameOrEmail, String password, List<User> list){
         //sout("indtast brugernavn/email");
-        for (User u: users) {
+        for (User u: list) {
             if(usernameOrEmail == null){
                 throw new NullPointerException("Field is empty");
             }else if(usernameOrEmail.trim().toLowerCase().equals(u.getUsername().trim().toLowerCase())
@@ -75,13 +77,14 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
                     System.out.println("Login Successful");
                     return u;
                 } else {
-                    throw new loginException();
+                    //System.out.println("koden var forkert");
+                    throw new loginException("Wrong password!");
                 }
             }else{
-                throw new loginException(usernameOrEmail);
+                //System.out.println("Username var forkert");
             }
         }
-        return null;
+        throw new loginException(usernameOrEmail);
     }
 
 

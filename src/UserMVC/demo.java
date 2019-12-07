@@ -7,7 +7,7 @@ public class demo {
         Users users = Users.getInstanceOf();
         users.addUser(u);
         users.addUser(j);
-        users.login("FinkyDinky","123123");
+        users.login("FinkyDinky","123123", users.getUsers());
         users.registerUser("bob","Flotfyr23","123123","fatherFuck@live.dk",99);
 
     }
