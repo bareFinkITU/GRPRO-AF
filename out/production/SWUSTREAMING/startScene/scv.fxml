@@ -17,7 +17,7 @@
          <children>
             <HBox spacing="10.0">
                <children>
-                  <Button fx:id="homeButton" mnemonicParsing="false" style="-fx-background-color: TRANSPARENT;" text="Home">
+                  <Button fx:id="homeButton" mnemonicParsing="false" onAction="#homeClicked" style="-fx-background-color: TRANSPARENT;" text="Home">
                      <font>
                         <Font name="Segoe UI" size="14.0" />
                      </font>

@@ -9,6 +9,7 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
 
     public Users(){
         users = new ArrayList<>();
+        users.add(new User("Oskar", "flotfyr23", "rakso23", "oskarjensen23@gmail.com",23));
     }
 
     public void addUser(User e){

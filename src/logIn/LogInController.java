@@ -1,5 +1,7 @@
 package logIn;
 
+import UserMVC.Users;
+import UserMVC.loginException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -26,20 +28,27 @@ public class LogInController {
 
     public void logInPressed() {
 
-        detHerErEnMetode(usernameField.getText(), passwordField.getText());
-
-
-
-        FXMLLoader loader = new FXMLLoader();
-        System.out.println("Path: " + this.getClass().getResource("/"));
-        loader.setLocation(this.getClass().getResource("/startScene/scv.fxml"));
+        Users brugere = new Users();
         try {
-            BorderPane bp = loader.load();
-            Stage Megaflix = (Stage) logInButton.getScene().getWindow();
-            Megaflix.setScene(new Scene(bp));
-        } catch (IOException e) {
-            e.printStackTrace();
+            brugere.login(usernameField.getText(),passwordField.getText());
+            FXMLLoader loader = new FXMLLoader();
+            System.out.println("Path: " + this.getClass().getResource("/"));
+            loader.setLocation(this.getClass().getResource("/startScene/scv.fxml"));
+            try {
+                BorderPane bp = loader.load();
+                Stage Megaflix = (Stage) logInButton.getScene().getWindow();
+                Megaflix.setScene(new Scene(bp));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (loginException e){
+            System.out.println("Dette er ikke et gyldigt log in!");
         }
+
+
+
+
+
     }
 
     private void detHerErEnMetode(String username, String password){

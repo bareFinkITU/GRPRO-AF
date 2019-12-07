@@ -42,9 +42,14 @@ public class startSceneController {
 
 
     public void searchByTitle() throws IOException {
-        cC.resetContentSort();
+        //cC.resetContentSort();
         ArrayList<Content> searchByTitleContent =  cC.searchByTitle(searchField.getText());
         refreshContentList(searchByTitleContent, fp);
+    }
+
+    public void homeClicked() throws IOException {
+        cC.resetContentSort();
+        refreshContentList(allContent,fp);
     }
 
     public void moviesClicked() throws IOException {
@@ -97,6 +102,7 @@ public class startSceneController {
     }
 
     public void initialize() throws IOException {
+        cC.resetContentSort();
         refreshContentList(allContent,fp);
     }
 
