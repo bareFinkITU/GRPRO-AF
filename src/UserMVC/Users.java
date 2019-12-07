@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Users { //***DENNE KLASSE SKAL TIL MODEL***
 
+    private User selectedUser;
     static List<User> users;
     private static Users instance;
 
@@ -17,6 +18,10 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
             instance = new Users();
         }
         return instance;
+    }
+
+    public User getSelectedUser(){ //retunere den bruger man er logged ind på
+        return selectedUser;
     }
 
     public void addUser(User e){
@@ -71,6 +76,7 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
             || usernameOrEmail.trim().toLowerCase().equals(u.getEmail().trim().toLowerCase())){
                 if(password.equals(u.getPassword())){
                     System.out.println("Login Successful");
+                    selectedUser = u; //gemmer hvilken bruger man er logget ind på
                     return u;
                 } else {
                     //System.out.println("koden var forkert");

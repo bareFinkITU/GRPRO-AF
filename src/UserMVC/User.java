@@ -1,5 +1,6 @@
 package UserMVC;
 
+import model.Content;
 import model.Movie;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ public class User {
     private int age;
     private String email;
 
-    private List<Movie> favorites; //enkelte brugers favorit liste for film/serier
+    private List<Content> favorites; //enkelte brugers favorit liste for film/serier
 
     public User(String name, String username, String password, String email, int age){
         this.name = name;
@@ -25,19 +26,23 @@ public class User {
             boolean underAge = false;
         }
 
-        favorites = new ArrayList<Movie>();
+        favorites = new ArrayList<Content>();
     }
 
-    public void addMovie(Movie m){
-        favorites.add(m);
+    public void addContent(Content c){
+        favorites.add(c);
     }
 
-    public void removeMovie(Movie m){
-        favorites.remove(m);
+    public void removeContent(Content c){
+        favorites.remove(c);
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Content> getFavorites(){
+        return favorites;
     }
 
     public String getEmail() {

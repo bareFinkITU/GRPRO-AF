@@ -32,12 +32,17 @@
                         <Font name="Segoe UI" size="14.0" />
                      </font>
                   </Button>
+                  <Button fx:id="myProfileButton" mnemonicParsing="false" onAction="#myProfileClicked" style="-fx-background-color: TRANSPARENT;" text="My profile">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
                   <Region HBox.hgrow="ALWAYS" />
                   <TextField fx:id="searchField" onKeyTyped="#searchByTitle" promptText="Search">
                      <HBox.margin>
                         <Insets top="2.0" />
                      </HBox.margin></TextField>
-                  <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#logOut" style="-fx-background-color: TRANSPARENT;" text="Log out">
+                  <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#logOutClicked" style="-fx-background-color: TRANSPARENT;" text="Log out">
                      <font>
                         <Font size="14.0" />
                      </font></Button>

@@ -1,5 +1,6 @@
 package startScene;
 
+import UserMVC.Users;
 import controller.ContentController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,6 +38,8 @@ public class startSceneController {
 
     private ArrayList<Content> allContent = cC.getContent();
 
+    private Users brugere = Users.getInstanceOf();
+
     public startSceneController() throws IOException {
     }
 
@@ -66,7 +69,7 @@ public class startSceneController {
         System.out.println("Now it's only shows!");
     }
 
-    public void logOut(){
+    public void logOutClicked(){
         FXMLLoader loader = new FXMLLoader();
         System.out.println("Path: " + this.getClass().getResource("/"));
         loader.setLocation(getClass().getResource("/logIn/LogInView.fxml"));
@@ -79,6 +82,18 @@ public class startSceneController {
         }
     }
 
+    public void myProfileClicked(){
+        System.out.println("The selected user is: ");
+        System.out.println(brugere.getSelectedUser().getName());
+        System.out.println();
+        List<Content> favorites = brugere.getSelectedUser().getFavorites();
+
+        //Udskriver de film der er i favorit listen
+        for (Content c : favorites) {
+            System.out.println(c.getTitle());
+        }
+    }
+
     private void refreshContentList(List<Content> contents,  FlowPane list) {
         list.getChildren().clear();
         for (Content c : contents){
@@ -86,7 +101,8 @@ public class startSceneController {
             newButton.setGraphic(new ImageView(c.getCover()));
             newButton.setStyle(" -fx-background-color: transparent");
             newButton.setOnAction(e -> {
-                System.out.println(c.getTitle());
+                System.out.println(c.getTitle() + " added to favorites");
+                brugere.getSelectedUser().addContent(c); //tilføjer filmen til ens liste hvis man klikker på den
             });
             newButton.setOnMouseEntered(e -> {
                 newButton.setScaleX(1.1);
