@@ -42,7 +42,7 @@ public class startSceneController {
 
 
     public void searchByTitle() throws IOException {
-        //cC.resetContentSort();
+        cC.resetContentSort();
         ArrayList<Content> searchByTitleContent =  cC.searchByTitle(searchField.getText());
         refreshContentList(searchByTitleContent, fp);
     }

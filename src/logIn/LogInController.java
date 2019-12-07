@@ -30,7 +30,7 @@ public class LogInController {
     @FXML
     private Button registerButton;
 
-    private Users brugere =  Users.getInstanceOf();
+    private Users brugere;
 
     public void logInPressed() {
 
@@ -64,11 +64,7 @@ public class LogInController {
         }
     }
 
-    private void detHerErEnMetode(String username, String password){
-        System.out.println("Username: " + username);
-        System.out.println("Password: " + password);
+    public void initialize(){
+       brugere =  Users.getInstanceOf();
     }
-
-
-
 }

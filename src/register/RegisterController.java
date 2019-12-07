@@ -32,7 +32,7 @@ public class RegisterController {
 
 
 
-    private Users brugere = Users.getInstanceOf();
+    private Users brugere;
 
 
     public void submitPressed(){
@@ -52,5 +52,9 @@ public class RegisterController {
         } catch (validRegistration e){
             System.out.println(e.getMessage());
         }
+    }
+
+    public void initialize(){
+        brugere = Users.getInstanceOf();
     }
 }

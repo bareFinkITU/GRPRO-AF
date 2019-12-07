@@ -33,7 +33,7 @@
                      </font>
                   </Button>
                   <Region HBox.hgrow="ALWAYS" />
-                  <TextField fx:id="searchField" onKeyReleased="#searchByTitle" promptText="Search">
+                  <TextField fx:id="searchField" onKeyTyped="#searchByTitle" promptText="Search">
                      <HBox.margin>
                         <Insets top="2.0" />
                      </HBox.margin></TextField>
