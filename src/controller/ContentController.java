@@ -4,20 +4,11 @@ import javafx.scene.image.Image;
 import model.Content;
 import model.Movie;
 import model.Show;
-import model.Show;
 
-import javafx.scene.image.Image;
-
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.List;
 import java.util.regex.Pattern;
 
 public class ContentController {
@@ -40,48 +31,57 @@ public class ContentController {
         return instance;
     }
 
-    public void initializeContent() throws IOException {
+    public void initializeContent(){
 
-        //movie scanner
-        Scanner mReader = new Scanner(new File("out/movies/#movies.txt"));
-        mReader.useDelimiter(";");
+        try {
+            //movie scanner
+            Scanner mReader = new Scanner(new File("out/movies/#movies.txt"));
+            mReader.useDelimiter(";");
 
-        while (mReader.hasNext()) {
-            String title = mReader.next().trim();
-            int year = Integer.parseInt(mReader.next().trim());
-            String genre = mReader.next().trim();
-            String[] arrOfGenres = genre.split(Pattern.quote(",").trim());
-            double rating = Double.parseDouble(mReader.next().trim().replaceAll(",", "."));
-            Image cover = new Image(new FileInputStream("out/movies/" + title + ".jpg"));
+            while (mReader.hasNext()) {
+                String title = mReader.next().trim();
+                int year = Integer.parseInt(mReader.next().trim());
+                String genre = mReader.next().trim();
+                String[] arrOfGenres = genre.split(Pattern.quote(",").trim());
+                double rating = Double.parseDouble(mReader.next().trim().replaceAll(",", "."));
+                Image cover = new Image(new FileInputStream("out/movies/" + title + ".jpg"));
 
 
-            content.add(new Movie(title, arrOfGenres, rating, cover, year));
-            mReader.nextLine();
+                content.add(new Movie(title, arrOfGenres, rating, cover, year));
+                mReader.nextLine();
+            }
+            mReader.close();
+        }catch (IOException e){
+            System.out.println("There was a problem reading from the #movies.txt file");
         }
-        mReader.close();
 
-        //shows scanner
-        Scanner sReader = new Scanner(new File("out/shows/#shows.txt"));
-        sReader.useDelimiter(";");
+        try {
+            //shows scanner
+            Scanner sReader = new Scanner(new File("out/shows/#shows.txt"));
+            sReader.useDelimiter(";");
 
-        while (sReader.hasNext()) {
-            String title = sReader.next().trim();
-            String runtime = sReader.next().trim();
-            String genre = sReader.next().trim();
-            String[] arrOfGenres = genre.split(Pattern.quote(",").trim());
-            double rating = Double.parseDouble(sReader.next().trim().replaceAll(",", "."));
-            String seasons = sReader.next().trim();
-            Image cover = new Image(new FileInputStream("out/shows/" + title + ".jpg"));
+            while (sReader.hasNext()) {
+                String title = sReader.next().trim();
+                String runtime = sReader.next().trim();
+                String genre = sReader.next().trim();
+                String[] arrOfGenres = genre.split(Pattern.quote(",").trim());
+                double rating = Double.parseDouble(sReader.next().trim().replaceAll(",", "."));
+                String seasons = sReader.next().trim();
+                Image cover = new Image(new FileInputStream("out/shows/" + title + ".jpg"));
 
 
-            content.add(new Show(title, arrOfGenres, rating, cover, runtime, seasons));
-            sReader.nextLine();
+                content.add(new Show(title, arrOfGenres, rating, cover, runtime, seasons));
+                sReader.nextLine();
+            }
+            sReader.close();
+        }catch (IOException e){
+            System.out.println("There was a problem reading from the #shows.txt file");
         }
-        sReader.close();
         //shuffles the arraylist so that it doesnt display movies and then series.
+        //adds all movies and shows to an arrayList used to store search / sort terms
         Collections.shuffle(content);
-        //adds all movies and shows to the searchable array
-        contentSort = content;
+        contentSort.addAll(content);
+
     }
 
     public ArrayList<Content> getContent() {
@@ -92,61 +92,59 @@ public class ContentController {
         return contentSort;
     }
 
-    public ArrayList<Content> resetContentSort() throws IOException {
+    public void resetContentSort() throws IOException {
         contentSort.clear();
-        initializeContent();
-        return contentSort;
+        contentSort.addAll(content);
     }
 
     public void display() {
         int i = 1;
         for (Content c : contentSort) {
             if (c instanceof Movie) {
-                System.out.println(i + " film " + c.display());
+                System.out.println(i + " Movie " + c.display());
             } else {
-                System.out.println(i + " Serie " + c.display());
+                System.out.println(i + " Show " + c.display());
             }
             i++;
         }
     }
 
     public ArrayList<Content> searchByRating(double sTerm) {
-        // Removes the 'current' item
+        // Iterates over Arraylist and deleting all items that with a lower rating than "sTerm"
         contentSort.removeIf(content -> content.getRating() < sTerm);
         return contentSort;
     }
 
     public ArrayList<Content> searchByGenre(String sTerm) {
-        //capitalize string and init array
+        //creates local array of items that is the same genre as the search
         ArrayList<Content> arrayOfSearchTerm = new ArrayList<>();
-        sTerm = sTerm.substring(0, 1).toUpperCase() + sTerm.substring(1);
 
-        //searchAlgoritme
+        //forloop with a nestet loop that loops over the Array of genres that each item has
+        //if the items contains the search term it is added to the local array
         for (Content c : contentSort) {
             for (int i = 0; i < c.getGenre().length; i++) {
-                if(c.getGenre()[i].contains(sTerm)){
+                if(c.getGenre()[i].toLowerCase().contains(sTerm.toLowerCase())){
                     arrayOfSearchTerm.add(c);
                 }
             }
 
         }
-
-        //finds intersection between contentSort and toBeRemoved
+        //compares the local and contentSort array and returns the intersection of the two.
         contentSort.retainAll(arrayOfSearchTerm);
         return contentSort;
     }
 
+    //For explanation look at the searchByRating method
     public ArrayList searchByTitle(String sTerm) {
-        contentSort.removeIf(content -> !content.getTitle().contains(sTerm));
+        contentSort.removeIf(content -> !content.getTitle().toLowerCase().contains(sTerm.toLowerCase()));
         return contentSort;
-
     }
 
+    //same as searchByRating method but instead of looking for a searchterm, this method
+    //checks if the item is a Movie
     public ArrayList searchForMovies() {
-
         contentSort.removeIf(content -> !(content instanceof Movie));
         return contentSort;
-
     }
 
     public ArrayList searchForShows() {
@@ -176,6 +174,7 @@ public class ContentController {
         return hash_map;
     }
 
+    
     public void displaySeasonAndEpisodes(Show show) {
         HashMap hash_map = getSeasonAndEpisodesMap(show);
         for (Object k : hash_map.keySet()) {
