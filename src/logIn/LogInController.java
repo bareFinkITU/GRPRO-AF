@@ -26,9 +26,10 @@ public class LogInController {
     @FXML
     private BorderPane bp;
 
+    private Users brugere =  Users.getInstanceOf();
+
     public void logInPressed() {
 
-        Users brugere = new Users();
         try {
             brugere.login(usernameField.getText(),passwordField.getText());
             FXMLLoader loader = new FXMLLoader();
