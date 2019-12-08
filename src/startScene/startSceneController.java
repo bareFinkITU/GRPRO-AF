@@ -23,16 +23,22 @@ import java.util.List;
 public class startSceneController {
 
     @FXML
-    private FlowPane fp;
+    private FlowPane startSceneFP;
 
     @FXML
     private GridPane gp;
 
     @FXML
-    private TextField searchField;
+    private BorderPane myProfileBP;
 
     @FXML
-    private Button logOutButton;
+    private TextField startSceneSearchField;
+
+    @FXML
+    private Button startSceneLogOutButton;
+
+    @FXML
+    private Button startSceneMyProfileButton;
 
     private ContentController cC = ContentController.getInstanceOf();
 
@@ -46,26 +52,27 @@ public class startSceneController {
 
     public void searchByTitle() throws IOException {
         cC.resetContentSort();
-        ArrayList<Content> searchByTitleContent =  cC.searchByTitle(searchField.getText());
-        refreshContentList(searchByTitleContent, fp);
+        ArrayList<Content> searchByTitleContent =  cC.searchByTitle(startSceneSearchField.getText());
+        cC.drawContentList(searchByTitleContent, startSceneFP);
+        System.out.println(startSceneSearchField.getText());
     }
 
     public void homeClicked() throws IOException {
         cC.resetContentSort();
-        refreshContentList(allContent,fp);
+        cC.drawContentList(allContent,startSceneFP);
     }
 
     public void moviesClicked() throws IOException {
         cC.resetContentSort();
         ArrayList<Content> searchForMovies = cC.searchForMovies();
-        refreshContentList(searchForMovies,fp);
+        cC.drawContentList(searchForMovies,startSceneFP);
         System.out.println("Now it's only movies!");
     }
 
     public void showsClicked() throws IOException {
         cC.resetContentSort();
         ArrayList<Content> searchForShows = cC.searchForShows();
-        refreshContentList(searchForShows,fp);
+        cC.drawContentList(searchForShows,startSceneFP);
         System.out.println("Now it's only shows!");
     }
 
@@ -75,7 +82,7 @@ public class startSceneController {
         loader.setLocation(getClass().getResource("/logIn/LogInView.fxml"));
         try {
             gp = loader.load();
-            Stage Megaflix = (Stage) logOutButton.getScene().getWindow();
+            Stage Megaflix = (Stage) startSceneLogOutButton.getScene().getWindow();
             Megaflix.setScene(new Scene(gp));
         } catch (IOException e) {
             e.printStackTrace();
@@ -83,7 +90,18 @@ public class startSceneController {
     }
 
     public void myProfileClicked(){
-        System.out.println("The selected user is: ");
+        FXMLLoader loader = new FXMLLoader();
+        System.out.println("Path: " + this.getClass().getResource("/"));
+        loader.setLocation(getClass().getResource("/myProfile/MyProfileView.fxml"));
+        try {
+            myProfileBP = loader.load();
+            Stage Megaflix = (Stage) startSceneMyProfileButton.getScene().getWindow();
+            Megaflix.setScene(new Scene(myProfileBP));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        /*System.out.println("The selected user is: ");
         System.out.println(brugere.getSelectedUser().getName());
         System.out.println();
         List<Content> favorites = brugere.getSelectedUser().getFavorites();
@@ -91,35 +109,13 @@ public class startSceneController {
         //Udskriver de film der er i favorit listen
         for (Content c : favorites) {
             System.out.println(c.getTitle());
-        }
+        }*/
     }
 
-    private void refreshContentList(List<Content> contents,  FlowPane list) {
-        list.getChildren().clear();
-        for (Content c : contents){
-            Button newButton = new Button();
-            newButton.setGraphic(new ImageView(c.getCover()));
-            newButton.setStyle(" -fx-background-color: transparent");
-            newButton.setOnAction(e -> {
-                System.out.println(c.getTitle() + " added to favorites");
-                brugere.getSelectedUser().addContent(c); //tilføjer filmen til ens liste hvis man klikker på den
-            });
-            newButton.setOnMouseEntered(e -> {
-                newButton.setScaleX(1.1);
-                newButton.setScaleY(1.1);
-            });
-            newButton.setOnMouseExited(e -> {
-                newButton.setScaleY(1);
-                newButton.setScaleX(1);
-            });
-
-            list.getChildren().addAll(newButton);
-        }
-    }
 
     public void initialize() throws IOException {
         cC.resetContentSort();
-        refreshContentList(allContent,fp);
+        cC.drawContentList(allContent,startSceneFP);
     }
 
 

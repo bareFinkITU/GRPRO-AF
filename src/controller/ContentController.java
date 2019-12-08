@@ -1,6 +1,10 @@
 package controller;
 
+import UserMVC.Users;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
 import model.Content;
 import model.Movie;
 import model.Show;
@@ -17,6 +21,7 @@ public class ContentController {
     private ArrayList<Content> content;
     private ArrayList<Content> contentSort;
     private static ContentController instance;
+    private Users brugere = Users.getInstanceOf();
 
     private ContentController() throws IOException {
         content = new ArrayList<Content>();
@@ -184,5 +189,28 @@ public class ContentController {
         }
     }
 
+
+    public void drawContentList(List<Content> contents,  FlowPane list) {
+        list.getChildren().clear();
+        for (Content c : contents){
+            Button newButton = new Button();
+            newButton.setGraphic(new ImageView(c.getCover()));
+            newButton.setStyle(" -fx-background-color: transparent");
+            newButton.setOnAction(e -> {
+                System.out.println(c.getTitle() + " added to favorites");
+                brugere.getSelectedUser().addContent(c); //tilføjer filmen til ens liste hvis man klikker på den
+            });
+            newButton.setOnMouseEntered(e -> {
+                newButton.setScaleX(1.1);
+                newButton.setScaleY(1.1);
+            });
+            newButton.setOnMouseExited(e -> {
+                newButton.setScaleY(1);
+                newButton.setScaleX(1);
+            });
+
+            list.getChildren().addAll(newButton);
+        }
+    }
 
 }
