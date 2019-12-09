@@ -3,7 +3,7 @@ Development of a streaming service as part of 1. semester SWU exam
 
 Systemspecification
 
-/h2 Need to have
+## Need to have
 
 🔜 Brugeren vil gerne se en oversigt over alle dramaserier
 
@@ -17,7 +17,7 @@ Systemspecification
 
 ✔ Brugeren vil søge efter en bestemt film eller serie 
 
-/h2 Nice to have
+## Nice to have
 
 🔜 (metoder lavet) En bruger vil gerne søge efter film, der har rating større end 8,5
 
