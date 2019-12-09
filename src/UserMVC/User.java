@@ -13,28 +13,32 @@ public class User {
     private int age;
     private String email;
     private List<Profiles> profiles;
+    private boolean underAge;
 
     public User(String name, String username, String password, String email, int age){
         this.name = name;
         this.username = username;
         this.password = password;
         this.email = email;
-        if(age <= 14){ // kontrollerer at age er 15 eller større for, at kunne registrere en bruger
-            throw new validRegistration("Age must be 15 or greater to register a user");
-        }else {
-            this.age = age;
-        }
+        this.age = age;
         profiles = new ArrayList<>();
-        profiles.add(new Profiles(name, age)); //så man 'by default' har en profil med samme navn og alder.
+        profiles.add(new Profiles(name, age));
+
+        if(age >= 15){
+            boolean underAge = false;
+        }
     }
 
-    public void addProfile(Profiles p){ //tilføjer en profil til listen af profiles
+    public void addProfile(Profiles p){
         profiles.add(p);
     }
 
-    public void removeProfile(Profiles p ){ //fjerner en profil fra listen af profiles
+    public void removeProfile(Profiles p ){
         profiles.remove(p);
     }
+
+   // public void changeProfileName()
+
 
 
     public void setPassword(String password) {
@@ -44,7 +48,7 @@ public class User {
     public String getEmail() {
         return email;
     }
-                                    //følgende metoder er get -og setmetoder.
+
     public String getPassword() {
         return password;
     }
@@ -82,7 +86,6 @@ public class User {
     }
 
     public void show(){
-        //System out print test metode
         System.out.println("Username: " + username);
         System.out.println("Password: " + password);
         System.out.println("Name: " + name.substring(0,1).toUpperCase()+name.substring(1).toLowerCase());

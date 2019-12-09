@@ -29,7 +29,7 @@ public class ContentController {
         initializeContent();
     }
 
-    public static ContentController getInstanceOf() throws IOException { //singleton, så man kun har et instans af dette objekt.
+    public static ContentController getInstanceOf() throws IOException {
         if (instance == null) {
             instance = new ContentController();
         }
@@ -54,8 +54,6 @@ public class ContentController {
 
                 content.add(new Movie(title, arrOfGenres, rating, cover, year));
                 mReader.nextLine();
-
-                //se kommentarer under - samme princip.
             }
             mReader.close();
         }catch (IOException e){
@@ -65,23 +63,20 @@ public class ContentController {
         try {
             //shows scanner
             Scanner sReader = new Scanner(new File("out/shows/#shows.txt"));
-            sReader.useDelimiter(";"); //splitter strengen op hver gang den møder semi-kolon.
+            sReader.useDelimiter(";");
 
-            while (sReader.hasNext()) { //her læser den strengen og trimmer den for mellemrum
+            while (sReader.hasNext()) {
                 String title = sReader.next().trim();
                 String runtime = sReader.next().trim();
                 String genre = sReader.next().trim();
                 String[] arrOfGenres = genre.split(Pattern.quote(",").trim());
-                //trimmer med genre ved komma og tilføjer dem til et array
                 double rating = Double.parseDouble(sReader.next().trim().replaceAll(",", "."));
-                //erstatter komma med punktum for 'double'
                 String seasons = sReader.next().trim();
                 Image cover = new Image(new FileInputStream("out/shows/" + title + ".jpg"));
-                //path for hvor coversne findes
+
 
                 content.add(new Show(title, arrOfGenres, rating, cover, runtime, seasons));
-                //tilføjer de nytrimmede -og læste serier til listen af serier.
-                sReader.nextLine(); //går videre til næste linje og læser næste serie.
+                sReader.nextLine();
             }
             sReader.close();
         }catch (IOException e){
@@ -155,13 +150,11 @@ public class ContentController {
     public ArrayList searchForMovies() {
         contentSort.removeIf(content -> !(content instanceof Movie));
         return contentSort;
-        //sletter alle serier, da de ikke er en del af klassen "Movie"
     }
 
     public ArrayList searchForShows() {
         contentSort.removeIf(content -> !(content instanceof Show));
         return contentSort;
-        //sletter alle film, da de ikke er en del af klassen "Show"
     }
 
 

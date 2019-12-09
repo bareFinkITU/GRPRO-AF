@@ -11,11 +11,9 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
 
     private Users(){
         users = new ArrayList<>();
-        //default admin bruger
         users.add(new User("admin" , "admin", "password", "adminpassword@gmail.com",420));
-
     }
-    public static Users getInstanceOf() { //singleton
+    public static Users getInstanceOf() {
         if (instance == null) {
             instance = new Users();
         }
@@ -53,19 +51,15 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
         for (User u: users){
             // Evt. skriv at oprettelse af bruger er "case sensitive" (til GUI)
             if (username.trim().toLowerCase().equals(u.getUsername().trim().toLowerCase())) {
-                //tjekker om brugernavnet allerede eksisterer
                 throw new validRegistration(username + " is already taken, try another username");
             }else if(email.toLowerCase().trim().equals(u.getEmail().trim().toLowerCase())){
-                //tjekker om email allerede eksisterer
                 throw new validRegistration(email + " is already taken, try another e-mail.");
             }
         }
         if(username != null && email != null) {
-            //sørger for username og email er forskellig fra null
             User user = new User(name, username, password, email, age);
             addUser(user);
-            //hvis dette er sandt opretter vi en ny User og tilføjer den til arraylisten af Users
-            for (User a : users) { //sout test?? <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            for (User a : users) {
                 System.out.println(a.getName());
             }
         }else{
@@ -77,12 +71,11 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
         //sout("indtast brugernavn/email");
         for (User u: users) {
             if(usernameOrEmail == null){
-                //den klassiske nullPointerException handling.
                 throw new NullPointerException("Field is empty");
             }else if(usernameOrEmail.trim().toLowerCase().equals(u.getUsername().trim().toLowerCase())
             || usernameOrEmail.trim().toLowerCase().equals(u.getEmail().trim().toLowerCase())){
                 if(password.equals(u.getPassword())){
-                    System.out.println("Login Successful"); //sout test
+                    System.out.println("Login Successful");
                     selectedUser = u; //gemmer hvilken bruger man er logget ind på
                     return u;
                 } else {

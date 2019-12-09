@@ -52,7 +52,6 @@ public class Content implements Comparable<Content> {
 
     public String display() {
         String preFix = title + " " + rating + " genre(s): " + String.join(", ", genre);
-        //et preFix String, som sørger for at der ikke er redundans. Pænere at kigge på.
         if(this instanceof Movie){
             return "Movie: " + preFix;
         }else{

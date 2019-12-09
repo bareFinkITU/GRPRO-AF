@@ -18,31 +18,30 @@ public class Profiles {
     }
 
     public void isUnderAged(){
-        //tjekker om brugeren er underages. Denne metode bruges i andre klasser
         boolean isUnderAged = age <= 14;
     }
 
-    public List<Content> getFavorites(){ //returnerer favoritlisten
+    public List<Content> getFavorites(){
         return favorites;
     }
 
-    public void addContent(Content c){ //tilføjer content til favoritlisten
+    public void addContent(Content c){
         favorites.add(c);
     }
 
-    public void removeContent(Content c){ //fjerner content fra favoritlisten
+    public void removeContent(Content c){
         favorites.remove(c);
     }
 
-    public void editProfileName(String s){ //ændring af profilnavn
+    public void editProfileName(String s){
         name = s;
     }
 
-    public int getAge(){ //indhentning af alder til en gældende profil. Måske overflødig eftersom vi har "isUnderAges()"?
+    public int getAge(){
         return age;
     }
 
-    public void setAge(int age){ //ændring af alder til en gældende profil
+    public void setAge(int age){
         this.age = age;
     }
 
