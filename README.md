@@ -3,7 +3,8 @@ Development of a streaming service as part of 1. semester SWU exam
 
 Systemspecification
 
-Need to have
+## Need to have
+
 🔜 Brugeren vil gerne se en oversigt over alle dramaserier
 
 🔜 Brugeren vil gerne gemme en film i ”min liste”
@@ -16,7 +17,8 @@ Need to have
 
 ✔ Brugeren vil søge efter en bestemt film eller serie 
 
-Nice to have
+## Nice to have
+
 🔜 (metoder lavet) En bruger vil gerne søge efter film, der har rating større end 8,5
 
 🔜 (metoder lavet)En bruger vil gerne søge efter film fra 80’erne
