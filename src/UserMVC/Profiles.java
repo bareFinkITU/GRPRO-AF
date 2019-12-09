@@ -38,6 +38,10 @@ public class Profiles {
         name = s;
     }
 
+    public String getName(){
+        return name;
+    }
+
     public int getAge(){ //indhenting af alder til en gældende profil. Måske overflødig eftersom vi har "isUnderAged()"?
         return age;
     }
