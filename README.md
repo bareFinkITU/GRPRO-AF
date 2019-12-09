@@ -4,8 +4,10 @@ Development of a streaming service as part of 1. semester SWU exam
 Systemspecification
 
 Need to have
-• Brugeren vil gerne se en oversigt over alle dramaserier \n
+• Brugeren vil gerne se en oversigt over alle dramaserier
+
 • Brugeren vil gerne gemme en film i ”min liste”
+
 • Brugeren vil gerne se sin liste
 • Brugeren vil gerne slette en film fra sin liste
 • Brugeren vil gerne skifte til en anden bruger
