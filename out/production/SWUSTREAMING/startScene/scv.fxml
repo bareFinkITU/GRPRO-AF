@@ -12,9 +12,9 @@
 
 <BorderPane fx:id="startSceneViewBP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="400.0" prefHeight="720.0" prefWidth="1340.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="startScene.startSceneController">
    <center>
-      <ScrollPane prefHeight="720.0" prefWidth="1340.0" style="-fx-fit-to-width: true; -fx-background-color: BLACK;" BorderPane.alignment="CENTER">
+      <ScrollPane prefHeight="720.0" prefWidth="1340.0" style="-fx-fit-to-width: true; -fx-background-color: #040218;" BorderPane.alignment="CENTER">
          <content>
-            <FlowPane fx:id="startSceneFP" hgap="10.0" prefHeight="720.0" prefWidth="1340.0" style="-fx-background-color: BLACK;" vgap="10.0">
+            <FlowPane fx:id="startSceneFP" hgap="10.0" prefHeight="720.0" prefWidth="1340.0" style="-fx-background-color: #040218;" vgap="10.0">
                <padding>
                   <Insets top="18.0" />
                </padding></FlowPane>
@@ -39,7 +39,7 @@
                   <Font name="Segoe UI" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="startSceneMyProfileButton" mnemonicParsing="false" onAction="#myProfileClicked" style="-fx-background-color: TRANSPARENT;" text="My profile">
+            <Button fx:id="startSceneMyProfileButton" mnemonicParsing="false" onAction="#myProfileClicked" style="-fx-background-color: TRANSPARENT;" text="My list">
                <font>
                   <Font size="14.0" />
                </font>

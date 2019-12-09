@@ -78,7 +78,6 @@ public class startSceneController {
 
     public void logOutClicked(){
         FXMLLoader loader = new FXMLLoader();
-        System.out.println("Path: " + this.getClass().getResource("/"));
         loader.setLocation(getClass().getResource("/logIn/LogInView.fxml"));
         try {
             gp = loader.load();
@@ -90,7 +89,11 @@ public class startSceneController {
     }
 
     public void myProfileClicked(){
-        FXMLLoader loader = new FXMLLoader();
+
+        List<Content> favorites = brugere.getSelectedUser().getFavorites();
+        cC.drawContentList(favorites,startSceneFP);
+
+       /* FXMLLoader loader = new FXMLLoader();
         System.out.println("Path: " + this.getClass().getResource("/"));
         loader.setLocation(getClass().getResource("/myProfile/MyProfileView.fxml"));
         try {
@@ -99,16 +102,6 @@ public class startSceneController {
             Megaflix.setScene(new Scene(myProfileBP));
         } catch (IOException e) {
             e.printStackTrace();
-        }
-
-        /*System.out.println("The selected user is: ");
-        System.out.println(brugere.getSelectedUser().getName());
-        System.out.println();
-        List<Content> favorites = brugere.getSelectedUser().getFavorites();
-
-        //Udskriver de film der er i favorit listen
-        for (Content c : favorites) {
-            System.out.println(c.getTitle());
         }*/
     }
 

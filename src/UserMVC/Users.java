@@ -6,12 +6,12 @@ import java.util.List;
 public class Users { //***DENNE KLASSE SKAL TIL MODEL***
 
     private User selectedUser;
-    static List<User> users;
+    private List<User> users;
     private static Users instance;
 
     private Users(){
         users = new ArrayList<>();
-        users.add(new User("Oskar", "flotfyr23", "rakso23", "oskarjensen23@gmail.com",23));
+        users.add(new User("Admin", "admin", "password", "admin@gmail.com",23));
     }
     public static Users getInstanceOf() {
         if (instance == null) {

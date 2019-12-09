@@ -29,6 +29,8 @@ public class RegisterController {
     private Button submitButton;
     @FXML
     private GridPane gp;
+    @FXML
+    private Button registerGoBackButton;
 
 
 
@@ -53,6 +55,24 @@ public class RegisterController {
             System.out.println(e.getMessage());
         }
     }
+
+    public void goBackPressed(){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            System.out.println("Path: " + this.getClass().getResource("/"));
+            loader.setLocation(getClass().getResource("/logIn/LogInView.fxml"));
+            try {
+                gp = loader.load();
+                Stage Megaflix = (Stage) registerGoBackButton.getScene().getWindow();
+                Megaflix.setScene(new Scene(gp));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (validRegistration e){
+            System.out.println(e.getMessage());
+        }
+    }
+
 
     public void initialize(){
         brugere = Users.getInstanceOf();
