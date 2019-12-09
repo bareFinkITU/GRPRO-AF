@@ -1,5 +1,6 @@
 package UserMVC;
 
+import controller.ContentController;
 import model.Content;
 
 import java.util.ArrayList;
@@ -14,6 +15,10 @@ public class Profiles {
         favorites = new ArrayList<Content>();
         this.name = name;
         this.age = age;
+    }
+
+    public void isUnderAged(){
+        boolean isUnderAged = age <= 14;
     }
 
     public List<Content> getFavorites(){

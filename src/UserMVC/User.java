@@ -29,15 +29,6 @@ public class User {
         }
     }
 
-    public void contentAccess(String family){
-        String family = "family";
-        if(!underAge){
-            //gør ikke noget da de er 15 år eller mere
-        }else{
-
-        }
-    }
-
     public void addProfile(Profiles p){
         profiles.add(p);
     }
@@ -101,4 +92,5 @@ public class User {
         System.out.println("E-mail: " + email);
         System.out.println("Age: " + age);
     }
+
 }

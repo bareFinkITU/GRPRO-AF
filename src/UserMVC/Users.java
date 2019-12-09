@@ -11,7 +11,7 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
 
     private Users(){
         users = new ArrayList<>();
-        users.add(new User("Oskar", "flotfyr23", "rakso23", "oskarjensen23@gmail.com",23));
+        users.add(new User("admin" , "admin", "password", "adminpassword@gmail.com",420));
     }
     public static Users getInstanceOf() {
         if (instance == null) {
