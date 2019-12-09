@@ -6,7 +6,7 @@ import java.util.List;
 public class Users { //***DENNE KLASSE SKAL TIL MODEL***
 
     private User selectedUser;
-    static List<User> users;
+    private List<User> users;
     private static Users instance;
 
     private Users(){
