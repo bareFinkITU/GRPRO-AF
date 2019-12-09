@@ -42,7 +42,6 @@ public class RegisterController {
         try {
             brugere.registerUser(registerNameField.getText(),registerUsernameField.getText(),registerPasswordField.getText(),registerEmailField.getText(),age);
             FXMLLoader loader = new FXMLLoader();
-            System.out.println("Path: " + this.getClass().getResource("/"));
             loader.setLocation(getClass().getResource("/logIn/LogInView.fxml"));
             try {
                 gp = loader.load();
@@ -59,7 +58,6 @@ public class RegisterController {
     public void goBackPressed(){
         try {
             FXMLLoader loader = new FXMLLoader();
-            System.out.println("Path: " + this.getClass().getResource("/"));
             loader.setLocation(getClass().getResource("/logIn/LogInView.fxml"));
             try {
                 gp = loader.load();

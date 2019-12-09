@@ -18,4 +18,5 @@ public class Show extends Content{
     public String getSeasons() {
         return seasons;
     }
+    public String getRuntime() { return runtime;}
 }

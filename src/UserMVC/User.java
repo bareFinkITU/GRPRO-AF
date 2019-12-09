@@ -29,14 +29,14 @@ public class User {
         }
     }
 
-    public void contentAccess(String family){
+    /*public void contentAccess(String family){
         String family = "family";
         if(!underAge){
             //gør ikke noget da de er 15 år eller mere
         }else{
 
         }
-    }
+    }*/
 
     public void addProfile(Profiles p){
         profiles.add(p);

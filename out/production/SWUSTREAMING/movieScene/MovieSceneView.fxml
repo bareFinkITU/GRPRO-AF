@@ -4,56 +4,67 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="movieSceneBP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movieScene.MovieSceneController">
-   <top>
-      <HBox BorderPane.alignment="CENTER">
-         <children>
-            <Button mnemonicParsing="false" text="Button" />
-         </children>
-      </HBox>
-   </top>
-   <left>
-      <VBox prefHeight="374.0" prefWidth="182.0" spacing="10.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Title:">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label text="Realease year:">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label text="Genres:">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Region prefHeight="200.0" prefWidth="200.0" />
-            <Button mnemonicParsing="false" text="Add to List">
-               <VBox.margin>
-                  <Insets left="90.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-         <BorderPane.margin>
+<GridPane fx:id="movieSceneGP" alignment="CENTER" hgap="30.0" minHeight="600.0" minWidth="600.0" prefHeight="720.0" prefWidth="1340.0" style="-fx-background-color: DB0505;" vgap="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movieScene.MovieSceneController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="631.2000122070312" minWidth="10.0" prefWidth="424.00003051757807" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="855.9999694824218" minWidth="10.0" prefWidth="855.9999694824218" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints maxHeight="219.39995422363282" minHeight="10.0" prefHeight="29.599990844726577" />
+      <RowConstraints maxHeight="412.8000183105469" minHeight="10.0" prefHeight="326.3999908447266" />
+      <RowConstraints maxHeight="395.2000274658203" minHeight="0.0" prefHeight="42.40000915527344" />
+      <RowConstraints maxHeight="391.2000274658203" minHeight="4.599951171874977" prefHeight="43.800006103515614" />
+    <RowConstraints maxHeight="73.79999389648438" minHeight="2.20001220703125" prefHeight="51.80003051757808" />
+    <RowConstraints maxHeight="54.199963378906205" minHeight="0.0" prefHeight="54.199963378906205" />
+      <RowConstraints maxHeight="73.19999999999993" minHeight="10.0" prefHeight="73.19999999999993" />
+  </rowConstraints>
+   <children>
+      <Button fx:id="contentSceneAddToMyListButton" mnemonicParsing="false" text="Add to my list" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </Button>
+      <Label fx:id="contentSceneTitleLabel" text="Title: " GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="contentSceneGenresLabel" text="Genres: " GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="contentSceneReleaseYearLabel" text="Realease year:" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </Label>
+      <ImageView fx:id="movieSceneImageView" fitHeight="500.0" fitWidth="401.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
             <Insets />
-         </BorderPane.margin>
-      </VBox>
-   </left>
-   <center>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Region prefHeight="200.0" prefWidth="200.0" />
-            <ImageView fx:id="movieSceneImageView" fitHeight="378.0" fitWidth="291.0" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </HBox>
-   </center>
-</BorderPane>
+         </GridPane.margin>
+      </ImageView>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" />
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="25.0" right="25.0" top="25.0" />
+   </padding>
+</GridPane>

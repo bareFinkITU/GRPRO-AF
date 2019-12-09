@@ -90,8 +90,8 @@ public class startSceneController {
 
     public void myProfileClicked(){
 
-        List<Content> favorites = brugere.getSelectedUser().getFavorites();
-        cC.drawContentList(favorites,startSceneFP);
+        //List<Content> favorites = brugere.getSelectedUser().get;
+        //cC.drawContentList(favorites,startSceneFP);
 
        /* FXMLLoader loader = new FXMLLoader();
         System.out.println("Path: " + this.getClass().getResource("/"));

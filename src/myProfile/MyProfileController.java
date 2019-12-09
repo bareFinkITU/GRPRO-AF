@@ -20,8 +20,8 @@ public class MyProfileController {
     public MyProfileController() throws IOException {
     }
 
-    public void initialize(){
+    /*public void initialize(){
         List<Content> favorites = brugere.getSelectedUser().getFavorites();
         cC.drawContentList(favorites,myProfileFP);
-    }
+    }*/
 }

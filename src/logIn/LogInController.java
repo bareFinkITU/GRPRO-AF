@@ -40,7 +40,6 @@ public class LogInController {
            // List<User> opdatedList = brugere.getUsers();
             if(brugere.login(usernameField.getText(),passwordField.getText()) != null){
                 FXMLLoader loader = new FXMLLoader();
-                System.out.println("Path: " + this.getClass().getResource("/"));
                 loader.setLocation(this.getClass().getResource("/startScene/scv.fxml"));
                 try {
                     BorderPane bp = loader.load();
@@ -58,7 +57,6 @@ public class LogInController {
 
     public void registerPressed(){
         FXMLLoader loader = new FXMLLoader();
-        System.out.println("Path: " + this.getClass().getResource("/"));
         loader.setLocation(this.getClass().getResource("/register/RegisterView.fxml"));
         try {
             GridPane registerGP = loader.load();

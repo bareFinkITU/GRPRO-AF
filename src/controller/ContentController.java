@@ -210,7 +210,7 @@ public class ContentController {
             newButton.setStyle(" -fx-background-color: transparent");
             newButton.setOnAction(e -> {
                 System.out.println(c.getTitle() + " added to favorites");
-                brugere.getSelectedUser().addContent(c); //tilføjer filmen til ens liste hvis man klikker på den
+                //brugere.getSelectedUser().addContent(c); //tilføjer filmen til ens liste hvis man klikker på den
                 selectedContent = c;
 
                 FXMLLoader loader = new FXMLLoader();
