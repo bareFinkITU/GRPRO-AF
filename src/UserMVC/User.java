@@ -12,8 +12,8 @@ public class User {
     private String password;
     private int age;
     private String email;
-
-    private List<Content> favorites; //enkelte brugers favorit liste for film/serier
+    private List<Profiles> profiles;
+    private boolean underAge;
 
     public User(String name, String username, String password, String email, int age){
         this.name = name;
@@ -21,28 +21,37 @@ public class User {
         this.password = password;
         this.email = email;
         this.age = age;
+        profiles = new ArrayList<>();
+        profiles.add(new Profiles(name, age));
 
         if(age >= 15){
             boolean underAge = false;
         }
-
-        favorites = new ArrayList<Content>();
     }
 
-    public void addContent(Content c){
-        favorites.add(c);
+    public void contentAccess(String family){
+        String family = "family";
+        if(!underAge){
+            //gør ikke noget da de er 15 år eller mere
+        }else{
+
+        }
     }
 
-    public void removeContent(Content c){
-        favorites.remove(c);
+    public void addProfile(Profiles p){
+        profiles.add(p);
     }
+
+    public void removeProfile(Profiles p ){
+        profiles.remove(p);
+    }
+
+   // public void changeProfileName()
+
+
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public List<Content> getFavorites(){
-        return favorites;
     }
 
     public String getEmail() {
