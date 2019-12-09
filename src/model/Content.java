@@ -6,9 +6,10 @@ import java.awt.*;
 import javafx.scene.image.Image;
 import java.lang.reflect.Array;
 import java.nio.Buffer;
+import java.util.ArrayList;
 import java.util.Comparator;
 
-public class Content implements Comparable<Content> {
+public class Content{
     protected String title;
     protected String[] genre;
     protected double rating;
@@ -16,6 +17,7 @@ public class Content implements Comparable<Content> {
 
 
     public Content (String title, String[] genre, double rating, Image cover)  {
+        super();
         this.title = title;
         this.genre = genre;
         this.rating = rating;
@@ -51,16 +53,12 @@ public class Content implements Comparable<Content> {
     }
 
     public String display() {
-        String preFix = title + " " + rating + " genre(s): " + String.join(", ", genre);
+        String preFix = title; /*+ " " + rating + " genre(s): " + String.join(", ", genre); */
         if(this instanceof Movie){
-            return "Movie: " + preFix;
+            return preFix + " " + ((Movie) this).getYear();
         }else{
-            return "Show: " + preFix;
+            return preFix + " " + ((Show) this).getStartYear() + " end " + ((Show) this).getEndYear();
         }
-    }
-
-    public int compareTo(Content c) {
-        return Double.compare(c.getRating(), this.rating);
     }
 
     //TODO sort by year + sort by title
