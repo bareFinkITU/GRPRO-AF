@@ -15,7 +15,7 @@ public class Controller<movies> {
         series = new ArrayList<>();
     }
 
-    public void show() {
+    public void show() { //sout test
         int i = 0;
         for (Movie m : movies) {
             System.out.println("film " + i + " " + m.display());
@@ -36,10 +36,10 @@ public class Controller<movies> {
     }
 
     public void showRatingCriteria(double rating){
-        sortMoviesByRating();
+        sortMoviesByRating(); //metoden lige ovenover
         for(Movie m: movies){
             if(m.getRating() >= rating){
-                System.out.println(m.display());
+                System.out.println(m.display()); //ændring her ift. sout? <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             }
         }
     }
