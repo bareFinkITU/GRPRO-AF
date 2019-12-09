@@ -67,7 +67,7 @@ public class ContentController {
             //shows scanner
             Scanner sReader = new Scanner(new File("out/shows/#shows.txt"));
             sReader.useDelimiter(";");
-
+            //splitter strengen op hver gang den møder semi-kolon
             while (sReader.hasNext()) {
                 String title = sReader.next().trim();
                 String runtime = sReader.next().trim();
