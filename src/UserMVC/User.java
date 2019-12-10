@@ -14,6 +14,7 @@ public class User {
     private String email;
     private List<Profiles> profiles;
     private boolean underAge;
+    private Profiles selectedProfile;
 
     public User(String name, String username, String password, String email, int age){
         this.name = name;
@@ -22,7 +23,9 @@ public class User {
         this.email = email;
         this.age = age;
         profiles = new ArrayList<>();
-        profiles.add(new Profiles(name, age));
+        Profiles firstProfiles = new Profiles(name,age);
+        profiles.add(firstProfiles);
+        selectedProfile = firstProfiles;
 
         if(age >= 15){
             boolean underAge = false;
@@ -70,6 +73,14 @@ public class User {
         return name;
     }
 
+    public List<Profiles> getProfiles(){
+        return profiles;
+    }
+
+    public Profiles getSelectedProfile(){
+        return selectedProfile;
+    }
+
     public int getAge() {
         return age;
     }
@@ -92,6 +103,10 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setSelectedProfile(Profiles profile){
+        selectedProfile = profile;
     }
 
     public void show(){

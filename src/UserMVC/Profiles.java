@@ -32,6 +32,10 @@ public class Profiles {
         name = s;
     }
 
+    public String getName(){
+        return name;
+    }
+
     public int getAge(){
         return age;
     }

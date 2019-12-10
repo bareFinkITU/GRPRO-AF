@@ -1,7 +1,10 @@
 package movieScene;
 
+import UserMVC.Users;
 import controller.ContentController;
+import controller.SuperController;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,14 +27,38 @@ public class MovieSceneController {
     @FXML
     private Label contentSceneReleaseYearLabel;
 
+    @FXML
+    private Button movieSceneLogOut;
+
+    @FXML
+    private Button movieSceneBackButton;
+
+    private SuperController sC = new SuperController();
+
     private ContentController cC = ContentController.getInstanceOf();
+
+    private Users brugere = Users.getInstanceOf();
 
     private Content selectedContent;
 
 
-
     public MovieSceneController() throws IOException {
     }
+
+
+    public void logOutClicked(){
+        sC.goToLogIn(movieSceneLogOut);
+    }
+
+    public void backClicked() {
+        sC.goToStartScene(movieSceneBackButton);
+    }
+
+    public void addToMyListClicked(){
+        brugere.getSelectedUser().getSelectedProfile().addContent(selectedContent); //tilføjer filmen til ens liste hvis man klikker på den
+        System.out.println(selectedContent.getTitle() + " added to favorites");
+    }
+
 
     public void initialize(){
         selectedContent = cC.getSelectedContent();

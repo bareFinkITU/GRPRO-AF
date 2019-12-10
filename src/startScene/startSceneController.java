@@ -1,11 +1,14 @@
 package startScene;
 
+import UserMVC.Profiles;
 import UserMVC.Users;
 import controller.ContentController;
+import controller.SuperController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -39,6 +42,11 @@ public class startSceneController {
 
     @FXML
     private Button startSceneMyProfileButton;
+
+    @FXML
+    private Label startSceneSelectedUserLabel;
+
+    private SuperController sC = new SuperController();
 
     private ContentController cC = ContentController.getInstanceOf();
 
@@ -76,40 +84,31 @@ public class startSceneController {
         System.out.println("Now it's only shows!");
     }
 
-    public void logOutClicked(){
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/logIn/LogInView.fxml"));
-        try {
-            gp = loader.load();
-            Stage Megaflix = (Stage) startSceneLogOutButton.getScene().getWindow();
-            Megaflix.setScene(new Scene(gp));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     public void myProfileClicked(){
 
-        //List<Content> favorites = brugere.getSelectedUser().get;
-        //cC.drawContentList(favorites,startSceneFP);
+        List<Content> favorites = brugere.getSelectedUser().getSelectedProfile().getFavorites();
+        cC.drawContentList(favorites,startSceneFP);
 
-       /* FXMLLoader loader = new FXMLLoader();
-        System.out.println("Path: " + this.getClass().getResource("/"));
-        loader.setLocation(getClass().getResource("/myProfile/MyProfileView.fxml"));
-        try {
-            myProfileBP = loader.load();
-            Stage Megaflix = (Stage) startSceneMyProfileButton.getScene().getWindow();
-            Megaflix.setScene(new Scene(myProfileBP));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
     }
 
+    public void logOutClicked(){
+        sC.goToLogIn(startSceneLogOutButton);
+    }
+
+    public void changeProfileClicked(){
+        for(Profiles p : brugere.getSelectedUser().getProfiles()){
+            System.out.println(p.getName());
+        }
+    }
 
     public void initialize() throws IOException {
+        startSceneSelectedUserLabel.setText("Selected profile: " + brugere.getSelectedUser().getSelectedProfile().getName());
         cC.resetContentSort();
         cC.drawContentList(allContent,startSceneFP);
     }
+
 
 
 

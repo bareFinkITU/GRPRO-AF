@@ -1,8 +1,8 @@
 package logIn;
 
-import UserMVC.User;
 import UserMVC.Users;
 import UserMVC.loginException;
+import controller.SuperController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,7 +14,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.List;
 
 
 public class LogInController {
@@ -32,6 +31,8 @@ public class LogInController {
     @FXML
     private Button registerButton;
 
+    private SuperController sC = new SuperController();
+
     private Users brugere;
 
     public void logInPressed() {
@@ -39,15 +40,7 @@ public class LogInController {
         try {
            // List<User> opdatedList = brugere.getUsers();
             if(brugere.login(usernameField.getText(),passwordField.getText()) != null){
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(this.getClass().getResource("/startScene/scv.fxml"));
-                try {
-                    BorderPane bp = loader.load();
-                    Stage Megaflix = (Stage) logInButton.getScene().getWindow();
-                    Megaflix.setScene(new Scene(bp));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                sC.goToStartScene(logInButton);
             }
 
         } catch (loginException e){

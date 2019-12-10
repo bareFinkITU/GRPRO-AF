@@ -9,7 +9,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.Content;
 import model.Movie;
@@ -30,7 +29,7 @@ public class ContentController {
     private Users brugere = Users.getInstanceOf();
     private Content selectedContent;
     @FXML
-    private GridPane movieSceneGP;
+    private BorderPane contentSceneBP;
 
 
     private ContentController() throws IOException {
@@ -210,15 +209,14 @@ public class ContentController {
             newButton.setStyle(" -fx-background-color: transparent");
             newButton.setOnAction(e -> {
                 System.out.println(c.getTitle() + " added to favorites");
-                //brugere.getSelectedUser().addContent(c); //tilføjer filmen til ens liste hvis man klikker på den
                 selectedContent = c;
 
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/movieScene/MovieSceneView.fxml"));
                 try {
-                    movieSceneGP = loader.load();
+                    contentSceneBP = loader.load();
                     Stage Megaflix = (Stage) newButton.getScene().getWindow();
-                    Megaflix.setScene(new Scene(movieSceneGP));
+                    Megaflix.setScene(new Scene(contentSceneBP));
                 } catch (IOException t) {
                     t.printStackTrace();
                 }
