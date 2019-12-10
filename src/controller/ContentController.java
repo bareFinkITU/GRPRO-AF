@@ -244,7 +244,6 @@ public class ContentController {
             newButton.setGraphic(new ImageView(c.getCover()));
             newButton.setStyle(" -fx-background-color: transparent");
             newButton.setOnAction(e -> {
-                System.out.println(c.getTitle() + " added to favorites");
                 selectedContent = c;
 
                 FXMLLoader loader = new FXMLLoader();

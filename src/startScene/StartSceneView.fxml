@@ -12,29 +12,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="startSceneViewBP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="400.0" prefHeight="720.0" prefWidth="1340.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="startScene.startSceneController">
-   <center>
-      <VBox style="-fx-background-color: #040218;" BorderPane.alignment="CENTER">
-         <children>
-            <Label fx:id="startSceneSelectedUserLabel" text="Label" textFill="WHITE">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <ScrollPane prefHeight="720.0" prefWidth="1340.0" style="-fx-fit-to-width: true; -fx-background-color: #040218;">
-               <content>
-                  <FlowPane fx:id="startSceneFP" hgap="10.0" prefHeight="720.0" prefWidth="1340.0" style="-fx-background-color: #040218;" vgap="10.0">
-                     <padding>
-                        <Insets top="18.0" />
-                     </padding>
-                  </FlowPane>
-               </content>
-            </ScrollPane>
-         </children>
-      </VBox>
-   </center>
+<BorderPane fx:id="startSceneViewBP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="400.0" prefHeight="740.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="startScene.startSceneController">
    <top>
       <HBox spacing="10.0" BorderPane.alignment="CENTER">
          <children>
@@ -67,7 +48,6 @@
             </TextField>
             <MenuButton fx:id="startSceneChangeProfile" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Change profile">
               <items>
-                  <MenuItem mnemonicParsing="false" text="Add new user" />
                 <MenuItem mnemonicParsing="false" text="Oskar" />
                 <MenuItem mnemonicParsing="false" text="Robert" />
                   <MenuItem mnemonicParsing="false" text="Frederik" />
@@ -87,4 +67,30 @@
          </padding>
       </HBox>
    </top>
+   <center>
+      <ScrollPane prefHeight="720.0" prefWidth="1340.0" style="-fx-fit-to-width: true; -fx-background-color: #040218;" BorderPane.alignment="CENTER">
+         <content>
+            <FlowPane fx:id="startSceneFP" hgap="10.0" prefHeight="720.0" prefWidth="1340.0" style="-fx-background-color: #040218;" vgap="10.0">
+               <padding>
+                  <Insets top="22.0" />
+               </padding>
+            </FlowPane>
+         </content>
+      </ScrollPane>
+   </center>
+   <left>
+      <VBox fx:id="startSceneGenreVBox" prefHeight="682.0" prefWidth="211.0" spacing="5.0" style="-fx-background-color: #040218;" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="startSceneSelectedUserLabel" text="Profile" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" top="7.0" />
+               </VBox.margin>
+            </Label>
+            <Line endX="120.89291381835938" startX="-100.0" stroke="WHITE" />
+         </children>
+      </VBox>
+   </left>
 </BorderPane>

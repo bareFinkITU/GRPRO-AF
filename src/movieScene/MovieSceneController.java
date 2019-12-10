@@ -33,6 +33,9 @@ public class MovieSceneController {
     @FXML
     private Button movieSceneBackButton;
 
+    @FXML
+    private Button contentSceneAddToMyListButton;
+
     private SuperController sC = new SuperController();
 
     private ContentController cC = ContentController.getInstanceOf();
@@ -55,8 +58,26 @@ public class MovieSceneController {
     }
 
     public void addToMyListClicked(){
-        brugere.getSelectedUser().getSelectedProfile().addContent(selectedContent); //tilføjer filmen til ens liste hvis man klikker på den
-        System.out.println(selectedContent.getTitle() + " added to favorites");
+        if (isInFavorites(selectedContent) != true){
+            brugere.getSelectedUser().getSelectedProfile().addContent(selectedContent); //tilføjer filmen til ens liste hvis man klikker på den
+            System.out.println(selectedContent.getTitle() + " added to favorites");
+            contentSceneAddToMyListButton.setText("Remove from my list");
+        } else {
+            brugere.getSelectedUser().getSelectedProfile().removeContent(selectedContent);
+            System.out.println(selectedContent.getTitle() + " removed from favorites");
+            contentSceneAddToMyListButton.setText("Add to my list");
+        }
+    }
+
+
+
+    public boolean isInFavorites(Content content){
+        for (Content c : brugere.getSelectedUser().getSelectedProfile().getFavorites()){
+            if (c == content){
+                return true;
+            }
+        }
+        return false;
     }
 
 
@@ -80,6 +101,12 @@ public class MovieSceneController {
         if (selectedContent instanceof Show) {
             Show a = (Show) selectedContent;
             contentSceneReleaseYearLabel.setText("Run time: " + ((Show) selectedContent).getRuntime());
+        }
+
+        if (isInFavorites(selectedContent) != true){
+            contentSceneAddToMyListButton.setText("Add to my list");
+        } else {
+            contentSceneAddToMyListButton.setText("Remove from my list");
         }
 
         Image selectedImage = selectedContent.getCover();
