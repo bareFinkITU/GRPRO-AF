@@ -83,15 +83,12 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
             }else if(usernameOrEmail.trim().toLowerCase().equals(u.getUsername().trim().toLowerCase())
             || usernameOrEmail.trim().toLowerCase().equals(u.getEmail().trim().toLowerCase())){
                 if(password.equals(u.getPassword())){
-                    System.out.println("Login Successful"); //sout test
                     selectedUser = u; //gemmer hvilken bruger man er logget ind på
                     return u;
                 } else {
-                    //System.out.println("koden var forkert");
                     throw new loginException("Wrong password!");
                 }
             }else{
-                //System.out.println("Username var forkert");
             }
         }
         throw new loginException("The following username/e-mail doesnt exist: " + usernameOrEmail);
