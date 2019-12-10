@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="740.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movieScene.MovieSceneController">
+<BorderPane prefHeight="740.0" prefWidth="1370.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movieScene.MovieSceneController">
    <center>
       <GridPane fx:id="movieSceneGP" alignment="CENTER" hgap="30.0" minHeight="600.0" minWidth="600.0" prefHeight="720.0" prefWidth="1000.0" style="-fx-background-color: #040218;" vgap="10.0">
         <columnConstraints>
@@ -66,6 +66,14 @@
                   <Insets />
                </GridPane.margin>
             </ImageView>
+            <Label fx:id="contentSceneMessageLabel" text="Label" textFill="WHITE" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets right="300.0" />
+               </GridPane.margin>
+            </Label>
          </children>
          <padding>
             <Insets bottom="10.0" left="25.0" right="25.0" top="25.0" />

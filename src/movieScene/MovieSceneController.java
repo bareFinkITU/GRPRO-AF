@@ -36,6 +36,9 @@ public class MovieSceneController {
     @FXML
     private Button contentSceneAddToMyListButton;
 
+    @FXML
+    private Label contentSceneMessageLabel;
+
     private SuperController sC = new SuperController();
 
     private ContentController cC = ContentController.getInstanceOf();
@@ -60,11 +63,11 @@ public class MovieSceneController {
     public void addToMyListClicked(){
         if (isInFavorites(selectedContent) != true){
             brugere.getSelectedUser().getSelectedProfile().addContent(selectedContent); //tilføjer filmen til ens liste hvis man klikker på den
-            System.out.println(selectedContent.getTitle() + " added to favorites");
+            contentSceneMessageLabel.setText(" Added to favorites");
             contentSceneAddToMyListButton.setText("Remove from my list");
         } else {
             brugere.getSelectedUser().getSelectedProfile().removeContent(selectedContent);
-            System.out.println(selectedContent.getTitle() + " removed from favorites");
+            contentSceneMessageLabel.setText(" Removed from favorites");
             contentSceneAddToMyListButton.setText("Add to my list");
         }
     }
@@ -83,6 +86,7 @@ public class MovieSceneController {
 
     public void initialize(){
         selectedContent = cC.getSelectedContent();
+        contentSceneMessageLabel.setText("");
         contentSceneTitleLabel.setText("Title: " + selectedContent.getTitle());
         String s = new String();
         int i = 0;
