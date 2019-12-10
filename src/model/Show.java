@@ -23,15 +23,13 @@ public class Show extends Content{
         return seasons;
     }
 
-    public String getRuntime() { return runtime;}
-
-
     public int getEndYear() {
         return endYear;
     }
-
     public int getStartYear() {
         return startYear;
     }
+
+    public String getRuntime() { return runtime;}
 
 }
