@@ -2,6 +2,7 @@ package register;
 
 import UserMVC.Users;
 import UserMVC.validRegistration;
+import controller.SuperController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -29,6 +30,9 @@ public class RegisterController {
     private Button submitButton;
     @FXML
     private GridPane gp;
+    @FXML
+    private Button registerGoBackButton;
+    private SuperController sC = new SuperController();
 
 
 
@@ -39,20 +43,16 @@ public class RegisterController {
         int age = Integer.parseInt(registerAgeField.getText());
         try {
             brugere.registerUser(registerNameField.getText(),registerUsernameField.getText(),registerPasswordField.getText(),registerEmailField.getText(),age);
-            FXMLLoader loader = new FXMLLoader();
-            System.out.println("Path: " + this.getClass().getResource("/"));
-            loader.setLocation(getClass().getResource("/logIn/LogInView.fxml"));
-            try {
-                gp = loader.load();
-                Stage Megaflix = (Stage) submitButton.getScene().getWindow();
-                Megaflix.setScene(new Scene(gp));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            sC.goToLogIn(submitButton);
         } catch (validRegistration e){
             System.out.println(e.getMessage());
         }
     }
+
+    public void goBackPressed(){
+        sC.goToLogIn(registerGoBackButton);
+    }
+
 
     public void initialize(){
         brugere = Users.getInstanceOf();
