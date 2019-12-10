@@ -20,6 +20,8 @@ public class User {
 
     public User(String name, String username, String password, String email, int age){
         this.name = name;
+        String uppercase = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
+        System.out.println(name);
         this.username = username;
         this.password = password;
         this.email = email;
@@ -30,7 +32,7 @@ public class User {
             this.age = age;
         }
         profiles = new ArrayList<>();
-        Profiles firstProfiles = new Profiles(name,age);
+        Profiles firstProfiles = new Profiles(uppercase,age);
         profiles.add(firstProfiles);
         selectedProfile = firstProfiles;
 

@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import model.Content;
 import model.Movie;
 import model.Show;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -215,11 +214,11 @@ public class ContentController {
     }
 
     //SORTING METHOD
-    public void sortByTitle(@NotNull ArrayList<Content> array) {
+    public void sortByTitle( ArrayList<Content> array) {
         array.sort(Comparator.comparing(Content::getTitle));
     }
     
-    public HashMap getSeasonAndEpisodesMap(@NotNull Show show) {
+    public HashMap getSeasonAndEpisodesMap( Show show) {
         //creates hashmap to store key: season, value: episodes
         HashMap<Integer, Integer> hash_map = new HashMap<>();
 
@@ -251,7 +250,7 @@ public class ContentController {
     }
 
 
-    public void drawContentList(@NotNull List<Content> contents, @NotNull FlowPane list) {
+    public void drawContentList( List<Content> contents,  FlowPane list) {
         list.getChildren().clear();
         for (Content c : contents) {
             Button newButton = new Button();

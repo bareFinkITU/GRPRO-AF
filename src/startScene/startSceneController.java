@@ -6,6 +6,7 @@ import controller.ContentController;
 import controller.SuperController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -13,11 +14,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Content;
 import model.Movie;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +49,9 @@ public class startSceneController {
     @FXML
     private MenuButton startSceneChangeProfile;
 
+    @FXML
+    private VBox startSceneGenreVBox;
+
     private SuperController sC = new SuperController();
 
     private ContentController cC = ContentController.getInstanceOf();
@@ -56,30 +60,32 @@ public class startSceneController {
 
     private Users brugere = Users.getInstanceOf();
 
-    public startSceneController() throws IOException {
+    private CreateProfileBox cPB = new CreateProfileBox();
+
+    public startSceneController() {
     }
 
 
-    public void searchByTitle() throws IOException {
+    public void searchByTitle() {
         cC.resetContentSort();
         ArrayList<Content> searchByTitleContent =  cC.searchByTitle(startSceneSearchField.getText());
         cC.drawContentList(searchByTitleContent, startSceneFP);
         System.out.println(startSceneSearchField.getText());
     }
 
-    public void homeClicked() throws IOException {
+    public void homeClicked() {
         cC.resetContentSort();
         cC.drawContentList(allContent,startSceneFP);
     }
 
-    public void moviesClicked() throws IOException {
+    public void moviesClicked() {
         cC.resetContentSort();
         ArrayList<Content> searchForMovies = cC.searchForMovies();
         cC.drawContentList(searchForMovies,startSceneFP);
         System.out.println("Now it's only movies!");
     }
 
-    public void showsClicked() throws IOException {
+    public void showsClicked()  {
         cC.resetContentSort();
         ArrayList<Content> searchForShows = cC.searchForShows();
         cC.drawContentList(searchForShows,startSceneFP);
@@ -101,26 +107,43 @@ public class startSceneController {
 
 
     public void setProfiles(){
+        startSceneChangeProfile.getItems().clear();
+        MenuItem addNewProfile = new MenuItem("Add new profile");
+        addNewProfile.setOnAction(e -> addProfileClicked());
+        startSceneChangeProfile.getItems().addAll(addNewProfile);
         for (Profiles p : brugere.getSelectedUser().getProfiles()) {
             MenuItem newItem = new MenuItem(p.getName());
-           // startSceneChangeProfile.
+            newItem.setOnAction(e -> {
+                brugere.getSelectedUser().setSelectedProfile(p);
+                initialize();
+            });
+            startSceneChangeProfile.getItems().addAll(newItem);
         }
     }
 
     public void addGenres(){
-
-    }
-
-    public void changeProfileClicked(){
-        for(Profiles p : brugere.getSelectedUser().getProfiles()){
-            System.out.println(p.getName());
+        //startSceneGenreVBox.getChildren().remove(2, cC.getGenres().size()-1);
+        for (String s : cC.getGenres()){
+            CheckBox newCheckBox = new CheckBox(s);
+            newCheckBox.setPadding(new Insets(2,0,2,5));
+            newCheckBox.setPrefWidth(175);
+            startSceneGenreVBox.getChildren().addAll(newCheckBox);
         }
     }
 
-    public void initialize() throws IOException {
-        startSceneSelectedUserLabel.setText("Selected profile: " + brugere.getSelectedUser().getSelectedProfile().getName());
+    public void addProfileClicked() {
+        if (cPB.display() == true){
+            setProfiles();
+            initialize();
+        }
+    }
+
+    public void initialize() {
+        startSceneChangeProfile.setText(brugere.getSelectedUser().getSelectedProfile().getName());
         cC.resetContentSort();
         cC.drawContentList(allContent,startSceneFP);
+        addGenres();
+        setProfiles();
     }
 
 
