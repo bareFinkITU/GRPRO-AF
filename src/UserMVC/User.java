@@ -32,15 +32,6 @@ public class User {
         }
     }
 
-    /*public void contentAccess(String family){
-        String family = "family";
-        if(!underAge){
-            //gør ikke noget da de er 15 år eller mere
-        }else{
-
-        }
-    }*/
-
     public void addProfile(Profiles p){
         profiles.add(p);
     }
@@ -48,10 +39,6 @@ public class User {
     public void removeProfile(Profiles p ){
         profiles.remove(p);
     }
-
-   // public void changeProfileName()
-
-
 
     public void setPassword(String password) {
         this.password = password;
@@ -96,10 +83,6 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    /*public void setFavorites(List<Movie> favorites) {
-        this.favorites = favorites;
-    }*/
 
     public void setName(String name) {
         this.name = name;
