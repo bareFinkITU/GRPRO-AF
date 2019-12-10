@@ -13,23 +13,28 @@ public class User {
     private int age;
     private String email;
     private List<Profiles> profiles;
+
     private boolean underAge;
     private Profiles selectedProfile;
+
 
     public User(String name, String username, String password, String email, int age){
         this.name = name;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.age = age;
+
+        if(age <= 14){ // kontrollerer at age er 15 eller større for, at kunne registrere en bruger
+            throw new validRegistration("Age must be 15 or greater to register a user");
+        }else {
+            this.age = age;
+        }
         profiles = new ArrayList<>();
         Profiles firstProfiles = new Profiles(name,age);
         profiles.add(firstProfiles);
         selectedProfile = firstProfiles;
 
-        if(age >= 15){
-            boolean underAge = false;
-        }
+
     }
 
     /*public void contentAccess(String family){
@@ -41,22 +46,19 @@ public class User {
         }
     }*/
 
-    public void addProfile(Profiles p){
+
+    public void addProfile(Profiles p){ //tilføjer en profil til listen af profiles
         profiles.add(p);
     }
 
-    public void removeProfile(Profiles p ){
+    public void removeProfile(Profiles p ){ //fjerner en profil fra listen af profiles
         profiles.remove(p);
     }
-
-   // public void changeProfileName()
-
-
 
     public void setPassword(String password) {
         this.password = password;
     }
-
+                                    //følgende metoder er get -og setmetoder
     public String getEmail() {
         return email;
     }
@@ -110,10 +112,12 @@ public class User {
     }
 
     public void show(){
+        //sout test metode
         System.out.println("Username: " + username);
         System.out.println("Password: " + password);
         System.out.println("Name: " + name.substring(0,1).toUpperCase()+name.substring(1).toLowerCase());
         System.out.println("E-mail: " + email);
         System.out.println("Age: " + age);
     }
+
 }
