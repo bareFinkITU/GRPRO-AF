@@ -37,6 +37,7 @@ public class User {
 
     }
 
+
     /*public void contentAccess(String family){
         String family = "family";
         if(!underAge){
@@ -47,7 +48,8 @@ public class User {
     }*/
 
 
-    public void addProfile(Profiles p){ //tilføjer en profil til listen af profiles
+    public void addProfile(Profiles p){
+
         profiles.add(p);
     }
 
@@ -98,10 +100,6 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    /*public void setFavorites(List<Movie> favorites) {
-        this.favorites = favorites;
-    }*/
 
     public void setName(String name) {
         this.name = name;

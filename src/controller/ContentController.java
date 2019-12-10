@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import model.Content;
 import model.Movie;
 import model.Show;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -41,6 +42,19 @@ public class ContentController {
         sortByTitle(content);
     }
 
+    public ArrayList<String> getGenres(){
+        ArrayList<String> genreMagi = new ArrayList<>();
+        for (Content c: content){
+            for (int i = 0; i < c.getGenre().length; i++) {
+                if(!genreMagi.contains(c.getGenre()[i]) ){
+                    genreMagi.add(c.getGenre()[i]);
+                }
+            }
+        }
+        return genreMagi;
+    }
+
+
     public static ContentController getInstanceOf() {
         if (instance == null) {
             instance = new ContentController();
@@ -59,7 +73,7 @@ public class ContentController {
                 String title = mReader.next().trim();
                 int year = Integer.parseInt(mReader.next().trim());
                 String genre = mReader.next().trim();
-                String[] arrOfGenres = genre.split(Pattern.quote(",").trim());
+                String[] arrOfGenres = genre.split(Pattern.quote(", ").trim());
                 double rating = Double.parseDouble(mReader.next().trim().replaceAll(",", "."));
                 Image cover = new Image(new FileInputStream("out/movies/" + title + ".jpg"));
 
@@ -89,7 +103,7 @@ public class ContentController {
                     endYear = Calendar.getInstance().get(Calendar.YEAR);
                 }
                 String genre = sReader.next().trim();
-                String[] arrOfGenres = genre.split(Pattern.quote(",").trim());
+                String[] arrOfGenres = genre.split(Pattern.quote(", ").trim());
                 double rating = Double.parseDouble(sReader.next().trim().replaceAll(",", "."));
                 String seasons = sReader.next().trim();
                 Image cover = new Image(new FileInputStream("out/shows/" + title + ".jpg"));
@@ -201,11 +215,11 @@ public class ContentController {
     }
 
     //SORTING METHOD
-    public void sortByTitle(ArrayList<Content> array) {
+    public void sortByTitle(@NotNull ArrayList<Content> array) {
         array.sort(Comparator.comparing(Content::getTitle));
     }
     
-    public HashMap getSeasonAndEpisodesMap(Show show) {
+    public HashMap getSeasonAndEpisodesMap(@NotNull Show show) {
         //creates hashmap to store key: season, value: episodes
         HashMap<Integer, Integer> hash_map = new HashMap<>();
 
@@ -237,7 +251,7 @@ public class ContentController {
     }
 
 
-    public void drawContentList(List<Content> contents, FlowPane list) {
+    public void drawContentList(@NotNull List<Content> contents, @NotNull FlowPane list) {
         list.getChildren().clear();
         for (Content c : contents) {
             Button newButton = new Button();

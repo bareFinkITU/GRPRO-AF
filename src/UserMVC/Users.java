@@ -88,7 +88,6 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
                 } else {
                     throw new loginException("Wrong password!");
                 }
-            }else{
             }
         }
         throw new loginException("The following username/e-mail doesnt exist: " + usernameOrEmail);
