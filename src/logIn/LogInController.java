@@ -1,7 +1,7 @@
 package logIn;
 
 import UserMVC.Users;
-import UserMVC.loginException;
+import UserMVC.IllegalLoginException;
 import controller.SuperController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,7 +46,7 @@ public class LogInController {
                 sC.goToStartScene(logInButton);
             }
 
-        } catch (loginException e){
+        } catch (IllegalLoginException e){
             logInMessageLabel.setText(e.getMessage());
         }
     }
