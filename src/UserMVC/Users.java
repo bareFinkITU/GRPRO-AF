@@ -86,7 +86,7 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
                     selectedUser = u; //gemmer hvilken bruger man er logget ind på
                     return u;
                 } else {
-                    throw new loginException("Wrong password!");
+                    throw new loginException();
                 }
             }
         }

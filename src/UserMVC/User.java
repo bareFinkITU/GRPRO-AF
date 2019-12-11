@@ -20,16 +20,21 @@ public class User {
 
     public User(String name, String username, String password, String email, int age){
         String pwVal = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}"; //regex
+        String emailVal = "^(.+)@(.+)$"; //regex
         if( name == null ){
-            throw new NullPointerException("Please input a name"); //overflødig?
-        }else if(name.length() > 16){
-            throw new IllegalArgumentException("Name can be at most 16 characters long");
-        }else{
+            throw new NullPointerException("Please input a name");
+        }else if(name.length() > 16 || name.length() < 4){
+            throw new IllegalArgumentException("Name requirements: \n" +
+                    "minimum 4 characters long \n" +
+                    "maximum 16 characters long");
+        }else {
             this.name = name;
         }
         String uppercase = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
-        if(username.length() > 16){
-            throw new IllegalArgumentException("Username can be at most 16 characters long");
+        if(username.length() > 16 || username.length() < 4) {
+            throw new IllegalArgumentException("Username requirements: \n" +
+                    "minimum 4 characters long \n" +
+                    "maximum 16 characters long");
         }else{
             this.username = username;
         }
@@ -43,16 +48,16 @@ public class User {
             this.password = password;
         }
         this.password = password;
-        if(!email.contains("@") && !email.contains(".")) {
-            throw new validRegistration("Please enter a valid email");
+        if(!email.matches(emailVal)) {
+            throw new IllegalArgumentException("Please enter a valid email");
         }else{
             this.email = email;
         }
 
         if(age <= 14){ // kontrollerer at age er 15 eller større for, at kunne registrere en bruger
-            throw new validRegistration("Age must be 15 or greater to register a user");
+            throw new IllegalArgumentException("Age must be 15 or greater to register a user");
         }else if(age>110) {
-            throw new validRegistration("Are you really older than 110 years old?");
+            throw new IllegalArgumentException("Are you really older than 110 years old?");
         }
         profiles = new ArrayList<>();
         Profiles firstProfiles = new Profiles(uppercase,age);

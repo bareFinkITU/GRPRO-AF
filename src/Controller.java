@@ -53,4 +53,6 @@ public class Controller<movies> {
     public ArrayList<Movie> movies() {
         return movies;
     }
+
 }
+
