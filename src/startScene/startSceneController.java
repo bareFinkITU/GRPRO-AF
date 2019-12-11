@@ -123,7 +123,7 @@ public class startSceneController {
         cC.drawContentList(cC.searchByRating(startSceneRatingBar.getValue()),startSceneFP);
         String rating = "" + startSceneRatingBar.getValue();
         rating = rating.substring(0,3);
-        startSceneRatingLabel.setText("Search rating: " + rating);
+        startSceneRatingLabel.setText("Searching for : " + rating);
     }
 
     public void myProfileClicked() {
@@ -182,7 +182,7 @@ public class startSceneController {
         cC.resetContentSort();
         cC.drawContentList(allContent, startSceneFP);
         startSceneRatingBar.setOnMouseClicked(e -> ratingBarChanged());
-        startSceneRatingLabel.setText("Rating search");
+        startSceneRatingLabel.setText("Search by rating");
         addGenres();
         setProfiles();
     }
