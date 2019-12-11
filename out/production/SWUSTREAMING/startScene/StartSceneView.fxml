@@ -100,9 +100,9 @@
       </ScrollPane>
    </center>
    <left>
-      <ScrollPane prefWidth="200.0" style="-fx-background-color: #F1F1F1;" BorderPane.alignment="CENTER">
+      <ScrollPane prefWidth="200.0" style="-fx-background-color: #040218;" BorderPane.alignment="CENTER">
          <content>
-            <VBox fx:id="startSceneGenreVBox" prefHeight="682.0" prefWidth="175.0" spacing="5.0" style="-fx-background-color: #F1F1F1;">
+            <VBox fx:id="startSceneGenreVBox" prefHeight="691.0" prefWidth="184.0" spacing="5.0" style="-fx-background-color: #040218;">
                <children>
                   <Slider blockIncrement="1.0" majorTickUnit="0.5" max="10.0" maxWidth="175.0" minWidth="175.0" minorTickCount="0" prefWidth="175.0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
                      <VBox.margin>

@@ -15,6 +15,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import model.Content;
 import model.Movie;
@@ -122,9 +123,12 @@ public class startSceneController {
     }
 
     public void addGenres(){
-        //startSceneGenreVBox.getChildren().remove(2, cC.getGenres().size()-1);
+        if (startSceneGenreVBox.getChildren().size() > 2) {
+            startSceneGenreVBox.getChildren().remove(2, startSceneGenreVBox.getChildren().size());
+        }
         for (String s : cC.getGenres()){
             CheckBox newCheckBox = new CheckBox(s);
+            newCheckBox.setStyle("-fx-text-fill:  #ffffff");
             newCheckBox.setPadding(new Insets(2,0,2,5));
             newCheckBox.setPrefWidth(175);
             startSceneGenreVBox.getChildren().addAll(newCheckBox);
