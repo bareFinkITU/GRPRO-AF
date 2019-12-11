@@ -52,9 +52,6 @@ public class RegisterController {
             int age = Integer.parseInt(registerAgeField.getText());
             brugere.registerUser(registerNameField.getText(), registerUsernameField.getText(), registerPasswordField.getText(), registerEmailField.getText(), age);
             sC.goToLogIn(submitButton);
-
-        } catch (invalidRegistration e) {
-            registerErrorMessage.setText(e.getMessage());
         } catch (IllegalArgumentException f) {
             if (f instanceof NumberFormatException) {
                 registerErrorMessage.setText("All fields must be filled");
