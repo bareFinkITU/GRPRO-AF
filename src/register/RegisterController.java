@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -34,6 +35,9 @@ public class RegisterController {
     private GridPane gp;
     @FXML
     private Button registerGoBackButton;
+    @FXML
+    private Label registerErrorMessage;
+
     private SuperController sC = new SuperController();
 
 
@@ -47,7 +51,9 @@ public class RegisterController {
             brugere.registerUser(registerNameField.getText(),registerUsernameField.getText(),registerPasswordField.getText(),registerEmailField.getText(),age);
             sC.goToLogIn(submitButton);
         } catch (validRegistration e){
-            System.out.println(e.getMessage());
+            registerErrorMessage.setText(e.getMessage());
+        } catch (IllegalArgumentException f){
+            registerErrorMessage.setText(f.getMessage());
         }
     }
 
@@ -58,6 +64,7 @@ public class RegisterController {
 
     public void initialize(){
         brugere = Users.getInstanceOf();
+        registerErrorMessage.setText("");
         registerAgeField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue,

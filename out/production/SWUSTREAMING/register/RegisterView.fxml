@@ -13,8 +13,9 @@
 
 <GridPane fx:id="registerGP" alignment="CENTER" hgap="10.0" minHeight="600.0" minWidth="600.0" prefHeight="740.0" prefWidth="1370.0" style="-fx-background-color: DB0505;" vgap="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="register.RegisterController">
    <columnConstraints>
-      <ColumnConstraints maxWidth="491.199951171875" minWidth="10.0" prefWidth="301.6000122070312" />
-      <ColumnConstraints maxWidth="457.60003662109375" minWidth="10.0" prefWidth="299.1999877929687" />
+      <ColumnConstraints maxWidth="491.199951171875" minWidth="10.0" prefWidth="452.7999877929688" />
+      <ColumnConstraints maxWidth="467.9999389648438" minWidth="10.0" prefWidth="347.20001220703125" />
+      <ColumnConstraints maxWidth="457.60003662109375" minWidth="300.0" prefWidth="300.0" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints maxHeight="231.1999938964844" minHeight="10.0" prefHeight="150.0" />
@@ -24,12 +25,16 @@
       <RowConstraints maxHeight="183.19998168945312" minHeight="10.0" prefHeight="40.0" />
       <RowConstraints maxHeight="140.0000061035156" minHeight="10.0" prefHeight="40.0" />
       <RowConstraints maxHeight="140.0000061035156" minHeight="10.0" prefHeight="40.0" />
+      <RowConstraints maxHeight="140.0000061035156" minHeight="10.0" prefHeight="40.0" />
    </rowConstraints>
    <children>
       <ImageView fitHeight="175.0" fitWidth="575.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <image>
             <Image url="@/logo.jpg" />
          </image>
+         <GridPane.margin>
+            <Insets left="225.0" />
+         </GridPane.margin>
       </ImageView>
       <Label fx:id="usernameLabel" text="Username" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <GridPane.margin>
@@ -73,39 +78,44 @@
       </Label>
       <TextField fx:id="registerNameField" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
-            <Insets left="10.0" right="100.0" />
+            <Insets left="10.0" right="140.0" />
          </GridPane.margin>
       </TextField>
       <TextField fx:id="registerUsernameField" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
-            <Insets left="10.0" right="100.0" />
+            <Insets left="10.0" right="140.0" />
          </GridPane.margin>
       </TextField>
       <TextField fx:id="registerPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <GridPane.margin>
-            <Insets left="10.0" right="100.0" />
+            <Insets left="10.0" right="140.0" />
          </GridPane.margin>
       </TextField>
       <TextField fx:id="registerEmailField" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <GridPane.margin>
-            <Insets left="10.0" right="100.0" />
+            <Insets left="10.0" right="140.0" />
          </GridPane.margin>
       </TextField>
-      <TextField fx:id="registerAgeField" accessibleText="1234567890" onAction="#submitPressed" GridPane.columnIndex="1" GridPane.rowIndex="5">
+      <TextField fx:id="registerAgeField" onAction="#submitPressed" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <GridPane.margin>
-            <Insets left="10.0" right="100.0" />
+            <Insets left="10.0" right="140.0" />
          </GridPane.margin>
       </TextField>
-      <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitPressed" text="Submit" GridPane.columnIndex="1" GridPane.rowIndex="6">
+      <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitPressed" text="Create user" GridPane.columnIndex="1" GridPane.rowIndex="6">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
       </Button>
       <Button fx:id="registerGoBackButton" mnemonicParsing="false" onAction="#goBackPressed" text="Go back" GridPane.columnIndex="1" GridPane.rowIndex="6">
          <GridPane.margin>
-            <Insets left="80.0" />
+            <Insets left="110.0" />
          </GridPane.margin>
       </Button>
+      <Label fx:id="registerErrorMessage" text="ErrorLabel" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.rowSpan="5" GridPane.valignment="TOP">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
    <padding>
       <Insets bottom="10.0" left="25.0" right="25.0" top="25.0" />
