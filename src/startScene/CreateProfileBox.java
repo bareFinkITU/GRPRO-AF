@@ -25,6 +25,7 @@ public class CreateProfileBox {
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Create new profile");
         window.setMinWidth(300);
+        window.setMinHeight(215);
 
         GridPane layout = new GridPane();
         layout.setPadding(new Insets(10, 10, 10, 10));
@@ -62,22 +63,36 @@ public class CreateProfileBox {
         });
         GridPane.setConstraints(ageTextField,1,1);
 
+        Label errorLabel = new Label("All fields must be filled");
+        GridPane.setConstraints(errorLabel,1,3);
+
         Button cancelButton = new Button("Cancel");
         cancelButton.setOnAction(e -> window.close());
         GridPane.setConstraints(cancelButton,0,2);
 
         Button createButton = new Button("Create profile");
         createButton.setOnAction(e -> {
-            int age = Integer.parseInt(ageTextField.getText());
-            Profiles newProfile = new Profiles(usernameTextField.getText(),age);
-            brugere.getSelectedUser().addProfile(newProfile);
-            brugere.getSelectedUser().setSelectedProfile(newProfile);
-            window.close();
-            answer = true;
+            try {
+
+                int age = Integer.parseInt(ageTextField.getText());
+                Profiles newProfile = new Profiles(usernameTextField.getText(),age);
+                brugere.getSelectedUser().addProfile(newProfile);
+                brugere.getSelectedUser().setSelectedProfile(newProfile);
+                window.close();
+                answer = true;
+            } catch (IllegalArgumentException i){
+                if (i instanceof NumberFormatException) {
+                    errorLabel.setText("All fields must be filled");
+                } else {
+                    errorLabel.setText(i.getMessage());
+                }
+            }
         });
         GridPane.setConstraints(createButton,1,2);
 
-        layout.getChildren().addAll(usernameLabel,ageLabel,usernameTextField,ageTextField,cancelButton,createButton);
+
+
+        layout.getChildren().addAll(usernameLabel,ageLabel,usernameTextField,ageTextField,cancelButton,createButton,errorLabel);
 
         Scene scene = new Scene(layout);
         window.setScene(scene);
