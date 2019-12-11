@@ -13,24 +13,17 @@ public class BackendTest {
         //initialize content
        ContentController test = ContentController.getInstanceOf();
         //dummy movie and show
-       /* Movie m = new Movie("test", new String[]{"Comedy, Thriller"}, 9.9, null, 2019);
+        Movie m = new Movie("test", new String[]{"Comedy, Thriller"}, 9.9, null, 2019);
         Show s = new Show("test", new String[]{"Krimi, Drama"}, 9.9, null, "1999-2019", 1999, 2018, "1-22, 2-12, 3-17, 4-9");
-        //initializeContent*/
+        //initializeContent
 
         //TESTAREA
-/*        test.searchByYear(1999, 2004);
+        test.searchByTitle("br");
         test.searchForShows();
-        test.display();*/
-        long startTime = System.nanoTime();
-        for(String st: test.getGenres()){
-            System.out.println(st);
-        }
-        long endTime = System.nanoTime();
-        long duration = endTime - startTime;
-        System.out.println("Duration:  " + duration);
-
-
-        //c.searchByType(2);
+        test.display();
+        System.out.println("----");
+        test.searchForMovies();
+        test.display();
     }
 }
 

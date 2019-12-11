@@ -1,5 +1,6 @@
 package UserMVC;
 
+import controller.ContentController;
 import model.Content;
 
 import java.util.ArrayList;
@@ -28,19 +29,24 @@ public class Profiles {
         }
     }
 
-    public List<Content> getFavorites(){
+    public void isUnderAged(){
+        //tjekker om brugeren er underages. Denne metode bruges i andre klasser
+        boolean isUnderAged = age <= 14;
+    }
+
+    public List<Content> getFavorites(){ //returnerer favoritlisten
         return favorites;
     }
 
-    public void addContent(Content c){
+    public void addContent(Content c){ //tilføjer content til favoritlisten
         favorites.add(c);
     }
 
-    public void removeContent(Content c){
+    public void removeContent(Content c){ //fjerner content fra favoritlisten
         favorites.remove(c);
     }
 
-    public void editProfileName(String s){
+    public void editProfileName(String s){ //ændring af profilnavn
         name = s;
     }
 
@@ -48,13 +54,14 @@ public class Profiles {
         return name;
     }
 
-    public int getAge(){
+
+    public int getAge(){ //indhenting af alder til en gældende profil. Måske overflødig eftersom vi har "isUnderAged()"?
         return age;
     }
 
     public void setAge(int age){
         this.age = age;
-    }
+    } //ændring af alder til en gældende profil
 
 
 

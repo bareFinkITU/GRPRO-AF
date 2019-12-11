@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import model.Content;
 import model.Movie;
 import model.Show;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -90,7 +89,7 @@ public class ContentController {
             //shows scanner
             Scanner sReader = new Scanner(new File("out/shows/#shows.txt"));
             sReader.useDelimiter(";");
-
+            //splitter strengen op hver gang den møder semi-kolon
             while (sReader.hasNext()) {
                 String title = sReader.next().trim();
                 String runtime = sReader.next().trim();
@@ -215,11 +214,11 @@ public class ContentController {
     }
 
     //SORTING METHOD
-    public void sortByTitle(@NotNull ArrayList<Content> array) {
+    public void sortByTitle( ArrayList<Content> array) {
         array.sort(Comparator.comparing(Content::getTitle));
     }
     
-    public HashMap getSeasonAndEpisodesMap(@NotNull Show show) {
+    public HashMap getSeasonAndEpisodesMap( Show show) {
         //creates hashmap to store key: season, value: episodes
         HashMap<Integer, Integer> hash_map = new HashMap<>();
 
@@ -251,18 +250,17 @@ public class ContentController {
     }
 
 
-    public void drawContentList(@NotNull List<Content> contents, @NotNull FlowPane list) {
+    public void drawContentList( List<Content> contents,  FlowPane list) {
         list.getChildren().clear();
         for (Content c : contents) {
             Button newButton = new Button();
             newButton.setGraphic(new ImageView(c.getCover()));
             newButton.setStyle(" -fx-background-color: transparent");
             newButton.setOnAction(e -> {
-                System.out.println(c.getTitle() + " added to favorites");
                 selectedContent = c;
 
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/movieScene/MovieSceneView.fxml"));
+                loader.setLocation(getClass().getResource("/ContentScene/ContentSceneView.fxml"));
                 try {
                     contentSceneBP = loader.load();
                     Stage Megaflix = (Stage) newButton.getScene().getWindow();
