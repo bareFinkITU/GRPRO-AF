@@ -1,17 +1,12 @@
 package register;
 
 import UserMVC.Users;
-import UserMVC.validRegistration;
+import UserMVC.invalidRegistration;
 import controller.SuperController;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 
 public class RegisterController {
@@ -44,7 +39,7 @@ public class RegisterController {
         try {
             brugere.registerUser(registerNameField.getText(),registerUsernameField.getText(),registerPasswordField.getText(),registerEmailField.getText(),age);
             sC.goToLogIn(submitButton);
-        } catch (validRegistration e){
+        } catch (invalidRegistration e){
             System.out.println(e.getMessage());
         }
     }
