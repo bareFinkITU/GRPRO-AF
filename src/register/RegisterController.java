@@ -47,17 +47,21 @@ public class RegisterController {
 
 
     public void submitPressed(){
-        try {
-        int age = Integer.parseInt(registerAgeField.getText());
 
+        try {
+            int age = Integer.parseInt(registerAgeField.getText());
             brugere.registerUser(registerNameField.getText(),registerUsernameField.getText(),registerPasswordField.getText(),registerEmailField.getText(),age);
             sC.goToLogIn(submitButton);
         } catch (validRegistration e){
             registerErrorMessage.setText(e.getMessage());
         } catch (IllegalArgumentException f){
-            registerErrorMessage.setText(f.getMessage());
+            if (f instanceof NumberFormatException){
+                registerErrorMessage.setText("All fields must be filled");
+            } else {
+                registerErrorMessage.setText(f.getMessage());
+            }
         } catch (RuntimeException g){
-            System.out.println(g.getMessage() + "ups");
+
         }
     }
 
@@ -68,7 +72,7 @@ public class RegisterController {
 
     public void initialize(){
         brugere = Users.getInstanceOf();
-        registerErrorMessage.setText("");
+        registerErrorMessage.setText("All fields must be filled");
         registerAgeField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue,
