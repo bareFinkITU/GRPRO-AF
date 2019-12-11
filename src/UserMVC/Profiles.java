@@ -13,8 +13,20 @@ public class Profiles {
 
     public Profiles(String name, int age){
         favorites = new ArrayList<Content>();
-        this.name = name;
-        this.age = age;
+        if( name == null ){
+            throw new NullPointerException("Please input a name");
+        }else if(name.length() > 16){
+            throw new IllegalArgumentException("Name can be at most 16 characters long");
+        }else{
+            this.name = name;
+        }
+        if(age <= 0){
+            throw new IllegalArgumentException("Age must be greater than 0");
+        }else if(age > 110 ){
+            throw new IllegalArgumentException("Age must be less than 110");
+        }else{
+            this.age = age;
+        }
     }
 
     public void isUnderAged(){

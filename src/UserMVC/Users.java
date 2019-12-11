@@ -13,7 +13,7 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
         users = new ArrayList<>();
 
         //deafult admin bruger
-        users.add(new User("admin" , "admin", "password", "adminpassword@gmail.com",420));
+        users.add(new User("admin" , "admin", "Password123", "adminpassword@gmail.com",50));
 
     }
     public static Users getInstanceOf() { //singleton
