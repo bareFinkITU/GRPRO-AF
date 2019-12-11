@@ -22,6 +22,8 @@ public class Main extends Application {
 
         Megaflix = primaryStage;
         Megaflix.setTitle("MEGAFLIX");
+        Megaflix.setMinHeight(565);
+        Megaflix.setMinWidth(1065);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("LogInView.fxml"));
         gp = loader.load();
