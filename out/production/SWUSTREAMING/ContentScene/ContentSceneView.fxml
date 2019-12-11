@@ -16,22 +16,23 @@
    <center>
       <GridPane fx:id="movieSceneGP" alignment="CENTER" hgap="30.0" minHeight="600.0" minWidth="600.0" prefHeight="720.0" prefWidth="1000.0" style="-fx-background-color: #040218;" vgap="10.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="631.2000122070312" minWidth="10.0" prefWidth="391.19995727539055" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="907.5999755859374" minWidth="10.0" prefWidth="529.6000427246094" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="631.2000122070312" minWidth="10.0" prefWidth="563.9999877929688" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="907.5999755859374" minWidth="10.0" prefWidth="725.6000122070312" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints maxHeight="219.39995422363282" minHeight="10.0" prefHeight="29.599990844726577" />
-            <RowConstraints maxHeight="412.8000183105469" minHeight="10.0" prefHeight="275.1999877929687" />
-            <RowConstraints maxHeight="395.2000274658203" minHeight="0.0" prefHeight="36.80001220703127" />
-            <RowConstraints maxHeight="391.2000274658203" minHeight="3.0" prefHeight="8.800024414062477" />
-          <RowConstraints maxHeight="166.80001831054688" minHeight="2.20001220703125" prefHeight="42.20001831054685" />
-            <RowConstraints maxHeight="171.80001831054688" minHeight="0.0" prefHeight="0.0" />
-          <RowConstraints maxHeight="188.20000610351565" minHeight="0.0" prefHeight="73.60004882812501" />
+            <RowConstraints maxHeight="412.8000183105469" minHeight="10.0" prefHeight="285.40001220703124" />
+            <RowConstraints maxHeight="395.2000274658203" minHeight="0.0" prefHeight="25.0" />
+            <RowConstraints maxHeight="391.2000274658203" minHeight="3.0" prefHeight="25.0" />
+          <RowConstraints maxHeight="166.80001831054688" minHeight="0.0" prefHeight="25.0" />
+            <RowConstraints maxHeight="166.80001831054688" minHeight="0.0" prefHeight="25.0" />
+            <RowConstraints maxHeight="171.80001831054688" minHeight="0.0" prefHeight="25.0" />
+          <RowConstraints maxHeight="188.20000610351565" minHeight="0.0" prefHeight="49.599999999999966" />
             <RowConstraints maxHeight="306.4" minHeight="10.0" prefHeight="82.1999633789062" />
             <RowConstraints maxHeight="185.79998168945315" minHeight="10.0" prefHeight="32.99997558593748" />
         </rowConstraints>
          <children>
-            <Button fx:id="contentSceneAddToMyListButton" minWidth="210.0" mnemonicParsing="false" onAction="#addToMyListClicked" prefWidth="210.0" text="Remove from my list" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+            <Button fx:id="contentSceneAddToMyListButton" minWidth="210.0" mnemonicParsing="false" onAction="#addToMyListClicked" prefWidth="210.0" text="Remove from my list" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font>
@@ -39,7 +40,7 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </Button>
-            <Label fx:id="contentSceneTitleLabel" text="Title: " textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Label fx:id="contentSceneTitleLabel" text="Title:" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font>
@@ -63,12 +64,12 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </Label>
-            <ImageView fx:id="movieSceneImageView" fitHeight="450.0" fitWidth="370.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
+            <ImageView fx:id="movieSceneImageView" fitHeight="450.0" fitWidth="370.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </ImageView>
-            <Label fx:id="contentSceneMessageLabel" text="Label" textFill="WHITE" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+            <Label fx:id="contentSceneMessageLabel" text="Label" textFill="WHITE" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font>
@@ -76,7 +77,15 @@
                   <Insets right="300.0" />
                </GridPane.margin>
             </Label>
-            <Label layoutX="292.0" layoutY="349.0" text="Seasons:" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+            <Label fx:id="contentSceneSeasonsLabel" layoutX="292.0" layoutY="349.0" text="Seasons:" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="contentSceneRatingLabel" text="Rating:" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
                <font>
                   <Font size="20.0" />
                </font>
@@ -98,7 +107,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Region HBox.hgrow="ALWAYS" />
+            <Region minHeight="30.0" HBox.hgrow="ALWAYS" />
             <Button fx:id="movieSceneLogOut" mnemonicParsing="false" onAction="#logOutClicked" text="Log out">
                <font>
                   <Font size="14.0" />

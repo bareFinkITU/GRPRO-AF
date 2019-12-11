@@ -29,11 +29,6 @@ public class startSceneController {
     @FXML
     private FlowPane startSceneFP;
 
-    @FXML
-    private GridPane gp;
-
-    @FXML
-    private BorderPane myProfileBP;
 
     @FXML
     private TextField startSceneSearchField;
@@ -42,21 +37,23 @@ public class startSceneController {
     private Button startSceneLogOutButton;
 
     @FXML
-    private Button startSceneMyProfileButton;
-
-    @FXML
-    private Label startSceneSelectedUserLabel;
-
-    @FXML
     private MenuButton startSceneChangeProfile;
 
     @FXML
     private VBox startSceneGenreVBox;
+
+    @FXML
+    private Slider startSceneRatingBar;
+
+    @FXML
+    private Label startSceneRatingLabel;
+
     private SuperController sC = new SuperController();
     private ContentController cC = ContentController.getInstanceOf();
     private ArrayList<Content> allContent = cC.getContent();
     private Users brugere = Users.getInstanceOf();
     private CreateProfileBox cPB = new CreateProfileBox();
+    private String selectedGenre;
 
     private boolean moviesClicked = false;
     private boolean showsClicked = false;
@@ -85,10 +82,9 @@ public class startSceneController {
         if (showsClicked) cC.searchForShows();
         if (titleSearch) cC.searchByTitle((startSceneSearchField.getText()));
 
-        /*
-        if (genreSearch) cC.searchByGenre(*//*INDSÆT USER INPUT HER*//*);
-        if (ratingSearch) cC.searchByRating(*//*INDSÆT USER INPUT HER*//*);
-        */
+
+        if (genreSearch) cC.searchByGenre(selectedGenre);
+        if (ratingSearch) cC.searchByRating(startSceneRatingBar.getValue());
     }
 
     public void searchByTitle() {
@@ -114,6 +110,21 @@ public class startSceneController {
         System.out.println("shows now true");
     }
 
+    private void searchByGenre(String s) {
+        genreSearch = true;
+        selectedGenre = s;
+        searchChecker();
+        cC.drawContentList(cC.searchByGenre(s),startSceneFP);
+    }
+
+    private void ratingBarChanged() {
+        ratingSearch = true;
+        searchChecker();
+        cC.drawContentList(cC.searchByRating(startSceneRatingBar.getValue()),startSceneFP);
+        String rating = "" + startSceneRatingBar.getValue();
+        rating = rating.substring(0,3);
+        startSceneRatingLabel.setText("Search rating: " + rating);
+    }
 
     public void myProfileClicked() {
 
@@ -144,20 +155,20 @@ public class startSceneController {
 
 
     public void addGenres(){
-        if (startSceneGenreVBox.getChildren().size() > 2) {
-            startSceneGenreVBox.getChildren().remove(2, startSceneGenreVBox.getChildren().size());
+        if (startSceneGenreVBox.getChildren().size() > 3) {
+            startSceneGenreVBox.getChildren().remove(3, startSceneGenreVBox.getChildren().size());
         }
         for (String s : cC.getGenres()){
             CheckBox newCheckBox = new CheckBox(s);
             newCheckBox.setStyle("-fx-text-fill:  #ffffff");
             newCheckBox.setPadding(new Insets(2,0,2,5));
             newCheckBox.setPrefWidth(175);
-            newCheckBox.setOnAction(e -> {
-                cC.drawContentList(cC.searchByGenre(s), startSceneFP);
-            });
+            newCheckBox.setOnAction(e -> searchByGenre(s));
             startSceneGenreVBox.getChildren().addAll(newCheckBox);
         }
     }
+
+
 
     public void addProfileClicked() {
         if (cPB.display() == true) {
@@ -170,6 +181,8 @@ public class startSceneController {
         startSceneChangeProfile.setText(brugere.getSelectedUser().getSelectedProfile().getName());
         cC.resetContentSort();
         cC.drawContentList(allContent, startSceneFP);
+        startSceneRatingBar.setOnMouseClicked(e -> ratingBarChanged());
+        startSceneRatingLabel.setText("Rating search");
         addGenres();
         setProfiles();
     }

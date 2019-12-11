@@ -39,6 +39,12 @@ public class ContentSceneController {
     @FXML
     private Label contentSceneMessageLabel;
 
+    @FXML
+    private Label contentSceneRatingLabel;
+
+    @FXML
+    private Label contentSceneSeasonsLabel;
+
     private SuperController sC = new SuperController();
 
     private ContentController cC = ContentController.getInstanceOf();
@@ -98,13 +104,17 @@ public class ContentSceneController {
             }
         }
         contentSceneGenresLabel.setText("Genres: " + s);
+        String rating = "" + selectedContent.getRating();
+        contentSceneRatingLabel.setText("Rating: " + rating);
         if (selectedContent instanceof Movie) {
             Movie a = (Movie) selectedContent;
             contentSceneReleaseYearLabel.setText("Release year: " + ((Movie) selectedContent).getYear());
+            contentSceneSeasonsLabel.setText("");
         }
         if (selectedContent instanceof Show) {
             Show a = (Show) selectedContent;
-            contentSceneReleaseYearLabel.setText("Run time: " + ((Show) selectedContent).getRuntime());
+            contentSceneReleaseYearLabel.setText("Run time: " + a.getRuntime());
+            contentSceneSeasonsLabel.setText("Seasons " + a.getSeasons());
         }
 
         if (isInFavorites(selectedContent) != true){
