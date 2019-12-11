@@ -3,6 +3,8 @@ package register;
 import UserMVC.Users;
 import UserMVC.validRegistration;
 import controller.SuperController;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -56,5 +58,14 @@ public class RegisterController {
 
     public void initialize(){
         brugere = Users.getInstanceOf();
+        registerAgeField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    registerAgeField.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
     }
 }

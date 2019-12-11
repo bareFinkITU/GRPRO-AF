@@ -91,7 +91,7 @@
             <Insets left="10.0" right="100.0" />
          </GridPane.margin>
       </TextField>
-      <TextField fx:id="registerAgeField" onAction="#submitPressed" GridPane.columnIndex="1" GridPane.rowIndex="5">
+      <TextField fx:id="registerAgeField" accessibleText="1234567890" onAction="#submitPressed" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <GridPane.margin>
             <Insets left="10.0" right="100.0" />
          </GridPane.margin>

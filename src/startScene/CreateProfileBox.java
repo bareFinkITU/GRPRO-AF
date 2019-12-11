@@ -2,6 +2,8 @@ package startScene;
 
 import UserMVC.Profiles;
 import UserMVC.Users;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -41,6 +43,15 @@ public class CreateProfileBox {
 
         TextField ageTextField = new TextField();
         ageTextField.setPromptText("Age");
+        ageTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    ageTextField.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
         ageTextField.setOnAction(e -> {
             int age = Integer.parseInt(ageTextField.getText());
             Profiles newProfile = new Profiles(usernameTextField.getText(),age);
