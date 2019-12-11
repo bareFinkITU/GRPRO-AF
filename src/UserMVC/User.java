@@ -23,12 +23,12 @@ public class User {
         String emailVal = "^(.+)@(.+)$"; //regex
         if( name == null ){
             throw new NullPointerException("Please input a name");
-        }else if(name.length() > 30 || name.length() < 4){
+        }else if((name.length() > 30 || name.length() < 4) && name.matches("(?=.*[A-Z])")){
             throw new IllegalArgumentException("Name requirements: \n" +
                     "minimum 4 characters long \n" +
                     "maximum 30 characters long");
         }else {
-            this.name = name;
+            this.name = name.trim();
         }
         String uppercase = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
         if(username.length() > 16 || username.length() < 4) {
@@ -36,7 +36,7 @@ public class User {
                     "minimum 4 characters long \n" +
                     "maximum 16 characters long");
         }else{
-            this.username = username;
+            this.username = username.trim();
         }
         if(!password.matches(pwVal)){
             throw new IllegalArgumentException("Password must fulfill the following requirements: " +

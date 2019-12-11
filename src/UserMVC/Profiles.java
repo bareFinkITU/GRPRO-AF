@@ -20,7 +20,7 @@ public class Profiles {
                     "minimum 2 characters long \n" +
                     "maximum 16 characters long");
         }else{
-            this.name = name;
+            this.name = name.trim();
         }
         if(age <= 0){
             throw new IllegalArgumentException("Age must be greater than 0");
