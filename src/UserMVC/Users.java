@@ -55,10 +55,10 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
             // Evt. skriv at oprettelse af bruger er "case sensitive" (til GUI)
             if (username.trim().toLowerCase().equals(u.getUsername().trim().toLowerCase())) {
                 //tjekker om brugernavnet allerde eksisterer
-                throw new validRegistration(username + " is already taken, try another username");
+                throw new invalidRegistration(username + " is already taken, try another username");
             }else if(email.toLowerCase().trim().equals(u.getEmail().trim().toLowerCase())){
                 //tjekker om email allerede eksisterer
-                throw new validRegistration(email + " is already taken, try another e-mail.");
+                throw new invalidRegistration(email + " is already taken, try another e-mail.");
             }
         }
         if(username != null && email != null) {
@@ -86,7 +86,7 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
                     selectedUser = u; //gemmer hvilken bruger man er logget ind på
                     return u;
                 } else {
-                    throw new loginException("Wrong password!");
+                    throw new loginException();
                 }
             }
         }

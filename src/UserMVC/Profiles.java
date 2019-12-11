@@ -15,8 +15,10 @@ public class Profiles {
         favorites = new ArrayList<Content>();
         if( name == null ){
             throw new NullPointerException("Please input a name");
-        }else if(name.length() > 16){
-            throw new IllegalArgumentException("Name can be at most 16 characters long");
+        }else if(name.length() > 16 || name.length() < 4){
+            throw new IllegalArgumentException("Name requirements: \n" +
+                    "minimum 4 characters long \n" +
+                    "maximum 16 characters long");
         }else{
             this.name = name;
         }

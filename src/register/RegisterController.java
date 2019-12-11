@@ -1,21 +1,21 @@
 package register;
 
 import UserMVC.Users;
-import UserMVC.validRegistration;
+import UserMVC.invalidRegistration;
 import controller.SuperController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+
 
 
 public class RegisterController {
@@ -46,22 +46,23 @@ public class RegisterController {
     private Users brugere;
 
 
-    public void submitPressed(){
+    public void submitPressed() {
 
         try {
             int age = Integer.parseInt(registerAgeField.getText());
-            brugere.registerUser(registerNameField.getText(),registerUsernameField.getText(),registerPasswordField.getText(),registerEmailField.getText(),age);
+            brugere.registerUser(registerNameField.getText(), registerUsernameField.getText(), registerPasswordField.getText(), registerEmailField.getText(), age);
             sC.goToLogIn(submitButton);
-        } catch (validRegistration e){
+
+        } catch (invalidRegistration e) {
             registerErrorMessage.setText(e.getMessage());
-        } catch (IllegalArgumentException f){
-            if (f instanceof NumberFormatException){
+        } catch (IllegalArgumentException f) {
+            if (f instanceof NumberFormatException) {
                 registerErrorMessage.setText("All fields must be filled");
             } else {
                 registerErrorMessage.setText(f.getMessage());
             }
-        } catch (RuntimeException g){
-
+        } catch (RuntimeException g) {
+            System.out.println("s");
         }
     }
 
