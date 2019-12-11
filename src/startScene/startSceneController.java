@@ -40,7 +40,7 @@ public class startSceneController {
     private MenuButton startSceneChangeProfile;
 
     @FXML
-    private VBox startSceneGenreVBox;
+    private MenuButton startSceneGenreMenu;
 
     @FXML
     private Slider startSceneRatingBar;
@@ -74,6 +74,7 @@ public class startSceneController {
         startSceneSearchField.clear();
         cC.resetContentSort();
         cC.drawContentList(allContent, startSceneFP);
+        startSceneGenreMenu.setText("Genres");
     }
 
     public void searchChecker() {
@@ -115,6 +116,7 @@ public class startSceneController {
         selectedGenre = s;
         searchChecker();
         cC.drawContentList(cC.searchByGenre(s),startSceneFP);
+        startSceneGenreMenu.setText(s);
     }
 
     private void ratingBarChanged() {
@@ -155,16 +157,13 @@ public class startSceneController {
 
 
     public void addGenres(){
-        if (startSceneGenreVBox.getChildren().size() > 3) {
-            startSceneGenreVBox.getChildren().remove(3, startSceneGenreVBox.getChildren().size());
+        if (startSceneGenreMenu.getItems().size() > 3) {
+            startSceneGenreMenu.getItems().remove(3, startSceneGenreMenu.getItems().size());
         }
         for (String s : cC.getGenres()){
-            CheckBox newCheckBox = new CheckBox(s);
-            newCheckBox.setStyle("-fx-text-fill:  #ffffff");
-            newCheckBox.setPadding(new Insets(2,0,2,5));
-            newCheckBox.setPrefWidth(175);
-            newCheckBox.setOnAction(e -> searchByGenre(s));
-            startSceneGenreVBox.getChildren().addAll(newCheckBox);
+            MenuItem newMenuItem = new MenuItem(s);
+            newMenuItem.setOnAction(e -> searchByGenre(s));
+            startSceneGenreMenu.getItems().addAll(newMenuItem);
         }
     }
 
@@ -181,10 +180,14 @@ public class startSceneController {
         startSceneChangeProfile.setText(brugere.getSelectedUser().getSelectedProfile().getName());
         cC.resetContentSort();
         cC.drawContentList(allContent, startSceneFP);
-        startSceneRatingBar.setOnMouseClicked(e -> ratingBarChanged());
+        //startSceneRatingBar.setOnMouseClicked(e -> ratingBarChanged());
         startSceneRatingLabel.setText("Search by rating");
+        startSceneGenreMenu.setText("Genres");
         addGenres();
         setProfiles();
+        startSceneRatingBar.valueProperty().addListener((observable, oldValue, newValue) -> {
+            ratingBarChanged();
+        });
     }
 
 
