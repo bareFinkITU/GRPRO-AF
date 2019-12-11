@@ -23,15 +23,17 @@ public class User {
         String emailVal = "^(.+)@(.+)$"; //regex
         if( name == null ){
             throw new NullPointerException("Please input a name");
-        }else if((name.length() > 30 || name.length() < 4) && name.matches("(?=.*[A-Z])")){
+        }else if((name.length() > 32 || name.length() < 2) && name.matches("\\\\S*\\\\s\\\\S*(?=.*[a-z])")){
             throw new IllegalArgumentException("Name requirements: \n" +
-                    "minimum 4 characters long \n" +
-                    "maximum 30 characters long");
-        }else {
+                    "minimum 2 characters long \n" +
+                    "maximum 32 characters long");
+        }else if(name.contains("  ")){
+            throw new IllegalArgumentException("No consecutive spaces allowed");
+        }else{
             this.name = name.trim();
         }
         String uppercase = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
-        if(username.length() > 16 || username.length() < 4) {
+        if((username.length() > 16 || username.length() < 4) && username.matches("(?=.*[A-Z])")) {
             throw new IllegalArgumentException("Username requirements: \n" +
                     "minimum 4 characters long \n" +
                     "maximum 16 characters long");
