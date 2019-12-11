@@ -51,62 +51,82 @@ public class startSceneController {
 
     @FXML
     private VBox startSceneGenreVBox;
-
     private SuperController sC = new SuperController();
-
     private ContentController cC = ContentController.getInstanceOf();
-
     private ArrayList<Content> allContent = cC.getContent();
-
     private Users brugere = Users.getInstanceOf();
-
     private CreateProfileBox cPB = new CreateProfileBox();
+
+    private boolean moviesClicked = false;
+    private boolean showsClicked = false;
+    private boolean genreSearch = false;
+    private boolean titleSearch = false;
+    private boolean ratingSearch = false;
 
     public startSceneController() {
     }
 
+    public void homeClicked() {
+        moviesClicked = false;
+        showsClicked = false;
+        genreSearch = false;
+        titleSearch = false;
+        ratingSearch = false;
+
+        startSceneSearchField.clear();
+        cC.resetContentSort();
+        cC.drawContentList(allContent, startSceneFP);
+    }
+
+    public void searchChecker() {
+        cC.resetContentSort();
+        if (moviesClicked) cC.searchForMovies();
+        if (showsClicked) cC.searchForShows();
+        if (titleSearch) cC.searchByTitle((startSceneSearchField.getText()));
+
+        /*
+        if (genreSearch) cC.searchByGenre(*//*INDSÆT USER INPUT HER*//*);
+        if (ratingSearch) cC.searchByRating(*//*INDSÆT USER INPUT HER*//*);
+        */
+    }
 
     public void searchByTitle() {
-        cC.resetContentSort();
-        ArrayList<Content> searchByTitleContent =  cC.searchByTitle(startSceneSearchField.getText());
-        cC.drawContentList(searchByTitleContent, startSceneFP);
+        titleSearch = true;
+        searchChecker();
+        cC.drawContentList(cC.searchByTitle(startSceneSearchField.getText()), startSceneFP);
         System.out.println(startSceneSearchField.getText());
     }
 
-    public void homeClicked() {
-        cC.resetContentSort();
-        cC.drawContentList(allContent,startSceneFP);
-    }
-
     public void moviesClicked() {
-        cC.resetContentSort();
-        ArrayList<Content> searchForMovies = cC.searchForMovies();
-        cC.drawContentList(searchForMovies,startSceneFP);
-        System.out.println("Now it's only movies!");
+        moviesClicked = true;
+        showsClicked = false;
+        searchChecker();
+        cC.drawContentList(cC.searchForMovies(), startSceneFP);
+        System.out.println("movies now true");
     }
 
-    public void showsClicked()  {
-        cC.resetContentSort();
-        ArrayList<Content> searchForShows = cC.searchForShows();
-        cC.drawContentList(searchForShows,startSceneFP);
-        System.out.println("Now it's only shows!");
+    public void showsClicked() {
+        showsClicked = true;
+        moviesClicked = false;
+        searchChecker();
+        cC.drawContentList(cC.searchForShows(), startSceneFP);
+        System.out.println("shows now true");
     }
 
 
-
-    public void myProfileClicked(){
+    public void myProfileClicked() {
 
         List<Content> favorites = brugere.getSelectedUser().getSelectedProfile().getFavorites();
-        cC.drawContentList(favorites,startSceneFP);
+        cC.drawContentList(favorites, startSceneFP);
 
     }
 
-    public void logOutClicked(){
+    public void logOutClicked() {
         sC.goToLogIn(startSceneLogOutButton);
     }
 
 
-    public void setProfiles(){
+    public void setProfiles() {
         startSceneChangeProfile.getItems().clear();
         MenuItem addNewProfile = new MenuItem("Add new profile");
         addNewProfile.setOnAction(e -> addProfileClicked());
@@ -121,18 +141,18 @@ public class startSceneController {
         }
     }
 
-    public void addGenres(){
+    public void addGenres() {
         //startSceneGenreVBox.getChildren().remove(2, cC.getGenres().size()-1);
-        for (String s : cC.getGenres()){
+        for (String s : cC.getGenres()) {
             CheckBox newCheckBox = new CheckBox(s);
-            newCheckBox.setPadding(new Insets(2,0,2,5));
+            newCheckBox.setPadding(new Insets(2, 0, 2, 5));
             newCheckBox.setPrefWidth(175);
             startSceneGenreVBox.getChildren().addAll(newCheckBox);
         }
     }
 
     public void addProfileClicked() {
-        if (cPB.display() == true){
+        if (cPB.display() == true) {
             setProfiles();
             initialize();
         }
@@ -141,12 +161,10 @@ public class startSceneController {
     public void initialize() {
         startSceneChangeProfile.setText(brugere.getSelectedUser().getSelectedProfile().getName());
         cC.resetContentSort();
-        cC.drawContentList(allContent,startSceneFP);
+        cC.drawContentList(allContent, startSceneFP);
         addGenres();
         setProfiles();
     }
-
-
 
 
 }
