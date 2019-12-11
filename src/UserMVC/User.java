@@ -19,7 +19,7 @@ public class User {
 
 
     public User(String name, String username, String password, String email, int age){
-        String pwVal = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}";
+        String pwVal = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}"; //regex
         if( name == null ){
             throw new NullPointerException("Please input a name"); //overflødig?
         }else if(name.length() > 16){
