@@ -260,7 +260,7 @@ public class ContentController {
                 selectedContent = c;
 
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/movieScene/MovieSceneView.fxml"));
+                loader.setLocation(getClass().getResource("/ContentScene/ContentSceneView.fxml"));
                 try {
                     contentSceneBP = loader.load();
                     Stage Megaflix = (Stage) newButton.getScene().getWindow();

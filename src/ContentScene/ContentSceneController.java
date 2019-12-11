@@ -1,4 +1,4 @@
-package movieScene;
+package ContentScene;
 
 import UserMVC.Users;
 import controller.ContentController;
@@ -14,7 +14,7 @@ import model.Show;
 
 import java.io.IOException;
 
-public class MovieSceneController {
+public class ContentSceneController {
     @FXML
     private ImageView movieSceneImageView;
 
@@ -48,7 +48,7 @@ public class MovieSceneController {
     private Content selectedContent;
 
 
-    public MovieSceneController() throws IOException {
+    public ContentSceneController() throws IOException {
     }
 
 

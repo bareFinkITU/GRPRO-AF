@@ -131,6 +131,9 @@ public class startSceneController {
             newCheckBox.setStyle("-fx-text-fill:  #ffffff");
             newCheckBox.setPadding(new Insets(2,0,2,5));
             newCheckBox.setPrefWidth(175);
+            newCheckBox.setOnAction(e -> {
+                cC.drawContentList(cC.searchByGenre(s), startSceneFP);
+            });
             startSceneGenreVBox.getChildren().addAll(newCheckBox);
         }
     }
