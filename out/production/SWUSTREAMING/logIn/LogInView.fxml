@@ -45,20 +45,20 @@
             <Insets left="10.0" right="150.0" />
          </GridPane.margin>
       </PasswordField>
-      <Label fx:id="usernameLabel" text="Username" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+      <Label fx:id="usernameLabel" text="Username" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets right="20.0" />
          </GridPane.margin>
          <font>
-            <Font size="16.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="passwordLabel" text="Password" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+      <Label fx:id="passwordLabel" text="Password" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets right="20.0" />
          </GridPane.margin>
          <font>
-            <Font size="16.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
       </Label>
       <Button fx:id="registerButton" mnemonicParsing="false" onAction="#registerPressed" prefHeight="25.0" prefWidth="60.0" text="Register" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
@@ -66,9 +66,9 @@
             <Insets right="20.0" />
          </GridPane.margin>
       </Button>
-      <Label fx:id="logInMessageLabel" text="Message" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+      <Label fx:id="logInMessageLabel" text="Message" textFill="WHITE" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
          <font>
-            <Font size="16.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
       </Label>
    </children>

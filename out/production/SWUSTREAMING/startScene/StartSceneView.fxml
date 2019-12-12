@@ -93,7 +93,7 @@
    <center>
       <VBox style="-fx-background-color: #040218;" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+            <HBox spacing="20.0">
                <children>
                   <MenuButton fx:id="startSceneGenreMenu" mnemonicParsing="false" style="-fx-background-color: transperant;" text="Genres" textFill="WHITE">
                      <font>
