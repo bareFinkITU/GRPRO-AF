@@ -249,7 +249,7 @@ public class MediaModel {
                 selectedMedia = c;
 
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/MediaScene/MediaSceneView.fxml"));
+                loader.setLocation(getClass().getResource("/View/MediaSceneView.fxml"));
                 try {
                     mediaSceneBP = loader.load();
                     Stage Megaflix = (Stage) newButton.getScene().getWindow();
