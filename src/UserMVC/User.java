@@ -13,34 +13,28 @@ public class User {
     private int age;
     private String email;
     private List<Profiles> profiles;
-
     private boolean underAge;
     private Profiles selectedProfile;
 
 
     public User(String name, String username, String password, String email, int age){
-        String pwVal = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}"; //regex
-        String emailVal = "^(.+)@(.+)$"; //regex
-        if( name == null ){
-            throw new NullPointerException("Please input a name");
-        }else if((name.length() > 32 || name.length() < 2) && name.matches("\\\\S*\\\\s\\\\S*(?=.*[a-z])")){
+
+        if((name.length() > 32 || name.length() < 4) && name.matches("(?=.*[a-z])")){
             throw new IllegalArgumentException("Name requirements: \n" +
-                    "minimum 2 characters long \n" +
+                    "minimum 4 characters long \n" +
                     "maximum 32 characters long");
-        }else if(name.contains("  ")){
-            throw new IllegalArgumentException("No consecutive spaces allowed");
         }else{
-            this.name = name.trim();
+            this.name = name.trim().replaceAll(" +", " ");
         }
         String uppercase = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
-        if((username.length() > 16 || username.length() < 4) && username.matches("(?=.*[A-Z])")) {
+        if((username.length() > 16 || username.length() < 4)) {
             throw new IllegalArgumentException("Username requirements: \n" +
                     "minimum 4 characters long \n" +
                     "maximum 16 characters long");
         }else{
             this.username = username.trim();
         }
-        if(!password.matches(pwVal)){
+        if(!password.matches("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}")){
             throw new IllegalArgumentException("Password must fulfill the following requirements: " +
                     "\n at least 1 Uppercase Character " +
                     "\n at least 1 Lowercase Character" +
@@ -50,7 +44,7 @@ public class User {
             this.password = password;
         }
         this.password = password;
-        if(!email.matches(emailVal)) {
+        if(!email.matches("^(.+)@(.+)$")) {
             throw new IllegalArgumentException("Please enter a valid email");
         }else{
             this.email = email;
@@ -68,19 +62,7 @@ public class User {
 
     }
 
-
-    /*public void contentAccess(String family){
-        String family = "family";
-        if(!underAge){
-            //gør ikke noget da de er 15 år eller mere
-        }else{
-
-        }
-    }*/
-
-
     public void addProfile(Profiles p){
-
         profiles.add(p);
     }
 
@@ -138,15 +120,6 @@ public class User {
 
     public void setSelectedProfile(Profiles profile){
         selectedProfile = profile;
-    }
-
-    public void show(){
-        //sout test metode
-        System.out.println("Username: " + username);
-        System.out.println("Password: " + password);
-        System.out.println("Name: " + name.substring(0,1).toUpperCase()+name.substring(1).toLowerCase());
-        System.out.println("E-mail: " + email);
-        System.out.println("Age: " + age);
     }
 
 }
