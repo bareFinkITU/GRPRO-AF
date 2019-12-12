@@ -44,8 +44,8 @@ public class User {
             throw new IllegalArgumentException("Password must fulfill the following requirements: " +
                     "\n at least 1 Uppercase Character " +
                     "\n at least 1 Lowercase Character" +
-                    "\n at least 1 digit" +
-                    "\n must be 8 characters long");
+                    "\n at least 1 number" +
+                    "\n must be at least 8 characters long");
         }else {
             this.password = password;
         }
