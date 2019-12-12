@@ -9,6 +9,7 @@ public class User {
     private String password;
     private int age;
     private String email;
+    private String uppercase;
     private List<Profiles> profiles;
     //TODO implementering af underage
     private boolean underAge;
@@ -16,14 +17,18 @@ public class User {
 
     public User(String name, String username, String password, String email, int age){
 
-        if((name.length() > 32 || name.length() < 4) && name.matches("(?=.*[a-z])")){
+        if((name.length() > 32 || name.length() < 2) && name.matches("(?=.*[a-z])")){
             throw new IllegalArgumentException("Name requirements: \n" +
-                                               "minimum 4 characters long \n" +
+                                               "minimum 2 characters long \n" +
                                                "maximum 32 characters long");
         }else{
             this.name = name.trim().replaceAll(" +", " ");
         }
-        String uppercase = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
+        if (name.length() < 16){
+            uppercase = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
+        } else {
+            uppercase = name.substring(0,1).toUpperCase() + name.substring(1,16).toLowerCase();
+        }
         if((username.length() > 16 || username.length() < 4)) {
             throw new IllegalArgumentException("Username requirements: \n" +
                                                "minimum 4 characters long \n" +

@@ -10,10 +10,10 @@ public class Profiles {
 
     public Profiles(String name, int age){
         favorites = new ArrayList<Media>();
-        if(name.length() > 16 || name.length() < 2){
+        if(name.length() > 32 || name.length() < 2){
             throw new IllegalArgumentException("Name requirements: \n" +
                                                 "minimum 2 characters long \n" +
-                                                "maximum 16 characters long");
+                                                "maximum 32 characters long");
         }else{
             this.name = name.trim();
         }
