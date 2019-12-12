@@ -155,7 +155,7 @@ public class ContentController {
         // Iterates over Arraylist and deleting all items that with a lower rating than "sTerm"
         contentSort.removeIf(content -> content.getRating() < sTerm);
         {
-            contentSort.sort(Comparator.comparingDouble(Content::getRating).reversed());
+            //contentSort.sort(Comparator.comparingDouble(Content::getRating).reversed());
             return contentSort;
         }
     }

@@ -75,6 +75,7 @@ public class startSceneController {
         cC.resetContentSort();
         cC.drawContentList(allContent, startSceneFP);
         startSceneGenreMenu.setText("Genres");
+        startSceneRatingBar.setValue(0);
     }
 
     public void searchChecker() {
@@ -82,8 +83,6 @@ public class startSceneController {
         if (moviesClicked) cC.searchForMovies();
         if (showsClicked) cC.searchForShows();
         if (titleSearch) cC.searchByTitle((startSceneSearchField.getText()));
-
-
         if (genreSearch) cC.searchByGenre(selectedGenre);
         if (ratingSearch) cC.searchByRating(startSceneRatingBar.getValue());
     }
@@ -157,9 +156,10 @@ public class startSceneController {
 
 
     public void addGenres(){
-        if (startSceneGenreMenu.getItems().size() > 3) {
+       /* if (startSceneGenreMenu.getItems().size() > 3) {
             startSceneGenreMenu.getItems().remove(3, startSceneGenreMenu.getItems().size());
-        }
+        }*/
+        startSceneGenreMenu.getItems().clear();
         for (String s : cC.getGenres()){
             MenuItem newMenuItem = new MenuItem(s);
             newMenuItem.setOnAction(e -> searchByGenre(s));
