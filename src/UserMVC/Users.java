@@ -42,14 +42,6 @@ public class Users { //***DENNE KLASSE SKAL TIL MODEL***
         return username;
     }
 
-    public void getUserInfo(String e){ // henter UserInfo hvis det username man giver den er ens med et username i arraylisten
-        for(User u : users){
-            if(e.toLowerCase().equals(u.getUsername().toLowerCase())){
-                u.show();
-            }
-        }
-    }
-
     public void registerUser(String name, String username, String password, String email, int age){
         for (User u: users){
             // Evt. skriv at oprettelse af bruger er "case sensitive" (til GUI)
