@@ -125,7 +125,7 @@ public class startSceneController {
         cC.drawContentList(cC.searchByRating(startSceneRatingBar.getValue()),startSceneFP);
         String rating = "" + startSceneRatingBar.getValue();
         rating = rating.substring(0,3);
-        startSceneRatingLabel.setText("Searching for : " + rating);
+        startSceneRatingLabel.setText("Search by rating: " + rating);
     }
 
     public void myProfileClicked() {
