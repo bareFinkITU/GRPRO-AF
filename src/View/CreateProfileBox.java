@@ -15,6 +15,17 @@ public class CreateProfileBox {
 
     private UserModel userModel = UserModel.getInstanceOf();
     private Boolean answer;
+    private Button createButton = new Button("Create profile");
+    private TextField ageTextField = new TextField();
+
+    public void setCreateButtonText(String s){
+        createButton.setText(s);
+    }
+
+    public void setAgeTextField(boolean b){
+        ageTextField.clear();
+        ageTextField.setDisable(b);
+    }
 
     public boolean display(){
         Stage window = new Stage();
@@ -39,7 +50,6 @@ public class CreateProfileBox {
         usernameTextField.setPromptText("Username");
         GridPane.setConstraints(usernameTextField,1,0);
 
-        TextField ageTextField = new TextField();
         ageTextField.setPromptText("Age");
         //TODO tjek om den nye virker
         ageTextField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -58,6 +68,7 @@ public class CreateProfileBox {
         });
         GridPane.setConstraints(ageTextField,1,1);
 
+
         Label errorLabel = new Label("All fields must be filled");
         GridPane.setConstraints(errorLabel,1,3);
 
@@ -65,22 +76,30 @@ public class CreateProfileBox {
         cancelButton.setOnAction(e -> window.close());
         GridPane.setConstraints(cancelButton,0,2);
 
-        Button createButton = new Button("Create profile");
+       // Button createButton = new Button("Create profile");
         createButton.setOnAction(e -> {
-            try {
-                int age = Integer.parseInt(ageTextField.getText());
-                Profiles newProfile = new Profiles(usernameTextField.getText(),age);
-                userModel.getSelectedUser().addProfile(newProfile);
-                userModel.getSelectedUser().setSelectedProfile(newProfile);
+            if (createButton.getText().equals("Create profile")){
+                try {
+                    int age = Integer.parseInt(ageTextField.getText());
+                    Profiles newProfile = new Profiles(usernameTextField.getText(),age);
+                    userModel.getSelectedUser().addProfile(newProfile);
+                    userModel.getSelectedUser().setSelectedProfile(newProfile);
+                    window.close();
+                    answer = true;
+                } catch (IllegalArgumentException i){
+                    if (i instanceof NumberFormatException) {
+                        errorLabel.setText("All fields must be filled");
+                    } else {
+                        errorLabel.setText(i.getMessage());
+                    }
+                }
+            } else {
+                userModel.getSelectedUser().removeProfile(usernameTextField.getText());
+                userModel.getSelectedUser().setSelectedProfile(userModel.getSelectedUser().getProfiles().get(0));
                 window.close();
                 answer = true;
-            } catch (IllegalArgumentException i){
-                if (i instanceof NumberFormatException) {
-                    errorLabel.setText("All fields must be filled");
-                } else {
-                    errorLabel.setText(i.getMessage());
-                }
             }
+
         });
         GridPane.setConstraints(createButton,1,2);
         layout.getChildren().addAll(usernameLabel,ageLabel,usernameTextField,ageTextField,cancelButton,createButton,errorLabel);
@@ -91,4 +110,5 @@ public class CreateProfileBox {
 
         return answer;
     }
+
 }

@@ -27,7 +27,6 @@ public class Profiles {
         }
     }
 
-    //TODO Implementer underage
     public boolean isUnderAged(){
         //tjekker om brugeren er underages. Denne metode bruges i andre klasser
         if (age <= 14){
