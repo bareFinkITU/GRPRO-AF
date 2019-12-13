@@ -2,7 +2,7 @@ package TODO_CHANGE_MY_NAME;
 import TODO_CHANGE_MY_NAME.Media;
 import java.util.ArrayList;
 import java.util.List;
-
+//TODO ændre navn Profiles -> Profile
 public class Profiles {
     private String name;
     private List<Media> favorites; //enkelte profils favorit liste for film/serier

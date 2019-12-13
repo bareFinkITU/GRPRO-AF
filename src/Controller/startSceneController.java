@@ -35,6 +35,7 @@ public class startSceneController {
     private boolean ratingSearch  = false;
     private boolean yearSearch    = false;
     private boolean underAged     = false;
+    private boolean myProfileList = false;
 
     public startSceneController() {
     }
@@ -46,6 +47,7 @@ public class startSceneController {
         titleSearch     = false;
         ratingSearch    = false;
         yearSearch      = false;
+        myProfileList   = false;
 
         initialize();
         /*startSceneSearchField.clear();
@@ -64,13 +66,14 @@ public class startSceneController {
 
     public void searchChecker() {
         mediaModel.resetMediaSort();
-        if (moviesClicked) mediaModel.searchForMovies();
-        if (showsClicked) mediaModel.searchForShows();
-        if (titleSearch) mediaModel.searchByTitle((startSceneSearchField.getText()));
-        if (genreSearch) mediaModel.searchByGenre(selectedGenre);
-        if (ratingSearch) mediaModel.searchByRating(startSceneRatingBar.getValue());
-        if (yearSearch) mediaModel.searchByYear((int) Math.round(startSceneYearSearchBar.getValue()),2020);
-        if (underAged)  mediaModel.searchByGenre("Family");
+        if (moviesClicked)  mediaModel.searchForMovies();
+        if (showsClicked)   mediaModel.searchForShows();
+        if (titleSearch)    mediaModel.searchByTitle((startSceneSearchField.getText()));
+        if (genreSearch)    mediaModel.searchByGenre(selectedGenre);
+        if (ratingSearch)   mediaModel.searchByRating(startSceneRatingBar.getValue());
+        if (yearSearch)     mediaModel.searchByYear((int) Math.round(startSceneYearSearchBar.getValue()),2020);
+        if (underAged)      mediaModel.searchByGenre("Family");
+        if (myProfileList)  mediaModel.searchInMyList(userModel.getSelectedUser().getSelectedProfile());
     }
 
     public void searchByTitle() {
@@ -120,8 +123,9 @@ public class startSceneController {
     }
 
     public void myProfileClicked() {
-        List<Media> favorites = userModel.getSelectedUser().getSelectedProfile().getFavorites();
-        mediaModel.drawMediaList(favorites, startSceneFP);
+        myProfileList = true;
+        searchChecker();
+        mediaModel.drawMediaList(mediaModel.searchInMyList(userModel.getSelectedUser().getSelectedProfile()), startSceneFP);
     }
 
     public void logOutClicked() {

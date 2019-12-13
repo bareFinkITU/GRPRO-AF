@@ -2,6 +2,7 @@ package Model;
 
 import TODO_CHANGE_MY_NAME.Media;
 import TODO_CHANGE_MY_NAME.Movie;
+import TODO_CHANGE_MY_NAME.Profiles;
 import TODO_CHANGE_MY_NAME.Show;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -236,6 +237,11 @@ public class MediaModel {
             String value = hash_map.get(k).toString();
             System.out.println(key + " episodes " + value);
         }
+    }
+
+    public ArrayList searchInMyList(Profiles profile){
+        mediaSort.retainAll(profile.getFavorites());
+        return mediaSort;
     }
 
 
