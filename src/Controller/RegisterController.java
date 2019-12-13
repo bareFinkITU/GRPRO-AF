@@ -30,17 +30,6 @@ public class RegisterController {
     private UserModel userModel;
 
     public void initialize() {
-        //TODO tjek om det nye virker :)
-
-/*        registerAgeField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    registerAgeField.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });*/
-
         userModel = UserModel.getInstanceOf();
         registerErrorMessage.setText("All fields must be filled");
         registerAgeField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -61,9 +50,8 @@ public class RegisterController {
             } else {
                 registerErrorMessage.setText(f.getMessage());
             }
-            //TODO fix den her exception
         } catch (RuntimeException g) {
-            System.out.println("s");
+            registerErrorMessage.setText(g.getMessage());
         }
     }
 

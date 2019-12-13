@@ -1,5 +1,4 @@
 package Controller;
-//TODO fix fxml navne
 import TODO_CHANGE_MY_NAME.Media;
 import TODO_CHANGE_MY_NAME.Movie;
 import TODO_CHANGE_MY_NAME.Show;
@@ -12,15 +11,15 @@ import javafx.scene.image.ImageView;
 
 public class MediaSceneController {
     @FXML private ImageView mediaSceneImageView;
-    @FXML private Label     contentSceneTitleLabel;
-    @FXML private Label     contentSceneGenresLabel;
-    @FXML private Label     contentSceneReleaseYearLabel;
-    @FXML private Button    movieSceneLogOut;
-    @FXML private Button    movieSceneBackButton;
-    @FXML private Button    contentSceneAddToMyListButton;
+    @FXML private Label     mediaSceneTitleLabel;
+    @FXML private Label     mediaSceneGenresLabel;
+    @FXML private Label     mediaSceneReleaseYearLabel;
+    @FXML private Button    mediaSceneLogOut;
+    @FXML private Button    mediaSceneBackButton;
+    @FXML private Button    mediaSceneAddToMyListButton;
     @FXML private Label     mediaSceneMessageLabel;
-    @FXML private Label     contentSceneRatingLabel;
-    @FXML private Label     contentSceneSeasonsLabel;
+    @FXML private Label     mediaSceneRatingLabel;
+    @FXML private Label     mediaSceneSeasonsLabel;
 
     private SuperController superController = new SuperController();
     private MediaModel mediaModel = MediaModel.getInstanceOf();
@@ -32,11 +31,11 @@ public class MediaSceneController {
 
 
     public void logOutClicked(){
-        superController.goToLogIn(movieSceneLogOut);
+        superController.goToLogIn(mediaSceneLogOut);
     }
 
     public void backClicked() {
-        superController.goToStartScene(movieSceneBackButton);
+        superController.goToStartScene(mediaSceneBackButton);
     }
 
 
@@ -54,20 +53,19 @@ public class MediaSceneController {
             //tilføjer filmen/serien til ens liste hvis man klikker på den
             userModel.getSelectedUser().getSelectedProfile().addMedia(selectedMedia);
             mediaSceneMessageLabel.setText(" Added to favorites");
-            contentSceneAddToMyListButton.setText("Remove from my list");
+            mediaSceneAddToMyListButton.setText("Remove from my list");
         } else {
             //fjerner filmen/serien til ens liste hvis man klikker på den
             userModel.getSelectedUser().getSelectedProfile().removeMedia(selectedMedia);
             mediaSceneMessageLabel.setText(" Removed from favorites");
-            contentSceneAddToMyListButton.setText("Add to my list");
+            mediaSceneAddToMyListButton.setText("Add to my list");
         }
     }
 
     public void initialize(){
         selectedMedia = mediaModel.getSelectedMedia();
         mediaSceneMessageLabel.setText("");
-        contentSceneTitleLabel.setText("Title: " + selectedMedia.getTitle());
-        //TODO check om den virker :)
+        mediaSceneTitleLabel.setText("Title: " + selectedMedia.getTitle());
         StringBuilder s = new StringBuilder();
         int i = 0;
         for (String string : selectedMedia.getGenre()){
@@ -77,24 +75,24 @@ public class MediaSceneController {
                 s.append(", ");
             }
         }
-        contentSceneGenresLabel.setText("Genres: " + s);
+        mediaSceneGenresLabel.setText("Genres: " + s);
         String rating = "" + selectedMedia.getRating();
-        contentSceneRatingLabel.setText("Rating: " + rating);
+        mediaSceneRatingLabel.setText("Rating: " + rating);
         if (selectedMedia instanceof Movie) {
             Movie a = (Movie) selectedMedia;
-            contentSceneReleaseYearLabel.setText("Release year: " + ((Movie) selectedMedia).getYear());
-            contentSceneSeasonsLabel.setText("");
+            mediaSceneReleaseYearLabel.setText("Release year: " + ((Movie) selectedMedia).getYear());
+            mediaSceneSeasonsLabel.setText("");
         }
         if (selectedMedia instanceof Show) {
             Show a = (Show) selectedMedia;
-            contentSceneReleaseYearLabel.setText("Run time: " + a.getRuntime());
-            contentSceneSeasonsLabel.setText("Seasons " + a.getSeasons());
+            mediaSceneReleaseYearLabel.setText("Run time: " + a.getRuntime());
+            mediaSceneSeasonsLabel.setText("Seasons " + a.getSeasons());
         }
 
         if (!isInFavorites(selectedMedia)){
-            contentSceneAddToMyListButton.setText("Add to my list");
+            mediaSceneAddToMyListButton.setText("Add to my list");
         } else {
-            contentSceneAddToMyListButton.setText("Remove from my list");
+            mediaSceneAddToMyListButton.setText("Remove from my list");
         }
 
         Image selectedImage = selectedMedia.getCover();

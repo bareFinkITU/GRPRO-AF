@@ -20,6 +20,8 @@ public class startSceneController {
     @FXML   private MenuButton startSceneGenreMenu;
     @FXML   private Slider     startSceneRatingBar;
     @FXML   private Label      startSceneRatingLabel;
+    @FXML   private Slider     startSceneYearSearchBar;
+    @FXML   private Label      startSceneyearSearchlabel;
 
     private MediaModel mediaModel = MediaModel.getInstanceOf();
     private ArrayList<Media> allMedia = mediaModel.getMedia();
@@ -31,6 +33,8 @@ public class startSceneController {
     private boolean genreSearch   = false;
     private boolean titleSearch   = false;
     private boolean ratingSearch  = false;
+    private boolean yearSearch    = false;
+    private boolean underAged     = false;
 
     public startSceneController() {
     }
@@ -41,12 +45,21 @@ public class startSceneController {
         genreSearch     = false;
         titleSearch     = false;
         ratingSearch    = false;
+        yearSearch      = false;
+
 
         startSceneSearchField.clear();
         mediaModel.resetMediaSort();
-        mediaModel.drawMediaList(allMedia, startSceneFP);
         startSceneGenreMenu.setText("Genres");
         startSceneRatingBar.setValue(0);
+        startSceneYearSearchBar.setValue(1950);
+        if (userModel.getSelectedUser().getSelectedProfile().isUnderAged()){
+            mediaModel.drawMediaList(mediaModel.searchByGenre("Family"),startSceneFP);
+            underAged = true;
+        } else {
+            mediaModel.drawMediaList(allMedia, startSceneFP);
+            underAged = false;
+        }
     }
 
     public void searchChecker() {
@@ -56,6 +69,8 @@ public class startSceneController {
         if (titleSearch) mediaModel.searchByTitle((startSceneSearchField.getText()));
         if (genreSearch) mediaModel.searchByGenre(selectedGenre);
         if (ratingSearch) mediaModel.searchByRating(startSceneRatingBar.getValue());
+        if (yearSearch) mediaModel.searchByYear((int) Math.round(startSceneYearSearchBar.getValue()),2020);
+        if (underAged)  mediaModel.searchByGenre("Family");
     }
 
     public void searchByTitle() {
@@ -92,9 +107,16 @@ public class startSceneController {
         ratingSearch = true;
         searchChecker();
         mediaModel.drawMediaList(mediaModel.searchByRating(startSceneRatingBar.getValue()),startSceneFP);
-        //TODO virker den?
         String rating = ("" + startSceneRatingBar.getValue()).substring(0,3);
         startSceneRatingLabel.setText("Search by rating: " + rating);
+    }
+
+    private void YearSearchBarChanged(){
+        yearSearch = true;
+        searchChecker();
+        mediaModel.drawMediaList(mediaModel.searchByYear((int) Math.round(startSceneYearSearchBar.getValue()),2020),startSceneFP);
+        String year = ("" + startSceneYearSearchBar.getValue()).substring(0,4);
+        startSceneyearSearchlabel.setText("Search by year: " + year);
     }
 
     public void myProfileClicked() {
@@ -144,13 +166,22 @@ public class startSceneController {
     public void initialize() {
         startSceneChangeProfile.setText(userModel.getSelectedUser().getSelectedProfile().getName());
         mediaModel.resetMediaSort();
-        mediaModel.drawMediaList(allMedia, startSceneFP);
+        if (userModel.getSelectedUser().getSelectedProfile().isUnderAged()){
+            mediaModel.drawMediaList(mediaModel.searchByGenre("Family"),startSceneFP);
+            underAged = true;
+        } else {
+            mediaModel.drawMediaList(allMedia, startSceneFP);
+            underAged = false;
+        }
         startSceneRatingLabel.setText("Search by rating");
         startSceneGenreMenu.setText("Genres");
         addGenres();
         setProfiles();
         startSceneRatingBar.valueProperty().addListener((observable, oldValue, newValue) -> {
             ratingBarChanged();
+        });
+        startSceneYearSearchBar.valueProperty().addListener((observable, oldValue, newValue) -> {
+            YearSearchBarChanged();
         });
     }
 

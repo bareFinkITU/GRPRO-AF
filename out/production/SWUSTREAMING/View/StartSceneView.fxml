@@ -93,7 +93,7 @@
    <center>
       <VBox style="-fx-background-color: #040218;" BorderPane.alignment="CENTER">
          <children>
-            <HBox spacing="20.0">
+            <HBox fx:id="startSceneGenreHbox" spacing="20.0">
                <children>
                   <MenuButton fx:id="startSceneGenreMenu" mnemonicParsing="false" style="-fx-background-color: transperant;" text="Genres" textFill="WHITE">
                      <font>
@@ -111,11 +111,22 @@
                         <Insets left="5.0" />
                      </padding>
                   </Label>
-                  <Slider fx:id="startSceneRatingBar" blockIncrement="1.0" majorTickUnit="0.5" max="10.0" maxWidth="175.0" minWidth="175.0" minorTickCount="0" prefWidth="175.0" showTickLabels="true" showTickMarks="true">
+                  <Slider fx:id="startSceneRatingBar" blockIncrement="1.0" majorTickUnit="0.5" max="10.0" maxWidth="206.0" minWidth="175.0" minorTickCount="5" prefHeight="38.0" prefWidth="200.0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></Slider>
-                  <Slider blockIncrement="1.0" majorTickUnit="0.5" max="10.0" maxWidth="175.0" minWidth="175.0" minorTickCount="0" prefWidth="175.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                  <Label fx:id="startSceneyearSearchlabel" prefHeight="20.0" prefWidth="161.0" text="Year search" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="150.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Slider fx:id="startSceneYearSearchBar" majorTickUnit="10.0" max="2020.0" maxWidth="202.0" min="1950.0" minWidth="175.0" minorTickCount="1" prefHeight="38.0" prefWidth="200.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1950.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></Slider>
                </children>
                <padding>
                   <Insets left="20.0" top="10.0" />
