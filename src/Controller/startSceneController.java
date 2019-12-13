@@ -47,8 +47,8 @@ public class startSceneController {
         ratingSearch    = false;
         yearSearch      = false;
 
-
-        startSceneSearchField.clear();
+        initialize();
+        /*startSceneSearchField.clear();
         mediaModel.resetMediaSort();
         startSceneGenreMenu.setText("Genres");
         startSceneRatingBar.setValue(0);
@@ -59,7 +59,7 @@ public class startSceneController {
         } else {
             mediaModel.drawMediaList(allMedia, startSceneFP);
             underAged = false;
-        }
+        }*/
     }
 
     public void searchChecker() {
@@ -165,7 +165,10 @@ public class startSceneController {
 
     public void initialize() {
         startSceneChangeProfile.setText(userModel.getSelectedUser().getSelectedProfile().getName());
+        startSceneSearchField.clear();
         mediaModel.resetMediaSort();
+        startSceneRatingBar.setValue(0);
+        startSceneYearSearchBar.setValue(1950);
         if (userModel.getSelectedUser().getSelectedProfile().isUnderAged()){
             mediaModel.drawMediaList(mediaModel.searchByGenre("Family"),startSceneFP);
             underAged = true;
