@@ -6,6 +6,8 @@ import Model.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -19,7 +21,9 @@ public class MediaSceneController {
     @FXML private Button    mediaSceneAddToMyListButton;
     @FXML private Label     mediaSceneMessageLabel;
     @FXML private Label     mediaSceneRatingLabel;
-    @FXML private Label     mediaSceneSeasonsLabel;
+    @FXML private MenuButton mediaSceneSeasonsButton;
+    @FXML private MenuButton mediaSceneEpisodesButton;
+    @FXML private Button mediaScenePlayButton;
 
     private SuperController superController = new SuperController();
     private MediaModel mediaModel = MediaModel.getInstanceOf();
@@ -62,8 +66,19 @@ public class MediaSceneController {
         }
     }
 
+    public void playButtonClicked(){
+        if (mediaScenePlayButton.getText().equals("Play")){
+            mediaSceneMessageLabel.setText("Now playing " + selectedMedia.getTitle());
+            mediaScenePlayButton.setText("Pause");
+        } else {
+            mediaScenePlayButton.setText("Play");
+            mediaSceneMessageLabel.setText(selectedMedia.getTitle() + " paused");
+        }
+    }
+
     public void initialize(){
         selectedMedia = mediaModel.getSelectedMedia();
+        mediaScenePlayButton.setText("Play");
         mediaSceneMessageLabel.setText("");
         mediaSceneTitleLabel.setText("Title: " + selectedMedia.getTitle());
         StringBuilder s = new StringBuilder();
@@ -80,13 +95,32 @@ public class MediaSceneController {
         mediaSceneRatingLabel.setText("Rating: " + rating);
         if (selectedMedia instanceof Movie) {
             Movie a = (Movie) selectedMedia;
-            mediaSceneReleaseYearLabel.setText("Release year: " + ((Movie) selectedMedia).getYear());
-            mediaSceneSeasonsLabel.setText("");
+            mediaSceneReleaseYearLabel.setText("Release year: " + (a.getYear()));
+            mediaSceneSeasonsButton.setVisible(false);
+            mediaSceneEpisodesButton.setVisible(false);
         }
         if (selectedMedia instanceof Show) {
             Show a = (Show) selectedMedia;
             mediaSceneReleaseYearLabel.setText("Run time: " + a.getRuntime());
-            mediaSceneSeasonsLabel.setText("Seasons " + a.getSeasons());
+            mediaSceneSeasonsButton.setVisible(true);
+            mediaSceneEpisodesButton.setVisible(true);
+            mediaSceneSeasonsButton.setText("Seasons");
+            mediaSceneEpisodesButton.setText("Episodes");
+            for (Object key : mediaModel.getSeasonAndEpisodesMap(a).keySet()){
+                MenuItem newMenuItem = new MenuItem("Season " + key);
+                newMenuItem.setOnAction(e -> {
+                    mediaSceneEpisodesButton.setText("Episodes");
+                    mediaSceneSeasonsButton.setText(newMenuItem.getText());
+                    mediaSceneEpisodesButton.getItems().clear();
+                    int numberOfEpisodes = (int) mediaModel.getSeasonAndEpisodesMap(a).get(key);
+                    for (int j = 1; j+1 < numberOfEpisodes; j++){
+                        MenuItem newEpisodeItem = new MenuItem("Episode " + j);
+                        newEpisodeItem.setOnAction(f -> mediaSceneEpisodesButton.setText(newEpisodeItem.getText()));
+                        mediaSceneEpisodesButton.getItems().add(newEpisodeItem);
+                    }
+                });
+                mediaSceneSeasonsButton.getItems().add(newMenuItem);
+            }
         }
 
         if (!isInFavorites(selectedMedia)){

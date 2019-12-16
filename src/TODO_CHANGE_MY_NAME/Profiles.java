@@ -11,7 +11,6 @@ public class Profiles {
     public Profiles(String name, int age){
         favorites = new ArrayList<Media>();
         if(name.length() > 32 || name.length() < 2){
-            //TODO skal gribes
             throw new IllegalArgumentException("Name requirements: \n" +
                                                 "minimum 2 characters long \n" +
                                                 "maximum 32 characters long");
@@ -49,25 +48,8 @@ public class Profiles {
         favorites.remove(m);
     }
 
-    //TODO implementer eller slet?
-    public void editProfileName(String s){ //ændring af profilnavn
-        name = s;
-    }
-
     public String getName(){
         return name;
     }
-
-
-    public int getAge(){ //indhenting af alder til en gældende profil. Måske overflødig eftersom vi har "isUnderAged()"?
-        return age;
-    }
-
-    public void setAge(int age){
-        this.age = age;
-    }
-
-
-
 
 }

@@ -114,6 +114,7 @@ public class startSceneController {
     }
 
     public void myProfileClicked() {
+        homeClicked();
         myProfileList = true;
         searchChecker();
         mediaModel.drawMediaList(mediaModel.searchInMyList(userModel.getSelectedUser().getSelectedProfile()), startSceneFP);
@@ -160,8 +161,6 @@ public class startSceneController {
     }
 
     public void removeProfileClicked(){
-
-        //createProfileBox.setAgeTextField(true);
         if (removeProfileBox.display()){
             setProfiles();
             initialize();
@@ -169,8 +168,6 @@ public class startSceneController {
     }
 
     public void addProfileClicked() {
-        createProfileBox.setCreateButtonText("Create profile");
-        createProfileBox.setAgeTextField(false);
         if (createProfileBox.display()) {
             setProfiles();
             initialize();
@@ -184,11 +181,15 @@ public class startSceneController {
             startSceneChangeProfile.setText(userModel.getSelectedUser().getSelectedProfile().getName());
         }
 
-        startSceneSearchField.clear();
-
         if (mediaModel.getSelectedMedia() == null) {
             mediaModel.resetMediaSort();
+            startSceneSearchField.clear();
 
+            startSceneRatingBar.setValue(0);
+            startSceneYearSearchBar.setValue(1950);
+
+            startSceneRatingLabel.setText("Search by rating");
+            startSceneGenreMenu.setText("Genres");
             if (userModel.getSelectedUser().getSelectedProfile().isUnderAged()){
                 mediaModel.drawMediaList(mediaModel.searchByGenre("Family"),startSceneFP);
                 underAged = true;
@@ -200,14 +201,6 @@ public class startSceneController {
             mediaModel.drawMediaList(mediaModel.getMediaSort(),startSceneFP);
             mediaModel.setSelectedMedia(null);
         }
-
-        startSceneRatingBar.setValue(0);
-        startSceneYearSearchBar.setValue(1950);
-
-
-
-        startSceneRatingLabel.setText("Search by rating");
-        startSceneGenreMenu.setText("Genres");
         addGenres();
         setProfiles();
 
@@ -219,6 +212,4 @@ public class startSceneController {
             YearSearchBarChanged();
         });
     }
-
-
 }

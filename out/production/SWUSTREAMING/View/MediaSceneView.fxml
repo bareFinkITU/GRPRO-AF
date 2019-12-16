@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -69,20 +70,12 @@
                   <Insets />
                </GridPane.margin>
             </ImageView>
-            <Label fx:id="mediaSceneMessageLabel" text="Label" textFill="WHITE" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+            <Label fx:id="mediaSceneMessageLabel" text="Label" textFill="WHITE" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font>
                <GridPane.margin>
                   <Insets right="300.0" />
-               </GridPane.margin>
-            </Label>
-            <Label fx:id="mediaSceneSeasonsLabel" layoutX="292.0" layoutY="349.0" text="Seasons:" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets right="10.0" />
                </GridPane.margin>
             </Label>
             <Label fx:id="mediaSceneRatingLabel" text="Rating:" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
@@ -93,6 +86,21 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </Label>
+            <MenuButton fx:id="mediaSceneSeasonsButton" mnemonicParsing="false" prefWidth="100.0" text="MenuButton" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets right="120.0" />
+               </GridPane.margin>
+            </MenuButton>
+            <MenuButton fx:id="mediaSceneEpisodesButton" mnemonicParsing="false" prefWidth="100.0" text="MenuButton" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </MenuButton>
+            <Button fx:id="mediaScenePlayButton" onAction="#playButtonClicked" mnemonicParsing="false" prefHeight="38.0" prefWidth="119.0" text="Play" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
          </children>
          <padding>
             <Insets bottom="10.0" left="25.0" right="25.0" top="25.0" />

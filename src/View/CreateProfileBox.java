@@ -15,17 +15,7 @@ public class CreateProfileBox {
 
     private UserModel userModel = UserModel.getInstanceOf();
     private Boolean answer;
-    private Button createButton = new Button("Create profile");
     private TextField ageTextField = new TextField();
-
-    public void setCreateButtonText(String s){
-        createButton.setText(s);
-    }
-
-    public void setAgeTextField(boolean b){
-        ageTextField.clear();
-        ageTextField.setDisable(b);
-    }
 
     public boolean display(){
         Stage window = new Stage();
@@ -51,7 +41,7 @@ public class CreateProfileBox {
         GridPane.setConstraints(usernameTextField,1,0);
 
         ageTextField.setPromptText("Age");
-        //TODO tjek om den nye virker
+
         ageTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
                 ageTextField.setText(newValue.replaceAll("[^\\d]", ""));
@@ -76,23 +66,22 @@ public class CreateProfileBox {
         cancelButton.setOnAction(e -> window.close());
         GridPane.setConstraints(cancelButton,0,2);
 
-       // Button createButton = new Button("Create profile");
+       Button createButton = new Button("Create profile");
         createButton.setOnAction(e -> {
-                try {
-                    int age = Integer.parseInt(ageTextField.getText());
-                    Profiles newProfile = new Profiles(usernameTextField.getText(),age);
-                    userModel.getSelectedUser().addProfile(newProfile);
-                    userModel.getSelectedUser().setSelectedProfile(newProfile);
-                    window.close();
-                    answer = true;
-                } catch (IllegalArgumentException i){
-                    if (i instanceof NumberFormatException) {
-                        errorLabel.setText("All fields must be filled");
-                    } else {
-                        errorLabel.setText(i.getMessage());
-                    }
+            try {
+                int age = Integer.parseInt(ageTextField.getText());
+                Profiles newProfile = new Profiles(usernameTextField.getText(),age);
+                userModel.getSelectedUser().addProfile(newProfile);
+                userModel.getSelectedUser().setSelectedProfile(newProfile);
+                window.close();
+                answer = true;
+            } catch (IllegalArgumentException i){
+                if (i instanceof NumberFormatException) {
+                    errorLabel.setText("All fields must be filled");
+                } else {
+                    errorLabel.setText(i.getMessage());
                 }
-
+            }
         });
         GridPane.setConstraints(createButton,1,2);
         layout.getChildren().addAll(usernameLabel,ageLabel,usernameTextField,ageTextField,cancelButton,createButton,errorLabel);

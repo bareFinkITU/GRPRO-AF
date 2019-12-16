@@ -69,11 +69,6 @@ public class User {
 
     public void removeProfile(Profiles p){ //fjerner en profil fra listen af profiles
         profiles.remove(p);
-        /*for (Profiles p : profiles){
-            if (p.getName().equals(s)){
-                profiles.remove(p);
-            }
-        }*/
     }
 
     public void setPassword(String password) {
