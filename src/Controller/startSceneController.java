@@ -172,32 +172,41 @@ public class startSceneController {
     }
 
     public void initialize() {
-        if (userModel.getSelectedUser().getSelectedProfile().isUnderAged()){
-            startSceneChangeProfile.setText(userModel.getSelectedUser().getSelectedProfile().getName() + " (child)");
-        } else {
-            startSceneChangeProfile.setText(userModel.getSelectedUser().getSelectedProfile().getName());
+        if (mediaModel.getSelectedMedia() != null) {
+            if (userModel.getSelectedUser().getSelectedProfile().isUnderAged()){
+                startSceneChangeProfile.setText(userModel.getSelectedUser().getSelectedProfile().getName() + " (child)");
+            } else {
+                startSceneChangeProfile.setText(userModel.getSelectedUser().getSelectedProfile().getName());
+            }
+
+            startSceneSearchField.clear();
+            mediaModel.resetMediaSort();
+            startSceneRatingBar.setValue(0);
+            startSceneYearSearchBar.setValue(1950);
+
+            if (userModel.getSelectedUser().getSelectedProfile().isUnderAged()){
+                mediaModel.drawMediaList(mediaModel.searchByGenre("Family"),startSceneFP);
+                underAged = true;
+            } else {
+                mediaModel.drawMediaList(allMedia, startSceneFP);
+                underAged = false;
+            }
+
+            startSceneRatingLabel.setText("Search by rating");
+            startSceneGenreMenu.setText("Genres");
+            addGenres();
+            setProfiles();
+
+            startSceneRatingBar.valueProperty().addListener((observable, oldValue, newValue) -> {
+                ratingBarChanged();
+            });
+
+            startSceneYearSearchBar.valueProperty().addListener((observable, oldValue, newValue) -> {
+                YearSearchBarChanged();
+            });
+
+            mediaModel.
         }
-        startSceneSearchField.clear();
-        mediaModel.resetMediaSort();
-        startSceneRatingBar.setValue(0);
-        startSceneYearSearchBar.setValue(1950);
-        if (userModel.getSelectedUser().getSelectedProfile().isUnderAged()){
-            mediaModel.drawMediaList(mediaModel.searchByGenre("Family"),startSceneFP);
-            underAged = true;
-        } else {
-            mediaModel.drawMediaList(allMedia, startSceneFP);
-            underAged = false;
-        }
-        startSceneRatingLabel.setText("Search by rating");
-        startSceneGenreMenu.setText("Genres");
-        addGenres();
-        setProfiles();
-        startSceneRatingBar.valueProperty().addListener((observable, oldValue, newValue) -> {
-            ratingBarChanged();
-        });
-        startSceneYearSearchBar.valueProperty().addListener((observable, oldValue, newValue) -> {
-            YearSearchBarChanged();
-        });
     }
 
 
