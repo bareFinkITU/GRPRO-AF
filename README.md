@@ -29,7 +29,7 @@ Systemspecification
 
 ❌ Der skal kunne tilføjes film, serier, sæsoner og episoder hvis brugeren er administrator
 
-🔜 (mangler at fjeerne) Der skal kunne tilføjes og fjernes brugere
+✔  (mangler at fjeerne) Der skal kunne tilføjes og fjernes brugere
 
 ✔ En bruger kan være klassificeret som ”barn” og må således kun se film i kategorien ”Family”
 
