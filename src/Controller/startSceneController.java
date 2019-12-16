@@ -176,17 +176,15 @@ public class startSceneController {
     }
 
     public void initialize() {
-        if (mediaModel.getSelectedMedia() != null) {
-            if (userModel.getSelectedUser().getSelectedProfile().isUnderAged()){
-                startSceneChangeProfile.setText(userModel.getSelectedUser().getSelectedProfile().getName() + " (child)");
-            } else {
-                startSceneChangeProfile.setText(userModel.getSelectedUser().getSelectedProfile().getName());
-            }
+        if (userModel.getSelectedUser().getSelectedProfile().isUnderAged()){
+            startSceneChangeProfile.setText(userModel.getSelectedUser().getSelectedProfile().getName() + " (child)");
+        } else {
+            startSceneChangeProfile.setText(userModel.getSelectedUser().getSelectedProfile().getName());
+        }
 
-            startSceneSearchField.clear();
+        startSceneSearchField.clear();
+        if (mediaModel.getSelectedMedia() == null) {
             mediaModel.resetMediaSort();
-            startSceneRatingBar.setValue(0);
-            startSceneYearSearchBar.setValue(1950);
 
             if (userModel.getSelectedUser().getSelectedProfile().isUnderAged()){
                 mediaModel.drawMediaList(mediaModel.searchByGenre("Family"),startSceneFP);
@@ -195,22 +193,28 @@ public class startSceneController {
                 mediaModel.drawMediaList(allMedia, startSceneFP);
                 underAged = false;
             }
-
-            startSceneRatingLabel.setText("Search by rating");
-            startSceneGenreMenu.setText("Genres");
-            addGenres();
-            setProfiles();
-
-            startSceneRatingBar.valueProperty().addListener((observable, oldValue, newValue) -> {
-                ratingBarChanged();
-            });
-
-            startSceneYearSearchBar.valueProperty().addListener((observable, oldValue, newValue) -> {
-                YearSearchBarChanged();
-            });
-
-            mediaModel.
+        } else {
+            mediaModel.drawMediaList(mediaModel.getMediaSort(),startSceneFP);
+            mediaModel.setSelectedMedia(null);
         }
+
+        startSceneRatingBar.setValue(0);
+        startSceneYearSearchBar.setValue(1950);
+
+
+
+        startSceneRatingLabel.setText("Search by rating");
+        startSceneGenreMenu.setText("Genres");
+        addGenres();
+        setProfiles();
+
+        startSceneRatingBar.valueProperty().addListener((observable, oldValue, newValue) -> {
+            ratingBarChanged();
+        });
+
+        startSceneYearSearchBar.valueProperty().addListener((observable, oldValue, newValue) -> {
+            YearSearchBarChanged();
+        });
     }
 
 

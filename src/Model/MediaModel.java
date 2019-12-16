@@ -113,10 +113,18 @@ public class MediaModel {
 
     }
 
-    public Media getSelectedMedia(){return selectedMedia;}
+    public Media getSelectedMedia(){
+        return selectedMedia;
+    }
+
+    public void setSelectedMedia(Media m){
+        selectedMedia = m;
+    }
+
     public ArrayList<Media> getMedia() {
         return media;
     }
+
     public ArrayList<Media> getMediaSort() {
         return mediaSort;
     }
