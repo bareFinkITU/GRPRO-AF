@@ -11,8 +11,6 @@ public class User {
     private String email;
     private String uppercase;
     private List<Profiles> profiles;
-    //TODO implementering af underage
-    private boolean underAge;
     private Profiles selectedProfile;
 
     public User(String name, String username, String password, String email, int age){
@@ -69,7 +67,7 @@ public class User {
         profiles.add(p);
     }
 
-    public void removeProfile(Profiles p ){ //fjerner en profil fra listen af profiles
+    public void removeProfile(Profiles p){ //fjerner en profil fra listen af profiles
         profiles.remove(p);
     }
 

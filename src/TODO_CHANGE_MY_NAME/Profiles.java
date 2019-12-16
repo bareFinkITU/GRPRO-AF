@@ -27,7 +27,6 @@ public class Profiles {
         }
     }
 
-    //TODO Implementer underage
     public boolean isUnderAged(){
         //tjekker om brugeren er underages. Denne metode bruges i andre klasser
         if (age <= 14){
@@ -49,25 +48,8 @@ public class Profiles {
         favorites.remove(m);
     }
 
-    //TODO implementer eller slet?
-    public void editProfileName(String s){ //ændring af profilnavn
-        name = s;
-    }
-
     public String getName(){
         return name;
     }
-
-
-    public int getAge(){ //indhenting af alder til en gældende profil. Måske overflødig eftersom vi har "isUnderAged()"?
-        return age;
-    }
-
-    public void setAge(int age){
-        this.age = age;
-    }
-
-
-
 
 }

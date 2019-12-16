@@ -3,6 +3,7 @@ package Controller;
 import TODO_CHANGE_MY_NAME.Profiles;
 import Model.MediaModel;
 import Model.UserModel;
+import View.RemoveProfileBox;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
@@ -27,6 +28,8 @@ public class startSceneController {
     private ArrayList<Media> allMedia = mediaModel.getMedia();
     private UserModel        userModel = UserModel.getInstanceOf();
     private String           selectedGenre;
+    private CreateProfileBox createProfileBox = new CreateProfileBox();
+    private RemoveProfileBox removeProfileBox = new RemoveProfileBox();
 
     private boolean moviesClicked = false;
     private boolean showsClicked  = false;
@@ -50,18 +53,6 @@ public class startSceneController {
         myProfileList   = false;
 
         initialize();
-        /*startSceneSearchField.clear();
-        mediaModel.resetMediaSort();
-        startSceneGenreMenu.setText("Genres");
-        startSceneRatingBar.setValue(0);
-        startSceneYearSearchBar.setValue(1950);
-        if (userModel.getSelectedUser().getSelectedProfile().isUnderAged()){
-            mediaModel.drawMediaList(mediaModel.searchByGenre("Family"),startSceneFP);
-            underAged = true;
-        } else {
-            mediaModel.drawMediaList(allMedia, startSceneFP);
-            underAged = false;
-        }*/
     }
 
     public void searchChecker() {
@@ -123,6 +114,7 @@ public class startSceneController {
     }
 
     public void myProfileClicked() {
+        homeClicked();
         myProfileList = true;
         searchChecker();
         mediaModel.drawMediaList(mediaModel.searchInMyList(userModel.getSelectedUser().getSelectedProfile()), startSceneFP);
@@ -137,12 +129,22 @@ public class startSceneController {
         startSceneChangeProfile.getItems().clear();
         MenuItem addNewProfile = new MenuItem("Add new profile");
         addNewProfile.setOnAction(e -> addProfileClicked());
-        startSceneChangeProfile.getItems().addAll(addNewProfile);
+        MenuItem removeProfile = new MenuItem("Remove a profile");
+        removeProfile.setOnAction(e -> removeProfileClicked());
+        startSceneChangeProfile.getItems().addAll(addNewProfile, removeProfile);
+
         for (Profiles p : userModel.getSelectedUser().getProfiles()) {
-            MenuItem newItem = new MenuItem(p.getName());
+            MenuItem newItem = new MenuItem();
+            if (p.isUnderAged()){
+                newItem.setText(p.getName() + " (child)");
+            } else {
+                newItem.setText(p.getName());
+            }
             newItem.setOnAction(e -> {
-                userModel.getSelectedUser().setSelectedProfile(p);
-                initialize();
+                if (p != userModel.getSelectedUser().getSelectedProfile()) {
+                    userModel.getSelectedUser().setSelectedProfile(p);
+                    initialize();
+                }
             });
             startSceneChangeProfile.getItems().addAll(newItem);
         }
@@ -158,39 +160,56 @@ public class startSceneController {
         }
     }
 
-
+    public void removeProfileClicked(){
+        if (removeProfileBox.display()){
+            setProfiles();
+            initialize();
+        }
+    }
 
     public void addProfileClicked() {
-        if (new CreateProfileBox().display()) {
+        if (createProfileBox.display()) {
             setProfiles();
             initialize();
         }
     }
 
     public void initialize() {
-        startSceneChangeProfile.setText(userModel.getSelectedUser().getSelectedProfile().getName());
-        startSceneSearchField.clear();
-        mediaModel.resetMediaSort();
-        startSceneRatingBar.setValue(0);
-        startSceneYearSearchBar.setValue(1950);
         if (userModel.getSelectedUser().getSelectedProfile().isUnderAged()){
-            mediaModel.drawMediaList(mediaModel.searchByGenre("Family"),startSceneFP);
-            underAged = true;
+            startSceneChangeProfile.setText(userModel.getSelectedUser().getSelectedProfile().getName() + " (child)");
         } else {
-            mediaModel.drawMediaList(allMedia, startSceneFP);
-            underAged = false;
+            startSceneChangeProfile.setText(userModel.getSelectedUser().getSelectedProfile().getName());
         }
-        startSceneRatingLabel.setText("Search by rating");
-        startSceneGenreMenu.setText("Genres");
+
+        if (mediaModel.getSelectedMedia() == null) {
+            mediaModel.resetMediaSort();
+            startSceneSearchField.clear();
+
+            startSceneRatingBar.setValue(0);
+            startSceneYearSearchBar.setValue(1950);
+
+            startSceneRatingLabel.setText("Search by rating");
+            startSceneGenreMenu.setText("Genres");
+            if (userModel.getSelectedUser().getSelectedProfile().isUnderAged()){
+                mediaModel.drawMediaList(mediaModel.searchByGenre("Family"),startSceneFP);
+                underAged = true;
+            } else {
+                mediaModel.drawMediaList(allMedia, startSceneFP);
+                underAged = false;
+            }
+        } else {
+            mediaModel.drawMediaList(mediaModel.getMediaSort(),startSceneFP);
+            mediaModel.setSelectedMedia(null);
+        }
         addGenres();
         setProfiles();
+
         startSceneRatingBar.valueProperty().addListener((observable, oldValue, newValue) -> {
             ratingBarChanged();
         });
+
         startSceneYearSearchBar.valueProperty().addListener((observable, oldValue, newValue) -> {
             YearSearchBarChanged();
         });
     }
-
-
 }

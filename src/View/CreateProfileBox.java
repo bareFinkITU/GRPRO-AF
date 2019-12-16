@@ -15,6 +15,7 @@ public class CreateProfileBox {
 
     private UserModel userModel = UserModel.getInstanceOf();
     private Boolean answer;
+    private TextField ageTextField = new TextField();
 
     public boolean display(){
         Stage window = new Stage();
@@ -39,9 +40,8 @@ public class CreateProfileBox {
         usernameTextField.setPromptText("Username");
         GridPane.setConstraints(usernameTextField,1,0);
 
-        TextField ageTextField = new TextField();
         ageTextField.setPromptText("Age");
-        //TODO tjek om den nye virker
+
         ageTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
                 ageTextField.setText(newValue.replaceAll("[^\\d]", ""));
@@ -58,6 +58,7 @@ public class CreateProfileBox {
         });
         GridPane.setConstraints(ageTextField,1,1);
 
+
         Label errorLabel = new Label("All fields must be filled");
         GridPane.setConstraints(errorLabel,1,3);
 
@@ -65,7 +66,7 @@ public class CreateProfileBox {
         cancelButton.setOnAction(e -> window.close());
         GridPane.setConstraints(cancelButton,0,2);
 
-        Button createButton = new Button("Create profile");
+       Button createButton = new Button("Create profile");
         createButton.setOnAction(e -> {
             try {
                 int age = Integer.parseInt(ageTextField.getText());
@@ -91,4 +92,5 @@ public class CreateProfileBox {
 
         return answer;
     }
+
 }

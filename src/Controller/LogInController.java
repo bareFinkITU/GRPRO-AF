@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.MediaModel;
 import Model.UserModel;
 import Exceptions.IllegalLoginException;
 import javafx.fxml.FXML;
@@ -24,6 +25,7 @@ public class LogInController {
     @FXML   private Label logInMessageLabel;
 
     private SuperController superController = new SuperController();
+    private MediaModel mediaModel = MediaModel.getInstanceOf();
     private UserModel userModel;
 
     public LogInController() {
@@ -38,6 +40,8 @@ public class LogInController {
 
         } catch (IllegalLoginException e){
             logInMessageLabel.setText(e.getMessage());
+        } catch (NullPointerException f) {
+            logInMessageLabel.setText(f.getMessage());
         }
     }
 
@@ -56,5 +60,6 @@ public class LogInController {
     public void initialize(){
        userModel =  UserModel.getInstanceOf();
        logInMessageLabel.setText("");
+       mediaModel.setSelectedMedia(null);
     }
 }

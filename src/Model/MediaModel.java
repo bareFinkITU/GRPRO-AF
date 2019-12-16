@@ -21,8 +21,7 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 public class MediaModel {
-    @FXML
-    //TODO tjek om det virker
+
     private         BorderPane mediaSceneBP;
     private         ArrayList<Media> media;
     private         ArrayList<Media> mediaSort;
@@ -113,10 +112,18 @@ public class MediaModel {
 
     }
 
-    public Media getSelectedMedia(){return selectedMedia;}
+    public Media getSelectedMedia(){
+        return selectedMedia;
+    }
+
+    public void setSelectedMedia(Media m){
+        selectedMedia = m;
+    }
+
     public ArrayList<Media> getMedia() {
         return media;
     }
+
     public ArrayList<Media> getMediaSort() {
         return mediaSort;
     }
@@ -208,7 +215,7 @@ public class MediaModel {
         array.sort(Comparator.comparing(Media::getTitle));
     }
     
-    public HashMap getSeasonAndEpisodesMap( Show show) {
+    public HashMap getSeasonAndEpisodesMap(Show show) {
         //creates hashmap to store key: season, value: episodes
         HashMap<Integer, Integer> hash_map = new HashMap<>();
 
@@ -243,7 +250,6 @@ public class MediaModel {
         mediaSort.retainAll(profile.getFavorites());
         return mediaSort;
     }
-
 
     public void drawMediaList( List<Media> medias,  FlowPane list) {
         list.getChildren().clear();
