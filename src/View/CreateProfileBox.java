@@ -78,7 +78,6 @@ public class CreateProfileBox {
 
        // Button createButton = new Button("Create profile");
         createButton.setOnAction(e -> {
-            if (createButton.getText().equals("Create profile")){
                 try {
                     int age = Integer.parseInt(ageTextField.getText());
                     Profiles newProfile = new Profiles(usernameTextField.getText(),age);
@@ -93,12 +92,6 @@ public class CreateProfileBox {
                         errorLabel.setText(i.getMessage());
                     }
                 }
-            } else {
-                userModel.getSelectedUser().removeProfile(usernameTextField.getText());
-                userModel.getSelectedUser().setSelectedProfile(userModel.getSelectedUser().getProfiles().get(0));
-                window.close();
-                answer = true;
-            }
 
         });
         GridPane.setConstraints(createButton,1,2);

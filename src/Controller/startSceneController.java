@@ -3,6 +3,7 @@ package Controller;
 import TODO_CHANGE_MY_NAME.Profiles;
 import Model.MediaModel;
 import Model.UserModel;
+import View.RemoveProfileBox;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
@@ -28,6 +29,7 @@ public class startSceneController {
     private UserModel        userModel = UserModel.getInstanceOf();
     private String           selectedGenre;
     private CreateProfileBox createProfileBox = new CreateProfileBox();
+    private RemoveProfileBox removeProfileBox = new RemoveProfileBox();
 
     private boolean moviesClicked = false;
     private boolean showsClicked  = false;
@@ -158,9 +160,9 @@ public class startSceneController {
     }
 
     public void removeProfileClicked(){
-        createProfileBox.setCreateButtonText("Remove Profile");
-        createProfileBox.setAgeTextField(true);
-        if (createProfileBox.display()){
+
+        //createProfileBox.setAgeTextField(true);
+        if (removeProfileBox.display()){
             setProfiles();
             initialize();
         }
@@ -183,6 +185,7 @@ public class startSceneController {
         }
 
         startSceneSearchField.clear();
+
         if (mediaModel.getSelectedMedia() == null) {
             mediaModel.resetMediaSort();
 

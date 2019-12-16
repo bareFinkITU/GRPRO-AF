@@ -11,6 +11,7 @@ public class Profiles {
     public Profiles(String name, int age){
         favorites = new ArrayList<Media>();
         if(name.length() > 32 || name.length() < 2){
+            //TODO skal gribes
             throw new IllegalArgumentException("Name requirements: \n" +
                                                 "minimum 2 characters long \n" +
                                                 "maximum 32 characters long");
