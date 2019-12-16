@@ -10,7 +10,6 @@ public class Media{
 
 
     public Media (String title, String[] genre, double rating, Image cover)  {
-        super();
         this.title = title;
         this.genre = genre;
         this.rating = rating;
@@ -44,15 +43,5 @@ public class Media{
     public Image getCover() {
         return cover;
     }
-
-    public String display() {
-        String preFix = title; /*+ " " + rating + " genre(s): " + String.join(", ", genre); */
-        if(this instanceof Movie){
-            return preFix + " " + ((Movie) this).getYear();
-        }else{
-            return preFix + " " + ((Show) this).getStartYear() + " end " + ((Show) this).getEndYear();
-        }
-    }
-
 
 }

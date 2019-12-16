@@ -38,7 +38,7 @@ public class MediaSceneController {
         superController.goToStartScene(mediaSceneBackButton);
     }
 
-
+    //TODO flyt til UserModel
     public boolean isInFavorites(Media media){
         for (Media m : userModel.getSelectedUser().getSelectedProfile().getFavorites()){
             if (m == media){
@@ -61,7 +61,7 @@ public class MediaSceneController {
             mediaSceneAddToMyListButton.setText("Add to my list");
         }
     }
-
+    //TODO flyt til MediaModel
     public void initialize(){
         selectedMedia = mediaModel.getSelectedMedia();
         mediaSceneMessageLabel.setText("");

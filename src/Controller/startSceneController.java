@@ -129,7 +129,7 @@ public class startSceneController {
         MenuItem removeProfile = new MenuItem("Remove a profile");
         removeProfile.setOnAction(e -> removeProfileClicked());
         startSceneChangeProfile.getItems().addAll(addNewProfile, removeProfile);
-
+        //TODO flyt til UserModel
         for (Profiles p : userModel.getSelectedUser().getProfiles()) {
             MenuItem newItem = new MenuItem();
             if (p.isUnderAged()){

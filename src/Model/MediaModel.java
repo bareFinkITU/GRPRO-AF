@@ -135,18 +135,6 @@ public class MediaModel {
     }
 
     // DISPLAY USED FOR TESTING
-    public void display() {
-        int i = 1;
-        for (Media c : mediaSort) {
-            if (c instanceof Movie) {
-                System.out.println(i + " Movie " + c.display());
-            } else {
-                System.out.println(i + " Show " + c.display());
-            }
-            i++;
-        }
-
-    }
 
     //SEARCH METODER
     public ArrayList searchByRating(double sTerm) {
@@ -237,15 +225,6 @@ public class MediaModel {
         return hash_map;
     }
 
-
-    public void displaySeasonAndEpisodes(Show show) {
-        HashMap hash_map = getSeasonAndEpisodesMap(show);
-        for (Object k : hash_map.keySet()) {
-            String key = k.toString();
-            String value = hash_map.get(k).toString();
-            System.out.println(key + " episodes " + value);
-        }
-    }
 
     public ArrayList searchInMyList(Profiles profile){
         mediaSort.retainAll(profile.getFavorites());

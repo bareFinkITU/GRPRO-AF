@@ -18,10 +18,8 @@ public class BackendTest {
         //TESTAREA
         test.searchByTitle("br");
         test.searchForShows();
-        test.display();
         System.out.println("----");
         test.searchForMovies();
-        test.display();
     }
 }
 
