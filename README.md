@@ -21,7 +21,7 @@ Systemspecification
 
 ✔  En bruger vil gerne søge efter film, der har rating større end 8,5
 
-🔜 (metoder lavet)En bruger vil gerne søge efter film fra 80’erne
+✔ (metoder lavet)En bruger vil gerne søge efter film fra 80’erne
 
 ❌ Det skal være muligt for en bruger at se hvor langt han eller hun er kommet i en given serie og se næste episode
 
@@ -29,8 +29,8 @@ Systemspecification
 
 ❌ Der skal kunne tilføjes film, serier, sæsoner og episoder hvis brugeren er administrator
 
-🔜 (mangler at fjeerne) Der skal kunne tilføjes og fjernes brugere
+✔  (mangler at fjeerne) Der skal kunne tilføjes og fjernes brugere
 
-🔜 En bruger kan være klassificeret som ”barn” og må således kun se film i kategorien ”Family”
+✔ En bruger kan være klassificeret som ”barn” og må således kun se film i kategorien ”Family”
 
 ❌ Der skal kunne tilføjes nye typer medier, som fx e-bøger, lydbøger eller spil 

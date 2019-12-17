@@ -3,12 +3,12 @@ import TODO_CHANGE_MY_NAME.Media;
 import java.util.ArrayList;
 import java.util.List;
 //TODO ændre navn Profiles -> Profile
-public class Profiles {
+public class Profile {
     private String name;
     private List<Media> favorites; //enkelte profils favorit liste for film/serier
     private int age;
 
-    public Profiles(String name, int age){
+    public Profile(String name, int age){
         favorites = new ArrayList<Media>();
         if(name.length() > 32 || name.length() < 2){
             throw new IllegalArgumentException("Name requirements: \n" +
@@ -48,25 +48,8 @@ public class Profiles {
         favorites.remove(m);
     }
 
-    //TODO implementer eller slet?
-    public void editProfileName(String s){ //ændring af profilnavn
-        name = s;
-    }
-
     public String getName(){
         return name;
     }
-
-
-    public int getAge(){ //indhenting af alder til en gældende profil. Måske overflødig eftersom vi har "isUnderAged()"?
-        return age;
-    }
-
-    public void setAge(int age){
-        this.age = age;
-    }
-
-
-
 
 }

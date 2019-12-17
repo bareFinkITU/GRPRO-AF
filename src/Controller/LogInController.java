@@ -40,6 +40,8 @@ public class LogInController {
 
         } catch (IllegalLoginException e){
             logInMessageLabel.setText(e.getMessage());
+        } catch (NullPointerException f) {
+            logInMessageLabel.setText(f.getMessage());
         }
     }
 

@@ -1,8 +1,9 @@
 package Controller;
 
-import TODO_CHANGE_MY_NAME.Profiles;
+import TODO_CHANGE_MY_NAME.Profile;
 import Model.MediaModel;
 import Model.UserModel;
+import View.RemoveProfileBox;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
@@ -10,7 +11,6 @@ import TODO_CHANGE_MY_NAME.Media;
 import View.CreateProfileBox;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class startSceneController {
     @FXML   private FlowPane   startSceneFP;
@@ -22,14 +22,18 @@ public class startSceneController {
     @FXML   private Label      startSceneRatingLabel;
     @FXML   private Slider     startSceneYearSearchBar;
     @FXML   private Label      startSceneyearSearchlabel;
+    @FXML   private Button     startSceneMyProfileButton;
+    @FXML   private Button     startSceneShowsButton;
+    @FXML   private Button     startSceneMovieButton;
 
     private MediaModel mediaModel = MediaModel.getInstanceOf();
     private ArrayList<Media> allMedia = mediaModel.getMedia();
     private UserModel        userModel = UserModel.getInstanceOf();
     private String           selectedGenre;
     private CreateProfileBox createProfileBox = new CreateProfileBox();
+    private RemoveProfileBox removeProfileBox = new RemoveProfileBox();
 
-    private boolean moviesClicked = false;
+    private boolean moviesClicked;
     private boolean showsClicked  = false;
     private boolean genreSearch   = false;
     private boolean titleSearch   = false;
@@ -68,12 +72,13 @@ public class startSceneController {
     public void searchByTitle() {
         titleSearch = true;
         searchChecker();
-        //TODO unchecked assignment arraylist < ? >
+        //TODO unchecked assignment arraylist
         mediaModel.drawMediaList(mediaModel.searchByTitle(startSceneSearchField.getText()), startSceneFP);
-        System.out.println(startSceneSearchField.getText());
     }
 
     public void moviesClicked() {
+        startSceneMovieButton.setStyle("-fx-background-color: D9D9D9");
+        startSceneShowsButton.setStyle("-fx-background-color: TRANSPERANT");
         moviesClicked = true;
         showsClicked = false;
         searchChecker();
@@ -81,6 +86,8 @@ public class startSceneController {
     }
 
     public void showsClicked() {
+        startSceneShowsButton.setStyle("-fx-background-color: D9D9D9");
+        startSceneMovieButton.setStyle("-fx-background-color: TRANSPERANT");
         showsClicked = true;
         moviesClicked = false;
         searchChecker();
@@ -112,6 +119,8 @@ public class startSceneController {
     }
 
     public void myProfileClicked() {
+        homeClicked();
+        startSceneMyProfileButton.setStyle("-fx-background-color: D9D9D9");
         myProfileList = true;
         searchChecker();
         mediaModel.drawMediaList(mediaModel.searchInMyList(userModel.getSelectedUser().getSelectedProfile()), startSceneFP);
@@ -158,17 +167,13 @@ public class startSceneController {
     }
 
     public void removeProfileClicked(){
-        createProfileBox.setCreateButtonText("Remove Profile");
-        createProfileBox.setAgeTextField(true);
-        if (createProfileBox.display()){
+        if (removeProfileBox.display()){
             setProfiles();
             initialize();
         }
     }
 
     public void addProfileClicked() {
-        createProfileBox.setCreateButtonText("Create profile");
-        createProfileBox.setAgeTextField(false);
         if (createProfileBox.display()) {
             setProfiles();
             initialize();
@@ -182,10 +187,21 @@ public class startSceneController {
             startSceneChangeProfile.setText(userModel.getSelectedUser().getSelectedProfile().getName());
         }
 
-        startSceneSearchField.clear();
         if (mediaModel.getSelectedMedia() == null) {
             mediaModel.resetMediaSort();
+            startSceneSearchField.clear();
 
+            startSceneRatingBar.setValue(0);
+            startSceneYearSearchBar.setValue(1950);
+
+            startSceneRatingLabel.setText("Search by rating");
+            startSceneyearSearchlabel.setText("Search by year");
+
+            startSceneMovieButton.setStyle("-fx-background-color: TRANSPERANT");
+            startSceneShowsButton.setStyle("-fx-background-color: TRANSPERANT");
+            startSceneMyProfileButton.setStyle("-fx-background-color: TRANSPERANT");
+
+            startSceneGenreMenu.setText("Genres");
             if (userModel.getSelectedUser().getSelectedProfile().isUnderAged()){
                 mediaModel.drawMediaList(mediaModel.searchByGenre("Family"),startSceneFP);
                 underAged = true;
@@ -196,15 +212,17 @@ public class startSceneController {
         } else {
             mediaModel.drawMediaList(mediaModel.getMediaSort(),startSceneFP);
             mediaModel.setSelectedMedia(null);
+            if (moviesClicked){
+                startSceneMovieButton.setStyle("-fx-background-color: D9D9D9");
+            }
         }
 
-        startSceneRatingBar.setValue(0);
-        startSceneYearSearchBar.setValue(1950);
-
-
-
-        startSceneRatingLabel.setText("Search by rating");
-        startSceneGenreMenu.setText("Genres");
+        if (showsClicked){
+            startSceneShowsButton.setStyle("-fx-background-color: D9D9D9");
+        }
+        if (myProfileList){
+            startSceneMyProfileButton.setStyle("-fx-background-color: D9D9D9");
+        }
         addGenres();
         setProfiles();
 
@@ -216,6 +234,4 @@ public class startSceneController {
             YearSearchBarChanged();
         });
     }
-
-
 }

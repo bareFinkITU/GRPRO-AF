@@ -2,9 +2,8 @@ package Model;
 
 import TODO_CHANGE_MY_NAME.Media;
 import TODO_CHANGE_MY_NAME.Movie;
-import TODO_CHANGE_MY_NAME.Profiles;
+import TODO_CHANGE_MY_NAME.Profile;
 import TODO_CHANGE_MY_NAME.Show;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -21,8 +20,7 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 public class MediaModel {
-    @FXML
-    //TODO tjek om det virker
+
     private         BorderPane mediaSceneBP;
     private         ArrayList<Media> media;
     private         ArrayList<Media> mediaSort;
@@ -204,7 +202,7 @@ public class MediaModel {
         array.sort(Comparator.comparing(Media::getTitle));
     }
     
-    public HashMap getSeasonAndEpisodesMap( Show show) {
+    public HashMap getSeasonAndEpisodesMap(Show show) {
         //creates hashmap to store key: season, value: episodes
         HashMap<Integer, Integer> hash_map = new HashMap<>();
 
@@ -225,12 +223,20 @@ public class MediaModel {
         return hash_map;
     }
 
+    
+    public void displaySeasonAndEpisodes(Show show) {
+        HashMap hash_map = getSeasonAndEpisodesMap(show);
+        for (Object k : hash_map.keySet()) {
+            String key = k.toString();
+            String value = hash_map.get(k).toString();
+            System.out.println(key + " episodes " + value);
+        }
+    }
 
-    public ArrayList searchInMyList(Profiles profile){
+    public ArrayList searchInMyList(Profile profile){
         mediaSort.retainAll(profile.getFavorites());
         return mediaSort;
     }
-
 
     public void drawMediaList( List<Media> medias,  FlowPane list) {
         list.getChildren().clear();
