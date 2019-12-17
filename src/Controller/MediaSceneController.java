@@ -25,7 +25,7 @@ public class MediaSceneController {
     @FXML private MenuButton mediaSceneEpisodesButton;
     @FXML private Button mediaScenePlayButton;
 
-    private SuperController superController = new SuperController();
+    private SuperController superController = SuperController.getInstanceOf();
     private MediaModel mediaModel = MediaModel.getInstanceOf();
     private UserModel userModel = UserModel.getInstanceOf();
     private Media selectedMedia;

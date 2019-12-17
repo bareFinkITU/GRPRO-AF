@@ -21,7 +21,24 @@ public class SuperController {
 
     private MediaModel mediaModel = MediaModel.getInstanceOf();
 
-    public SuperController(){}
+
+    private boolean moviesClicked;
+    private boolean showsClicked;
+    private boolean myProfileList;
+    private static SuperController instance;
+
+    private SuperController(){
+        moviesClicked = false;
+        showsClicked = false;
+        myProfileList = false;
+    }
+
+    public static SuperController getInstanceOf(){
+        if (instance == null){
+            instance = new SuperController();
+        }
+        return instance;
+    }
 
     public void goToLogIn(Button button){
         FXMLLoader loader = new FXMLLoader();
@@ -47,6 +64,27 @@ public class SuperController {
         }
     }
 
+    public boolean isMoviesClicked() {
+        return moviesClicked;
+    }
 
+    public boolean isShowsClicked() {
+        return showsClicked;
+    }
 
+    public boolean isMyProfileList() {
+        return myProfileList;
+    }
+
+    public void setMoviesClicked(boolean moviesClicked) {
+        this.moviesClicked = moviesClicked;
+    }
+
+    public void setShowsClicked(boolean showsClicked) {
+        this.showsClicked = showsClicked;
+    }
+
+    public void setMyProfileList(boolean myProfileList) {
+        this.myProfileList = myProfileList;
+    }
 }

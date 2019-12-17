@@ -71,6 +71,11 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
+      <Label text="Not a member yet? Register here!" textFill="WHITE" GridPane.rowIndex="3">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
    </children>
    <padding>
       <Insets bottom="10.0" left="25.0" right="25.0" top="25.0" />

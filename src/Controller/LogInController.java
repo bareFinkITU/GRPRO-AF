@@ -24,7 +24,7 @@ public class LogInController {
     @FXML   private Button registerButton;
     @FXML   private Label logInMessageLabel;
 
-    private SuperController superController = new SuperController();
+    private SuperController superController = SuperController.getInstanceOf();
     private MediaModel mediaModel = MediaModel.getInstanceOf();
     private UserModel userModel;
 

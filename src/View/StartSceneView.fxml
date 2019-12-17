@@ -26,7 +26,7 @@
                   <Image url="@/interfaceLogo.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="homeButton" mnemonicParsing="false" onAction="#homeClicked" prefHeight="50.0" prefWidth="58.0" style="-fx-background-color: TRANSPARENT;" text="Home">
+            <Button fx:id="startSceneHomeButton" mnemonicParsing="false" onAction="#homeClicked" prefHeight="50.0" prefWidth="58.0" style="-fx-background-color: #F1F1F1;" text="Home">
                <font>
                   <Font name="Segoe UI" size="14.0" />
                </font>
@@ -34,7 +34,7 @@
                   <Insets />
                </HBox.margin>
             </Button>
-            <Button fx:id="startSceneMovieButton" mnemonicParsing="false" onAction="#moviesClicked" prefHeight="50.0" prefWidth="65.0" style="-fx-background-color: TRANSPARENT;" text="Movies">
+            <Button fx:id="startSceneMovieButton" mnemonicParsing="false" onAction="#moviesClicked" prefHeight="50.0" prefWidth="65.0" style="-fx-background-color: F1F1F1;" text="Movies">
                <font>
                   <Font name="Segoe UI" size="14.0" />
                </font>
@@ -42,7 +42,7 @@
                   <Insets />
                </HBox.margin>
             </Button>
-            <Button fx:id="startSceneShowsButton" mnemonicParsing="false" onAction="#showsClicked" prefHeight="52.0" prefWidth="82.0" style="-fx-background-color: TRANSPARENT;" text="TV-Shows">
+            <Button fx:id="startSceneShowsButton" mnemonicParsing="false" onAction="#showsClicked" prefHeight="52.0" prefWidth="82.0" style="-fx-background-color: #F1F1F1;" text="TV-Shows">
                <font>
                   <Font name="Segoe UI" size="14.0" />
                </font>
@@ -50,7 +50,7 @@
                   <Insets />
                </HBox.margin>
             </Button>
-            <Button fx:id="startSceneMyProfileButton" mnemonicParsing="false" onAction="#myProfileClicked" prefHeight="52.0" prefWidth="62.0" style="-fx-background-color: TRANSPARENT;" text="My list">
+            <Button fx:id="startSceneMyProfileButton" mnemonicParsing="false" onAction="#myProfileClicked" prefHeight="52.0" prefWidth="62.0" style="-fx-background-color: #F1F1F1;" text="My list">
                <font>
                   <Font size="14.0" />
                </font>
@@ -95,7 +95,7 @@
          <children>
             <HBox fx:id="startSceneGenreHbox" spacing="20.0">
                <children>
-                  <MenuButton fx:id="startSceneGenreMenu" mnemonicParsing="false" style="-fx-background-color: transperant;" text="Genres" textFill="WHITE">
+                  <MenuButton fx:id="startSceneGenreMenu" mnemonicParsing="false" style="-fx-background-color: #040218;" text="Genres" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
