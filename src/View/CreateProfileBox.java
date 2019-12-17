@@ -10,12 +10,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-//TODO check om det kan være private
 public class CreateProfileBox {
 
     private UserModel userModel = UserModel.getInstanceOf();
     private Boolean answer;
-    private TextField ageTextField = new TextField();
 
     public boolean display(){
         Stage window = new Stage();
@@ -40,6 +38,7 @@ public class CreateProfileBox {
         usernameTextField.setPromptText("Username");
         GridPane.setConstraints(usernameTextField,1,0);
 
+        TextField ageTextField = new TextField();
         ageTextField.setPromptText("Age");
 
         ageTextField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -47,27 +46,11 @@ public class CreateProfileBox {
                 ageTextField.setText(newValue.replaceAll("[^\\d]", ""));
             }
         });
-        ageTextField.setOnAction(e -> {
-            //TODO lav en smart metode så kodedublekering undgås
-            int age = Integer.parseInt(ageTextField.getText());
-            Profile newProfile = new Profile(usernameTextField.getText(),age);
-            userModel.getSelectedUser().addProfile(newProfile);
-            userModel.getSelectedUser().setSelectedProfile(newProfile);
-            window.close();
-            answer = true;
-        });
-        GridPane.setConstraints(ageTextField,1,1);
-
 
         Label errorLabel = new Label("All fields must be filled");
         GridPane.setConstraints(errorLabel,1,3);
 
-        Button cancelButton = new Button("Cancel");
-        cancelButton.setOnAction(e -> window.close());
-        GridPane.setConstraints(cancelButton,0,2);
-
-       Button createButton = new Button("Create profile");
-        createButton.setOnAction(e -> {
+        ageTextField.setOnAction(e -> {
             try {
                 int age = Integer.parseInt(ageTextField.getText());
                 Profile newProfile = new Profile(usernameTextField.getText(),age);
@@ -75,11 +58,34 @@ public class CreateProfileBox {
                 userModel.getSelectedUser().setSelectedProfile(newProfile);
                 window.close();
                 answer = true;
-            } catch (IllegalArgumentException i){
-                if (i instanceof NumberFormatException) {
+            } catch (IllegalArgumentException j){
+                if (j instanceof NumberFormatException) {
                     errorLabel.setText("All fields must be filled");
                 } else {
-                    errorLabel.setText(i.getMessage());
+                    errorLabel.setText(j.getMessage());
+                }
+            }
+        });
+        GridPane.setConstraints(ageTextField,1,1);
+
+        Button cancelButton = new Button("Cancel");
+        cancelButton.setOnAction(e -> window.close());
+        GridPane.setConstraints(cancelButton,0,2);
+
+       Button createButton = new Button("Create profile");
+        createButton.setOnAction(f -> {
+            try {
+                int age = Integer.parseInt(ageTextField.getText());
+                Profile newProfile = new Profile(usernameTextField.getText(),age);
+                userModel.getSelectedUser().addProfile(newProfile);
+                userModel.getSelectedUser().setSelectedProfile(newProfile);
+                window.close();
+                answer = true;
+            } catch (IllegalArgumentException j){
+                if (j instanceof NumberFormatException) {
+                    errorLabel.setText("All fields must be filled");
+                } else {
+                    errorLabel.setText(j.getMessage());
                 }
             }
         });
@@ -92,5 +98,4 @@ public class CreateProfileBox {
 
         return answer;
     }
-
 }

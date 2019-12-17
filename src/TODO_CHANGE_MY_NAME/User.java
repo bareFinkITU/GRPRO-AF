@@ -7,7 +7,6 @@ public class User {
     private String name;
     private String username;
     private String password;
-    private int age;
     private String email;
     private String uppercase;
     private List<Profile> profiles;
@@ -62,7 +61,6 @@ public class User {
 
     }
 
-    //TODO find ud af hvilke af disse metoder vi skal bruge :D
     public void addProfile(Profile p){
         profiles.add(p);
     }
@@ -71,10 +69,6 @@ public class User {
         profiles.remove(p);
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-                                    //følgende metoder er get -og setmetoder
     public String getEmail() {
         return email;
     }
@@ -87,36 +81,12 @@ public class User {
         return username;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public List<Profile> getProfiles(){
         return profiles;
     }
 
     public Profile getSelectedProfile(){
         return selectedProfile;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void setSelectedProfile(Profile profile){

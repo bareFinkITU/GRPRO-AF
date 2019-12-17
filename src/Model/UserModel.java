@@ -37,14 +37,6 @@ public class UserModel {
         users.add(e);
     }
 
-    //TODO implementer metoder?
-    public void removeUser(User e){
-        users.remove(e);
-    }
-    public User getUser(User username) {
-        return username;
-    }
-
     public void registerUser(String name, String username, String password, String email, int age){
         for (User u: users){
             if (username.trim().toLowerCase().equals(u.getUsername().trim().toLowerCase())) {
