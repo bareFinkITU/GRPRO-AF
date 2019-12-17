@@ -1,12 +1,9 @@
 package View;
 
 import Model.UserModel;
-import TODO_CHANGE_MY_NAME.Profiles;
-import javafx.geometry.Insets;
+import TODO_CHANGE_MY_NAME.Profile;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -15,7 +12,7 @@ import javafx.stage.Stage;
 public class RemoveProfileBox {
 
     private UserModel userModel = UserModel.getInstanceOf();
-    private Profiles profile = null;
+    private Profile profile = null;
 
 
     public boolean display(){
@@ -33,7 +30,7 @@ public class RemoveProfileBox {
         vBox.setSpacing(5);
         final ToggleGroup group = new ToggleGroup();
 
-        for (Profiles p : userModel.getSelectedUser().getProfiles()){
+        for (Profile p : userModel.getSelectedUser().getProfiles()){
             RadioButton newRadioButton = new RadioButton(p.getName());
             newRadioButton.setOnAction(e -> profile = p);
             newRadioButton.setToggleGroup(group);
@@ -60,8 +57,6 @@ public class RemoveProfileBox {
         cancelButton.setOnAction(e -> window.close());
 
         buttonMenu.getChildren().addAll(cancelButton,removeButton);
-
-
 
         vBox.getChildren().addAll(buttonMenu, messageLabel);
         layout.setContent(vBox);

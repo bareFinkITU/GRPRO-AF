@@ -10,8 +10,8 @@ public class User {
     private int age;
     private String email;
     private String uppercase;
-    private List<Profiles> profiles;
-    private Profiles selectedProfile;
+    private List<Profile> profiles;
+    private Profile selectedProfile;
 
     public User(String name, String username, String password, String email, int age){
 
@@ -56,18 +56,18 @@ public class User {
             throw new IllegalArgumentException("Are you really older than 110 years old?\n ﴾͡๏̯͡๏﴿ O'RLY?");
         }
         profiles = new ArrayList<>();
-        Profiles firstProfiles = new Profiles(uppercase,age);
-        profiles.add(firstProfiles);
-        selectedProfile = firstProfiles;
+        Profile firstProfile = new Profile(uppercase,age);
+        profiles.add(firstProfile);
+        selectedProfile = firstProfile;
 
     }
 
     //TODO find ud af hvilke af disse metoder vi skal bruge :D
-    public void addProfile(Profiles p){
+    public void addProfile(Profile p){
         profiles.add(p);
     }
 
-    public void removeProfile(Profiles p){ //fjerner en profil fra listen af profiles
+    public void removeProfile(Profile p){ //fjerner en profil fra listen af profiles
         profiles.remove(p);
     }
 
@@ -91,11 +91,11 @@ public class User {
         return name;
     }
 
-    public List<Profiles> getProfiles(){
+    public List<Profile> getProfiles(){
         return profiles;
     }
 
-    public Profiles getSelectedProfile(){
+    public Profile getSelectedProfile(){
         return selectedProfile;
     }
 
@@ -119,7 +119,7 @@ public class User {
         this.name = name;
     }
 
-    public void setSelectedProfile(Profiles profile){
+    public void setSelectedProfile(Profile profile){
         selectedProfile = profile;
     }
 

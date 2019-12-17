@@ -16,7 +16,7 @@ public class UserModel {
     private UserModel(){
         users = new ArrayList<>();
         //default admin bruger
-        users.add(new User("admin" , "admin", "Password123", "adminpassword@gmail.com",50));
+        users.add(new User("Bruger1" , "Bruger1", "Password123", "Bruger1@gmail.com",50));
         users.add(new User("Oskar", "Oskar123", "Kode1234", "oskar@gmail.com", 23 ));
         users.add(new User("Frederik", "Frederikfink", "Kode4321", "Frede@gmail.com", 22));
         users.add(new User("Robert", "Rove", "Password321", "Robert@hotmail.com", 22));

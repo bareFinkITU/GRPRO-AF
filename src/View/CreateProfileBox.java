@@ -1,6 +1,6 @@
 package View;
 
-import TODO_CHANGE_MY_NAME.Profiles;
+import TODO_CHANGE_MY_NAME.Profile;
 import Model.UserModel;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -50,7 +50,7 @@ public class CreateProfileBox {
         ageTextField.setOnAction(e -> {
             //TODO lav en smart metode så kodedublekering undgås
             int age = Integer.parseInt(ageTextField.getText());
-            Profiles newProfile = new Profiles(usernameTextField.getText(),age);
+            Profile newProfile = new Profile(usernameTextField.getText(),age);
             userModel.getSelectedUser().addProfile(newProfile);
             userModel.getSelectedUser().setSelectedProfile(newProfile);
             window.close();
@@ -70,7 +70,7 @@ public class CreateProfileBox {
         createButton.setOnAction(e -> {
             try {
                 int age = Integer.parseInt(ageTextField.getText());
-                Profiles newProfile = new Profiles(usernameTextField.getText(),age);
+                Profile newProfile = new Profile(usernameTextField.getText(),age);
                 userModel.getSelectedUser().addProfile(newProfile);
                 userModel.getSelectedUser().setSelectedProfile(newProfile);
                 window.close();

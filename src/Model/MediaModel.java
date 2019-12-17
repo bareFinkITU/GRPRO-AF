@@ -2,9 +2,8 @@ package Model;
 
 import TODO_CHANGE_MY_NAME.Media;
 import TODO_CHANGE_MY_NAME.Movie;
-import TODO_CHANGE_MY_NAME.Profiles;
+import TODO_CHANGE_MY_NAME.Profile;
 import TODO_CHANGE_MY_NAME.Show;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -246,7 +245,7 @@ public class MediaModel {
         }
     }
 
-    public ArrayList searchInMyList(Profiles profile){
+    public ArrayList searchInMyList(Profile profile){
         mediaSort.retainAll(profile.getFavorites());
         return mediaSort;
     }

@@ -26,36 +26,36 @@
                   <Image url="@/interfaceLogo.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="homeButton" mnemonicParsing="false" onAction="#homeClicked" style="-fx-background-color: TRANSPARENT;" text="Home">
+            <Button fx:id="homeButton" mnemonicParsing="false" onAction="#homeClicked" prefHeight="50.0" prefWidth="58.0" style="-fx-background-color: TRANSPARENT;" text="Home">
                <font>
                   <Font name="Segoe UI" size="14.0" />
                </font>
                <HBox.margin>
-                  <Insets top="8.0" />
+                  <Insets />
                </HBox.margin>
             </Button>
-            <Button fx:id="moviesbutton" mnemonicParsing="false" onAction="#moviesClicked" style="-fx-background-color: TRANSPARENT;" text="Movies">
+            <Button fx:id="startSceneMovieButton" mnemonicParsing="false" onAction="#moviesClicked" prefHeight="50.0" prefWidth="65.0" style="-fx-background-color: TRANSPARENT;" text="Movies">
                <font>
                   <Font name="Segoe UI" size="14.0" />
                </font>
                <HBox.margin>
-                  <Insets top="8.0" />
+                  <Insets />
                </HBox.margin>
             </Button>
-            <Button fx:id="showsButton" mnemonicParsing="false" onAction="#showsClicked" style="-fx-background-color: TRANSPARENT;" text="TV-Shows">
+            <Button fx:id="startSceneShowsButton" mnemonicParsing="false" onAction="#showsClicked" prefHeight="52.0" prefWidth="82.0" style="-fx-background-color: TRANSPARENT;" text="TV-Shows">
                <font>
                   <Font name="Segoe UI" size="14.0" />
                </font>
                <HBox.margin>
-                  <Insets top="8.0" />
+                  <Insets />
                </HBox.margin>
             </Button>
-            <Button fx:id="startSceneMyProfileButton" mnemonicParsing="false" onAction="#myProfileClicked" style="-fx-background-color: TRANSPARENT;" text="My list">
+            <Button fx:id="startSceneMyProfileButton" mnemonicParsing="false" onAction="#myProfileClicked" prefHeight="52.0" prefWidth="62.0" style="-fx-background-color: TRANSPARENT;" text="My list">
                <font>
                   <Font size="14.0" />
                </font>
                <HBox.margin>
-                  <Insets top="8.0" />
+                  <Insets />
                </HBox.margin>
             </Button>
             <Region prefHeight="30.0" prefWidth="137.0">
