@@ -1,13 +1,13 @@
 package Controller;
 
-import TODO_CHANGE_MY_NAME.Profile;
+import SubModel.Profile;
 import Model.MediaModel;
 import Model.UserModel;
 import View.RemoveProfileBox;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
-import TODO_CHANGE_MY_NAME.Media;
+import SubModel.Media;
 import View.CreateProfileBox;
 
 import java.util.ArrayList;

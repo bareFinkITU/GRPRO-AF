@@ -1,8 +1,8 @@
 package test;
 
 import Model.MediaModel;
-import TODO_CHANGE_MY_NAME.Movie;
-import TODO_CHANGE_MY_NAME.Show;
+import SubModel.Movie;
+import SubModel.Show;
 
 import java.io.IOException;
 

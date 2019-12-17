@@ -1,5 +1,4 @@
-package TODO_CHANGE_MY_NAME;
-import TODO_CHANGE_MY_NAME.Media;
+package SubModel;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package Controller;
-import TODO_CHANGE_MY_NAME.Media;
-import TODO_CHANGE_MY_NAME.Movie;
-import TODO_CHANGE_MY_NAME.Show;
+import SubModel.Media;
+import SubModel.Movie;
+import SubModel.Show;
 import Model.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

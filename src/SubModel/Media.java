@@ -1,4 +1,4 @@
-package TODO_CHANGE_MY_NAME;
+package SubModel;
 
 import javafx.scene.image.Image;
 
@@ -13,18 +13,6 @@ public class Media{
         this.title = title;
         this.genre = genre;
         this.rating = rating;
-        this.cover = cover;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setCover(Image cover) {
         this.cover = cover;
     }
 

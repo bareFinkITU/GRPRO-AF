@@ -1,6 +1,6 @@
 package View;
 
-import TODO_CHANGE_MY_NAME.Profile;
+import SubModel.Profile;
 import Model.UserModel;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;

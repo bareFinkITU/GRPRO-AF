@@ -1,4 +1,4 @@
-package TODO_CHANGE_MY_NAME;
+package SubModel;
 
 import java.util.ArrayList;
 import java.util.List;

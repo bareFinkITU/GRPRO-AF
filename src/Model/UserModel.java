@@ -2,7 +2,7 @@ package Model;
 
 import Exceptions.IllegalLoginException;
 import Exceptions.invalidRegistration;
-import TODO_CHANGE_MY_NAME.User;
+import SubModel.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,7 @@ public class UserModel {
         users.add(e);
     }
 
-    public void registerUser(String name, String username, String password, String email, int age){
+    public void registerUser(String name, String username, String password, String email, int age) throws invalidRegistration {
         for (User u: users){
             if (username.trim().toLowerCase().equals(u.getUsername().trim().toLowerCase())) {
                 //tjekker om brugernavnet allerde eksisterer

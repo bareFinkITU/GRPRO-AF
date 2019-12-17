@@ -1,9 +1,9 @@
 package Model;
 
-import TODO_CHANGE_MY_NAME.Media;
-import TODO_CHANGE_MY_NAME.Movie;
-import TODO_CHANGE_MY_NAME.Profile;
-import TODO_CHANGE_MY_NAME.Show;
+import SubModel.Media;
+import SubModel.Movie;
+import SubModel.Profile;
+import SubModel.Show;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -221,16 +221,6 @@ public class MediaModel {
             hash_map.put(season, episodes);
         }
         return hash_map;
-    }
-
-    
-    public void displaySeasonAndEpisodes(Show show) {
-        HashMap hash_map = getSeasonAndEpisodesMap(show);
-        for (Object k : hash_map.keySet()) {
-            String key = k.toString();
-            String value = hash_map.get(k).toString();
-            System.out.println(key + " episodes " + value);
-        }
     }
 
     public ArrayList searchInMyList(Profile profile){

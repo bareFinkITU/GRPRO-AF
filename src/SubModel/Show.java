@@ -1,6 +1,5 @@
-package TODO_CHANGE_MY_NAME;
+package SubModel;
 
-import TODO_CHANGE_MY_NAME.Media;
 import javafx.scene.image.Image;
 
 public class Show extends Media {
