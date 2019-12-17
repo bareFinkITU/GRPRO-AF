@@ -35,10 +35,13 @@ public class MediaModel {
     }
 
     public ArrayList<String> getGenres(){
+        //En liste af alle genre 1 gang, denne bruges ift. når genrene skal vises.
         ArrayList<String> genreList = new ArrayList<>();
         for (Media c: media){
             for (int i = 0; i < c.getGenre().length; i++) {
+                //looper gennem genrene fra alle film/serier.
                 if(!genreList.contains(c.getGenre()[i]) ){
+                    //hvis listen ikke allerede indeholder genren, så tilføjes den.
                     genreList.add(c.getGenre()[i]);
                 }
             }
@@ -47,7 +50,7 @@ public class MediaModel {
     }
 
 
-    public static MediaModel getInstanceOf() {
+    public static MediaModel getInstanceOf() { //singleton
         if (instance == null) {
             instance = new MediaModel();
         }
