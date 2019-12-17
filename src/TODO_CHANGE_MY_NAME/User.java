@@ -9,7 +9,6 @@ public class User {
     private String password;
     private int age;
     private String email;
-    private String uppercase;
     private List<Profiles> profiles;
     private Profiles selectedProfile;
 
@@ -22,6 +21,7 @@ public class User {
         }else{
             this.name = name.trim().replaceAll(" +", " ");
         }
+        String uppercase;
         if (name.length() < 16){
             uppercase = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
         } else {
