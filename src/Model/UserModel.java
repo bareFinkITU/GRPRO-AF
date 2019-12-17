@@ -2,6 +2,7 @@ package Model;
 
 import Exceptions.IllegalLoginException;
 import Exceptions.invalidRegistration;
+import TODO_CHANGE_MY_NAME.Media;
 import TODO_CHANGE_MY_NAME.User;
 
 import java.util.ArrayList;
@@ -74,5 +75,13 @@ public class UserModel {
         throw new IllegalLoginException("The following username/e-mail doesn't exist: " + usernameOrEmail);
     }
 
+    public boolean isInFavorites(Media media){
+        for (Media m : getSelectedUser().getSelectedProfile().getFavorites()){
+            if (m == media){
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

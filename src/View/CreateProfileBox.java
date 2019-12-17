@@ -11,6 +11,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 public class CreateProfileBox {
+    //TODO Skal måske være en controller??
+
 
     private UserModel userModel = UserModel.getInstanceOf();
     private Boolean answer;

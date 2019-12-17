@@ -1,7 +1,5 @@
 package Controller;
-import TODO_CHANGE_MY_NAME.Media;
-import TODO_CHANGE_MY_NAME.Movie;
-import TODO_CHANGE_MY_NAME.Show;
+
 import Model.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -28,7 +26,6 @@ public class MediaSceneController {
     private SuperController superController = SuperController.getInstanceOf();
     private MediaModel mediaModel = MediaModel.getInstanceOf();
     private UserModel userModel = UserModel.getInstanceOf();
-    private Media selectedMedia;
 
     public MediaSceneController(){
     }
@@ -43,24 +40,17 @@ public class MediaSceneController {
     }
 
 
-    public boolean isInFavorites(Media media){
-        for (Media m : userModel.getSelectedUser().getSelectedProfile().getFavorites()){
-            if (m == media){
-                return true;
-            }
-        }
-        return false;
-    }
+    
 
     public void addToMyListClicked(){
-        if (!isInFavorites(selectedMedia)){
+        if (!userModel.isInFavorites(mediaModel.getSelectedMedia())){
             //tilføjer filmen/serien til ens liste hvis man klikker på den
-            userModel.getSelectedUser().getSelectedProfile().addMedia(selectedMedia);
+            userModel.getSelectedUser().getSelectedProfile().addMedia(mediaModel.getSelectedMedia());
             mediaSceneMessageLabel.setText(" Added to favorites");
             mediaSceneAddToMyListButton.setText("Remove from my list");
         } else {
             //fjerner filmen/serien til ens liste hvis man klikker på den
-            userModel.getSelectedUser().getSelectedProfile().removeMedia(selectedMedia);
+            userModel.getSelectedUser().getSelectedProfile().removeMedia(mediaModel.getSelectedMedia());
             mediaSceneMessageLabel.setText(" Removed from favorites");
             mediaSceneAddToMyListButton.setText("Add to my list");
         }
@@ -68,51 +58,48 @@ public class MediaSceneController {
 
     public void playButtonClicked(){
         if (mediaScenePlayButton.getText().equals("Play")){
-            mediaSceneMessageLabel.setText("Now playing " + selectedMedia.getTitle());
+            mediaSceneMessageLabel.setText("Now playing " + mediaModel.getSelectedMedia().getTitle());
             mediaScenePlayButton.setText("Pause");
         } else {
             mediaScenePlayButton.setText("Play");
-            mediaSceneMessageLabel.setText(selectedMedia.getTitle() + " paused");
+            mediaSceneMessageLabel.setText(mediaModel.getSelectedMedia().getTitle() + " paused");
         }
     }
 
     public void initialize(){
-        selectedMedia = mediaModel.getSelectedMedia();
         mediaScenePlayButton.setText("Play");
         mediaSceneMessageLabel.setText("");
-        mediaSceneTitleLabel.setText("Title: " + selectedMedia.getTitle());
+        mediaSceneTitleLabel.setText("Title: " + mediaModel.getSelectedMedia().getTitle());
         StringBuilder s = new StringBuilder();
         int i = 0;
-        for (String string : selectedMedia.getGenre()){
+        for (String string : mediaModel.getSelectedMedia().getGenre()){
             s.append(string);
             i++;
-            if (i < selectedMedia.getGenre().length){
+            if (i < mediaModel.getSelectedMedia().getGenre().length){
                 s.append(", ");
             }
         }
         mediaSceneGenresLabel.setText("Genres: " + s);
-        String rating = "" + selectedMedia.getRating();
+        String rating = "" + mediaModel.getSelectedMedia().getRating();
         mediaSceneRatingLabel.setText("Rating: " + rating);
-        if (selectedMedia instanceof Movie) {
-            Movie a = (Movie) selectedMedia;
-            mediaSceneReleaseYearLabel.setText("Release year: " + (a.getYear()));
+        if (mediaModel.selectedMediaIsMovie()) {
+            mediaSceneReleaseYearLabel.setText("Release year: " + (mediaModel.getSelectedMovie().getYear()));
             mediaSceneSeasonsButton.setVisible(false);
             mediaSceneEpisodesButton.setVisible(false);
         }
-        if (selectedMedia instanceof Show) {
-            Show a = (Show) selectedMedia;
-            mediaSceneReleaseYearLabel.setText("Run time: " + a.getRuntime());
+        if (mediaModel.selectedMediaIsShow()) {
+            mediaSceneReleaseYearLabel.setText("Run time: " + mediaModel.getSelectedShow().getRuntime());
             mediaSceneSeasonsButton.setVisible(true);
             mediaSceneEpisodesButton.setVisible(true);
             mediaSceneSeasonsButton.setText("Seasons");
             mediaSceneEpisodesButton.setText("Episodes");
-            for (Object key : mediaModel.getSeasonAndEpisodesMap(a).keySet()){
+            for (Object key : mediaModel.getSeasonAndEpisodesMap(mediaModel.getSelectedShow()).keySet()){
                 MenuItem newMenuItem = new MenuItem("Season " + key);
                 newMenuItem.setOnAction(e -> {
                     mediaSceneEpisodesButton.setText("Episodes");
                     mediaSceneSeasonsButton.setText(newMenuItem.getText());
                     mediaSceneEpisodesButton.getItems().clear();
-                    int numberOfEpisodes = (int) mediaModel.getSeasonAndEpisodesMap(a).get(key);
+                    int numberOfEpisodes = (int) mediaModel.getSeasonAndEpisodesMap(mediaModel.getSelectedShow()).get(key);
                     for (int j = 1; j+1 < numberOfEpisodes; j++){
                         MenuItem newEpisodeItem = new MenuItem("Episode " + j);
                         newEpisodeItem.setOnAction(f -> mediaSceneEpisodesButton.setText(newEpisodeItem.getText()));
@@ -123,13 +110,13 @@ public class MediaSceneController {
             }
         }
 
-        if (!isInFavorites(selectedMedia)){
+        if (!userModel.isInFavorites(mediaModel.getSelectedMedia())){
             mediaSceneAddToMyListButton.setText("Add to my list");
         } else {
             mediaSceneAddToMyListButton.setText("Remove from my list");
         }
 
-        Image selectedImage = selectedMedia.getCover();
+        Image selectedImage = mediaModel.getSelectedMedia().getCover();
         mediaSceneImageView.setImage(selectedImage);
     }
 }
