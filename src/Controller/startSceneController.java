@@ -25,6 +25,7 @@ public class startSceneController {
     @FXML   private Button     startSceneMyProfileButton;
     @FXML   private Button     startSceneShowsButton;
     @FXML   private Button     startSceneMovieButton;
+    @FXML   private Button     startSceneHomeButton;
 
     private MediaModel mediaModel = MediaModel.getInstanceOf();
     private ArrayList<Media> allMedia = mediaModel.getMedia();
@@ -32,41 +33,41 @@ public class startSceneController {
     private String           selectedGenre;
     private CreateProfileBox createProfileBox = new CreateProfileBox();
     private RemoveProfileBox removeProfileBox = new RemoveProfileBox();
+    private SuperController superController = SuperController.getInstanceOf();
 
-    private boolean moviesClicked;
-    private boolean showsClicked  = false;
     private boolean genreSearch   = false;
     private boolean titleSearch   = false;
     private boolean ratingSearch  = false;
     private boolean yearSearch    = false;
     private boolean underAged     = false;
-    private boolean myProfileList = false;
 
     public startSceneController() {
     }
 
     public void homeClicked() {
-        moviesClicked   = false;
-        showsClicked    = false;
+        startSceneHomeButton.setStyle("-fx-background-color: TRANSPERANT");
+        superController.setMoviesClicked(false);
+        superController.setShowsClicked(false);
+        superController.setMyProfileList(false);
         genreSearch     = false;
         titleSearch     = false;
         ratingSearch    = false;
         yearSearch      = false;
-        myProfileList   = false;
+
 
         initialize();
     }
 
     public void searchChecker() {
         mediaModel.resetMediaSort();
-        if (moviesClicked)  mediaModel.searchForMovies();
-        if (showsClicked)   mediaModel.searchForShows();
+        if (superController.isMoviesClicked())  mediaModel.searchForMovies();
+        if (superController.isShowsClicked())   mediaModel.searchForShows();
         if (titleSearch)    mediaModel.searchByTitle((startSceneSearchField.getText()));
         if (genreSearch)    mediaModel.searchByGenre(selectedGenre);
         if (ratingSearch)   mediaModel.searchByRating(startSceneRatingBar.getValue());
         if (yearSearch)     mediaModel.searchByYear((int) Math.round(startSceneYearSearchBar.getValue()),2020);
         if (underAged)      mediaModel.searchByGenre("Family");
-        if (myProfileList)  mediaModel.searchInMyList(userModel.getSelectedUser().getSelectedProfile());
+        if (superController.isMyProfileList())  mediaModel.searchInMyList(userModel.getSelectedUser().getSelectedProfile());
     }
 
     public void searchByTitle() {
@@ -77,19 +78,21 @@ public class startSceneController {
     }
 
     public void moviesClicked() {
+        startSceneHomeButton.setStyle("-fx-background-color: TRANSPERANT");
         startSceneMovieButton.setStyle("-fx-background-color: D9D9D9");
         startSceneShowsButton.setStyle("-fx-background-color: TRANSPERANT");
-        moviesClicked = true;
-        showsClicked = false;
+        superController.setMoviesClicked(true);
+        superController.setShowsClicked(false);
         searchChecker();
         mediaModel.drawMediaList(mediaModel.searchForMovies(), startSceneFP);
     }
 
     public void showsClicked() {
+        startSceneHomeButton.setStyle("-fx-background-color: TRANSPERANT");
         startSceneShowsButton.setStyle("-fx-background-color: D9D9D9");
         startSceneMovieButton.setStyle("-fx-background-color: TRANSPERANT");
-        showsClicked = true;
-        moviesClicked = false;
+        superController.setMoviesClicked(false);
+        superController.setShowsClicked(true);
         searchChecker();
         mediaModel.drawMediaList(mediaModel.searchForShows(), startSceneFP);
     }
@@ -120,14 +123,15 @@ public class startSceneController {
 
     public void myProfileClicked() {
         homeClicked();
+        startSceneHomeButton.setStyle("-fx-background-color: TRANSPERANT");
         startSceneMyProfileButton.setStyle("-fx-background-color: D9D9D9");
-        myProfileList = true;
+        superController.setMyProfileList(true);
         searchChecker();
         mediaModel.drawMediaList(mediaModel.searchInMyList(userModel.getSelectedUser().getSelectedProfile()), startSceneFP);
     }
 
     public void logOutClicked() {
-        new SuperController().goToLogIn(startSceneLogOutButton);
+        superController.goToLogIn(startSceneLogOutButton);
     }
 
 
@@ -197,6 +201,7 @@ public class startSceneController {
             startSceneRatingLabel.setText("Search by rating");
             startSceneyearSearchlabel.setText("Search by year");
 
+            startSceneHomeButton.setStyle("-fx-background-color: D9D9D9");
             startSceneMovieButton.setStyle("-fx-background-color: TRANSPERANT");
             startSceneShowsButton.setStyle("-fx-background-color: TRANSPERANT");
             startSceneMyProfileButton.setStyle("-fx-background-color: TRANSPERANT");
@@ -210,19 +215,24 @@ public class startSceneController {
                 underAged = false;
             }
         } else {
-            mediaModel.drawMediaList(mediaModel.getMediaSort(),startSceneFP);
-            mediaModel.setSelectedMedia(null);
-            if (moviesClicked){
+            if (superController.isMyProfileList()){
+                myProfileClicked();
+                mediaModel.drawMediaList(mediaModel.getMediaSort(),startSceneFP);
+            } else{
+                mediaModel.drawMediaList(mediaModel.getMediaSort(),startSceneFP);
+            }
+            if (superController.isMoviesClicked()){
                 startSceneMovieButton.setStyle("-fx-background-color: D9D9D9");
             }
+            if (superController.isShowsClicked()){
+                startSceneShowsButton.setStyle("-fx-background-color: D9D9D9");
+            }
+            if (superController.isMyProfileList()){
+                startSceneMyProfileButton.setStyle("-fx-background-color: D9D9D9");
+            }
+            mediaModel.setSelectedMedia(null);
         }
 
-        if (showsClicked){
-            startSceneShowsButton.setStyle("-fx-background-color: D9D9D9");
-        }
-        if (myProfileList){
-            startSceneMyProfileButton.setStyle("-fx-background-color: D9D9D9");
-        }
         addGenres();
         setProfiles();
 

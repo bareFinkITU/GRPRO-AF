@@ -26,7 +26,7 @@ public class RegisterController {
     @FXML
     private Label registerErrorMessage;
 
-    private SuperController superController = new SuperController();
+    private SuperController superController = SuperController.getInstanceOf();
     private UserModel userModel;
 
     public void initialize() {
