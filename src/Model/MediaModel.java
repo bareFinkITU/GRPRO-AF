@@ -1,12 +1,10 @@
 package Model;
 
-import TODO_CHANGE_MY_NAME.Media;
-import TODO_CHANGE_MY_NAME.Movie;
-import TODO_CHANGE_MY_NAME.Profile;
-import TODO_CHANGE_MY_NAME.Show;
-
+import SubModel.Media;
+import SubModel.Movie;
+import SubModel.Profile;
+import SubModel.Show;
 import javafx.scene.image.Image;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -30,10 +28,13 @@ public class MediaModel {
     }
 
     public ArrayList<String> getGenres(){
+        //En liste af alle genre 1 gang, denne bruges ift. når genrene skal vises.
         ArrayList<String> genreList = new ArrayList<>();
         for (Media c: media){
             for (int i = 0; i < c.getGenre().length; i++) {
+                //looper gennem genrene fra alle film/serier.
                 if(!genreList.contains(c.getGenre()[i]) ){
+                    //hvis listen ikke allerede indeholder genren, så tilføjes den.
                     genreList.add(c.getGenre()[i]);
                 }
             }
@@ -49,7 +50,7 @@ public class MediaModel {
         return selectedShow;
     }
 
-    public static MediaModel getInstanceOf() {
+    public static MediaModel getInstanceOf() { //singleton
         if (instance == null) {
             instance = new MediaModel();
         }
@@ -135,18 +136,6 @@ public class MediaModel {
     }
 
     // DISPLAY USED FOR TESTING
-    public void display() {
-        int i = 1;
-        for (Media c : mediaSort) {
-            if (c instanceof Movie) {
-                System.out.println(i + " Movie " + c.display());
-            } else {
-                System.out.println(i + " Show " + c.display());
-            }
-            i++;
-        }
-
-    }
 
     //SEARCH METODER
     public ArrayList searchByRating(double sTerm) {
@@ -235,16 +224,6 @@ public class MediaModel {
             hash_map.put(season, episodes);
         }
         return hash_map;
-    }
-
-
-    public void displaySeasonAndEpisodes(Show show) {
-        HashMap hash_map = getSeasonAndEpisodesMap(show);
-        for (Object k : hash_map.keySet()) {
-            String key = k.toString();
-            String value = hash_map.get(k).toString();
-            System.out.println(key + " episodes " + value);
-        }
     }
 
     public ArrayList searchInMyList(Profile profile){

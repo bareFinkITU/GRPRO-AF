@@ -1,7 +1,7 @@
 package View;
 
 import Model.UserModel;
-import TODO_CHANGE_MY_NAME.Profile;
+import SubModel.Profile;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;

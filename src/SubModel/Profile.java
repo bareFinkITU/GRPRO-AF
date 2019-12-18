@@ -1,5 +1,4 @@
-package TODO_CHANGE_MY_NAME;
-import TODO_CHANGE_MY_NAME.Media;
+package SubModel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,15 +9,16 @@ public class Profile {
 
     public Profile(String name, int age){
         favorites = new ArrayList<Media>();
-        if(name.length() > 32 || name.length() < 2){
+        if((name.length() > 32 || name.length() < 2) && name.matches("(?=.*[a-z])")){
+            //krav om længden og indhold for et navn.
             throw new IllegalArgumentException("Name requirements: \n" +
                                                 "minimum 2 characters long \n" +
                                                 "maximum 32 characters long");
         }else{
-            this.name = name.trim();
+            this.name = name.trim(); //trimmer det, hvis der nu skulle være en masse mellemrum
         }
 
-        if(age <= 0){
+        if(age <= 0){ //man skal mindst være 1 år for, at få en profil.
             throw new IllegalArgumentException("Age must be greater than 0");
         }else if(age > 110 ){
             throw new IllegalArgumentException("Age must be less than 110");
@@ -35,15 +35,15 @@ public class Profile {
             return false;
         }
     }
-
+    //return metode
     public List<Media> getFavorites(){ //returnerer favoritlisten
         return favorites;
     }
-
+    //tilføj til favoritliste
     public void addMedia(Media m){ //tilføjer content til favoritlisten
         favorites.add(m);
     }
-
+    //fjern fra favoritliste
     public void removeMedia(Media m){ //fjerner content fra favoritlisten
         favorites.remove(m);
     }

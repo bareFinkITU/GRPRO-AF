@@ -1,6 +1,5 @@
-package TODO_CHANGE_MY_NAME;
+package SubModel;
 
-import TODO_CHANGE_MY_NAME.Media;
 import javafx.scene.image.Image;
 
 public class Show extends Media {
@@ -8,7 +7,7 @@ public class Show extends Media {
     private int startYear;
     private int endYear;
     private String seasons;
-
+    //Samme kommentarer som i Movie klassen, gør sig her gældende.
     public Show(String title, String[] genre, double rating, Image cover, String runtime, int startYear, int endYear, String seasons) {
         super(title, genre, rating, cover);
         this.runtime = runtime;

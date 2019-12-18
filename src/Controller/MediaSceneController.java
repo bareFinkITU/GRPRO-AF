@@ -1,5 +1,7 @@
 package Controller;
-
+import SubModel.Media;
+import SubModel.Movie;
+import SubModel.Show;
 import Model.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -38,9 +40,6 @@ public class MediaSceneController {
     public void backClicked() {
         superController.goToStartScene(mediaSceneBackButton);
     }
-
-
-    
 
     public void addToMyListClicked(){
         if (!userModel.isInFavorites(mediaModel.getSelectedMedia())){

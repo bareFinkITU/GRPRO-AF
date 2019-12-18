@@ -1,6 +1,6 @@
 package Controller;
 
-import TODO_CHANGE_MY_NAME.Profile;
+import SubModel.Profile;
 import Model.MediaModel;
 import Model.UserModel;
 import View.RemoveProfileBox;
@@ -12,7 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
-import TODO_CHANGE_MY_NAME.Media;
+import SubModel.Media;
 import View.CreateProfileBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -80,7 +80,6 @@ public class startSceneController {
     public void searchByTitle() {
         titleSearch = true;
         searchChecker();
-        //TODO unchecked assignment arraylist < ? >
         drawMediaList(mediaModel.searchByTitle(startSceneSearchField.getText()), startSceneFP);
     }
 
@@ -149,7 +148,7 @@ public class startSceneController {
         MenuItem removeProfile = new MenuItem("Remove a profile");
         removeProfile.setOnAction(e -> removeProfileClicked());
         startSceneChangeProfile.getItems().addAll(addNewProfile, removeProfile);
-
+        //TODO flyt til UserModel
         for (Profile p : userModel.getSelectedUser().getProfiles()) {
             MenuItem newItem = new MenuItem();
             if (p.isUnderAged()){

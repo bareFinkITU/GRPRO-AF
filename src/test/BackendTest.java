@@ -1,8 +1,8 @@
 package test;
 
 import Model.MediaModel;
-import TODO_CHANGE_MY_NAME.Movie;
-import TODO_CHANGE_MY_NAME.Show;
+import SubModel.Movie;
+import SubModel.Show;
 
 import java.io.IOException;
 
@@ -18,10 +18,8 @@ public class BackendTest {
         //TESTAREA
         test.searchByTitle("br");
         test.searchForShows();
-        test.display();
         System.out.println("----");
         test.searchForMovies();
-        test.display();
     }
 }
 

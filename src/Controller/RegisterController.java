@@ -1,5 +1,6 @@
 package Controller;
 
+import Exceptions.invalidRegistration;
 import Model.UserModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -50,7 +51,7 @@ public class RegisterController {
             } else {
                 registerErrorMessage.setText(f.getMessage());
             }
-        } catch (RuntimeException g) {
+        } catch (RuntimeException | invalidRegistration g) {
             registerErrorMessage.setText(g.getMessage());
         }
     }
