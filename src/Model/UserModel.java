@@ -3,7 +3,8 @@ package Model;
 import Exceptions.IllegalLoginException;
 import Exceptions.invalidRegistration;
 import SubModel.User;
-
+import SubModel.Media;
+import SubModel.User;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,5 +75,13 @@ public class UserModel {
         throw new IllegalLoginException("The following username/e-mail doesn't exist: " + usernameOrEmail);
     }
 
+    public boolean isInFavorites(Media media){
+        for (Media m : getSelectedUser().getSelectedProfile().getFavorites()){
+            if (m == media){
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

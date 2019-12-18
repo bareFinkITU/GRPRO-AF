@@ -4,15 +4,7 @@ import SubModel.Media;
 import SubModel.Movie;
 import SubModel.Profile;
 import SubModel.Show;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
-import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -21,11 +13,12 @@ import java.util.regex.Pattern;
 
 public class MediaModel {
 
-    private         BorderPane mediaSceneBP;
     private         ArrayList<Media> media;
     private         ArrayList<Media> mediaSort;
     private static  MediaModel instance;
     private         Media selectedMedia;
+    private         Movie selectedMovie;
+    private         Show selectedShow;
 
     private MediaModel() {
         media = new ArrayList<>();
@@ -49,6 +42,13 @@ public class MediaModel {
         return genreList;
     }
 
+    public Movie getSelectedMovie(){
+        return selectedMovie;
+    }
+
+    public Show getSelectedShow(){
+        return selectedShow;
+    }
 
     public static MediaModel getInstanceOf() { //singleton
         if (instance == null) {
@@ -231,37 +231,19 @@ public class MediaModel {
         return mediaSort;
     }
 
-    public void drawMediaList( List<Media> medias,  FlowPane list) {
-        list.getChildren().clear();
-        for (Media c : medias) {
-            Button newButton = new Button();
-            newButton.setGraphic(new ImageView(c.getCover()));
-            newButton.setStyle(" -fx-background-color: transparent");
-            newButton.setOnAction(e -> {
-                selectedMedia = c;
-
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/View/MediaSceneView.fxml"));
-                try {
-                    mediaSceneBP = loader.load();
-                    Stage Megaflix = (Stage) newButton.getScene().getWindow();
-                    Megaflix.setScene(new Scene(mediaSceneBP));
-                } catch (IOException t) {
-                    t.printStackTrace();
-                }
-
-            });
-            newButton.setOnMouseEntered(e -> {
-                newButton.setScaleX(1.1);
-                newButton.setScaleY(1.1);
-            });
-            newButton.setOnMouseExited(e -> {
-                newButton.setScaleY(1);
-                newButton.setScaleX(1);
-            });
-
-            list.getChildren().addAll(newButton);
+    public Boolean selectedMediaIsMovie(){
+        if (selectedMedia instanceof Movie){
+            selectedMovie = (Movie) selectedMedia;
+            return true;
         }
+        return false;
     }
 
+    public Boolean selectedMediaIsShow(){
+        if (selectedMedia instanceof Show){
+            selectedShow = (Show) selectedMedia;
+            return true;
+        }
+        return false;
+    }
 }
