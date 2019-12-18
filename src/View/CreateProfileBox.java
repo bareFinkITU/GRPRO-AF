@@ -18,6 +18,8 @@ public class CreateProfileBox {
     private Boolean answer;
 
     public boolean display(){
+        //Opretter det vindue hvor man kan lave en ny profil
+
         Stage window = new Stage();
 
         window.initModality(Modality.APPLICATION_MODAL);
@@ -71,11 +73,15 @@ public class CreateProfileBox {
         GridPane.setConstraints(ageTextField,1,1);
 
         Button cancelButton = new Button("Cancel");
-        cancelButton.setOnAction(e -> window.close());
+        cancelButton.setOnAction(e -> {
+            answer = false;
+            window.close();
+        });
         GridPane.setConstraints(cancelButton,0,2);
 
        Button createButton = new Button("Create profile");
         createButton.setOnAction(f -> {
+            //Prøver at oprette en profil med de givne værdier
             try {
                 int age = Integer.parseInt(ageTextField.getText());
                 Profile newProfile = new Profile(usernameTextField.getText(),age);

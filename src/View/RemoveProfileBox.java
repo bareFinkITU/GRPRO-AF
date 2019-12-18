@@ -16,6 +16,7 @@ public class RemoveProfileBox {
 
 
     public boolean display(){
+        //Opretter det vindue hvori man kan fjerne en profil
 
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
@@ -44,6 +45,8 @@ public class RemoveProfileBox {
 
         Button removeButton = new Button("Remove");
         removeButton.setOnAction(e -> {
+            //forsøger at fjerne den valgte profil
+            //Hvis der kun er en profil, viser den en fejlbesked i stedet
             if (userModel.getSelectedUser().getProfiles().size() > 1) {
                 userModel.getSelectedUser().removeProfile(profile);
                 window.close();

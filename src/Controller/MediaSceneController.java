@@ -42,6 +42,7 @@ public class MediaSceneController {
     }
 
     public void addToMyListClicked(){
+        //Fjerner eller tilføjer den valgte film/serie til listen af favoritfilm, afhængigt af om den er der i forvejen.
         if (!userModel.isInFavorites(mediaModel.getSelectedMedia())){
             //tilføjer filmen/serien til ens liste hvis man klikker på den
             userModel.getSelectedUser().getSelectedProfile().addMedia(mediaModel.getSelectedMedia());
@@ -66,6 +67,7 @@ public class MediaSceneController {
     }
 
     public void initialize(){
+        //Opsætter informationen om den valgte film/serie
         mediaScenePlayButton.setText("Play");
         mediaSceneMessageLabel.setText("");
         mediaSceneTitleLabel.setText("Title: " + mediaModel.getSelectedMedia().getTitle());
@@ -81,17 +83,20 @@ public class MediaSceneController {
         mediaSceneGenresLabel.setText("Genres: " + s);
         String rating = "" + mediaModel.getSelectedMedia().getRating();
         mediaSceneRatingLabel.setText("Rating: " + rating);
+        //Tjekker om der er valgt en film
         if (mediaModel.selectedMediaIsMovie()) {
             mediaSceneReleaseYearLabel.setText("Release year: " + (mediaModel.getSelectedMovie().getYear()));
             mediaSceneSeasonsButton.setVisible(false);
             mediaSceneEpisodesButton.setVisible(false);
         }
+        //Tjekker om der er valgt en serie
         if (mediaModel.selectedMediaIsShow()) {
             mediaSceneReleaseYearLabel.setText("Run time: " + mediaModel.getSelectedShow().getRuntime());
             mediaSceneSeasonsButton.setVisible(true);
             mediaSceneEpisodesButton.setVisible(true);
             mediaSceneSeasonsButton.setText("Seasons");
             mediaSceneEpisodesButton.setText("Episodes");
+            //Laver Season og Episode knapperne hvis det er en serie
             for (Object key : mediaModel.getSeasonAndEpisodesMap(mediaModel.getSelectedShow()).keySet()){
                 MenuItem newMenuItem = new MenuItem("Season " + key);
                 newMenuItem.setOnAction(e -> {
@@ -109,6 +114,7 @@ public class MediaSceneController {
             }
         }
 
+        //Sætter teksten på knappen afhængigt af om filmen allerede er i favorit listen
         if (!userModel.isInFavorites(mediaModel.getSelectedMedia())){
             mediaSceneAddToMyListButton.setText("Add to my list");
         } else {

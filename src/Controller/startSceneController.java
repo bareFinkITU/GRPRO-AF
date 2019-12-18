@@ -66,6 +66,7 @@ public class startSceneController {
     }
 
     public void searchChecker() {
+        //Tjekker hvilke kriterier der allerede er søgt på. Den anvendes når der søges, sådan at der kan søges på flere ting samtidig.
         mediaModel.resetMediaSort();
         if (superController.isMoviesClicked())  mediaModel.searchForMovies();
         if (superController.isShowsClicked())   mediaModel.searchForShows();
@@ -142,13 +143,14 @@ public class startSceneController {
 
 
     public void setProfiles() {
+        //Laver de to knapper "Add profile" og "Remove profile"
         startSceneChangeProfile.getItems().clear();
         MenuItem addNewProfile = new MenuItem("Add new profile");
         addNewProfile.setOnAction(e -> addProfileClicked());
         MenuItem removeProfile = new MenuItem("Remove a profile");
         removeProfile.setOnAction(e -> removeProfileClicked());
         startSceneChangeProfile.getItems().addAll(addNewProfile, removeProfile);
-        //TODO flyt til UserModel
+        //Laver en ny knap for hver profil der er
         for (Profile p : userModel.getSelectedUser().getProfiles()) {
             MenuItem newItem = new MenuItem();
             if (p.isUnderAged()){
@@ -156,6 +158,7 @@ public class startSceneController {
             } else {
                 newItem.setText(p.getName());
             }
+            //Knapperne sætter den valgte profil
             newItem.setOnAction(e -> {
                 if (p != userModel.getSelectedUser().getSelectedProfile()) {
                     userModel.getSelectedUser().setSelectedProfile(p);
@@ -168,6 +171,7 @@ public class startSceneController {
 
 
     public void addGenres(){
+        //Laver en knap for hver genre der findes i programmet. Hvis der bliver tilføjet film med nye genre, vil den automatisk oprette dem også.
         startSceneGenreMenu.getItems().clear();
         for (String s : mediaModel.getGenres()){
             MenuItem newMenuItem = new MenuItem(s);
@@ -177,6 +181,7 @@ public class startSceneController {
     }
 
     public void removeProfileClicked(){
+        //Åbner et vindue hvor man kan fjerne en profil
         if (removeProfileBox.display()){
             setProfiles();
             initialize();
@@ -184,6 +189,7 @@ public class startSceneController {
     }
 
     public void addProfileClicked() {
+        //Åbner et vindue hvor man kan tilføje en ny profil
         if (createProfileBox.display()) {
             setProfiles();
             initialize();

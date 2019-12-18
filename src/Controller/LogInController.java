@@ -24,9 +24,10 @@ public class LogInController {
     @FXML   private Button registerButton;
     @FXML   private Label logInMessageLabel;
 
-    private SuperController superController = SuperController.getInstanceOf();
-    private MediaModel mediaModel = MediaModel.getInstanceOf();
-    private UserModel userModel;
+    private SuperController  superController = SuperController.getInstanceOf();
+    private MediaModel       mediaModel = MediaModel.getInstanceOf();
+    private UserModel        userModel =  UserModel.getInstanceOf();
+
 
     public LogInController() {
     }
@@ -58,7 +59,6 @@ public class LogInController {
     }
 
     public void initialize(){
-       userModel =  UserModel.getInstanceOf();
        logInMessageLabel.setText("");
        mediaModel.setSelectedMedia(null);
     }

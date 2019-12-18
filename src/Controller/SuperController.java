@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class SuperController {
+    //En overordnet controller der har nogle overordnede metoder der bruges i de andre controllere.
+
     @FXML
     private GridPane gp;
 

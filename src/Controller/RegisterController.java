@@ -33,6 +33,7 @@ public class RegisterController {
     public void initialize() {
         userModel = UserModel.getInstanceOf();
         registerErrorMessage.setText("All fields must be filled");
+        //Gør så der kun kan skrives tal i alderfeltet
         registerAgeField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
                 registerAgeField.setText(newValue.replaceAll("[^\\d]", ""));
@@ -41,6 +42,9 @@ public class RegisterController {
     }
 
     public void submitPressed() {
+        //Prøver at oprette en bruger med de værdier der er i felterne
+        //Hvis det lykkes fører den til login skærmen
+        //Ellers kastes en exception der omhandler hvad der gik galt
         try {
             int age = Integer.parseInt(registerAgeField.getText());
             userModel.registerUser(registerNameField.getText(), registerUsernameField.getText(), registerPasswordField.getText(), registerEmailField.getText(), age);

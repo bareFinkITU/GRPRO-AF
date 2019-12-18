@@ -12,10 +12,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        //Sætter programmet igang, og går til login skærmen
 
         primaryStage.setTitle("MEGAFLIX");
-        primaryStage.setMinHeight(565);
-        primaryStage.setMinWidth(1065);
+        primaryStage.setMinHeight(610);
+        primaryStage.setMinWidth(1020);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/View/LogInView.fxml"));
         GridPane gp = loader.load();
