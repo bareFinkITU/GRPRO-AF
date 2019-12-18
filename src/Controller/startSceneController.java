@@ -6,6 +6,7 @@ import Model.UserModel;
 import View.RemoveProfileBox;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -13,6 +14,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import TODO_CHANGE_MY_NAME.Media;
 import View.CreateProfileBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -190,34 +193,42 @@ public class startSceneController {
 
     public void drawMediaList(List<Media> medias, FlowPane flowPane) {
         flowPane.getChildren().clear();
-        for (Media c : medias) {
-            Button newButton = new Button();
-            newButton.setGraphic(new ImageView(c.getCover()));
-            newButton.setStyle(" -fx-background-color: transparent");
-            newButton.setOnAction(e -> {
-                mediaModel.setSelectedMedia(c);
+        if (medias.size() == 0) {
+            Label errorLabel = new Label("No media matches the search criteria, try again.");
+            errorLabel.setTextFill(Color.web("WHITE"));
+            errorLabel.setFont(new Font(16));
+            errorLabel.setPadding(new Insets(0,5,5,5));
+            flowPane.getChildren().add(errorLabel);
+        } else {
+            for (Media c : medias) {
+                Button newButton = new Button();
+                newButton.setGraphic(new ImageView(c.getCover()));
+                newButton.setStyle(" -fx-background-color: transparent");
+                newButton.setOnAction(e -> {
+                    mediaModel.setSelectedMedia(c);
 
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/View/MediaSceneView.fxml"));
-                try {
-                    mediaSceneBP = loader.load();
-                    Stage Megaflix = (Stage) newButton.getScene().getWindow();
-                    Megaflix.setScene(new Scene(mediaSceneBP));
-                } catch (IOException t) {
-                    t.printStackTrace();
-                }
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("/View/MediaSceneView.fxml"));
+                    try {
+                        mediaSceneBP = loader.load();
+                        Stage Megaflix = (Stage) newButton.getScene().getWindow();
+                        Megaflix.setScene(new Scene(mediaSceneBP));
+                    } catch (IOException t) {
+                        t.printStackTrace();
+                    }
 
-            });
-            newButton.setOnMouseEntered(e -> {
-                newButton.setScaleX(1.1);
-                newButton.setScaleY(1.1);
-            });
-            newButton.setOnMouseExited(e -> {
-                newButton.setScaleY(1);
-                newButton.setScaleX(1);
-            });
+                });
+                newButton.setOnMouseEntered(e -> {
+                    newButton.setScaleX(1.1);
+                    newButton.setScaleY(1.1);
+                });
+                newButton.setOnMouseExited(e -> {
+                    newButton.setScaleY(1);
+                    newButton.setScaleX(1);
+                });
 
-            flowPane.getChildren().addAll(newButton);
+                flowPane.getChildren().addAll(newButton);
+            }
         }
     }
 
