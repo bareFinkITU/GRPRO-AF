@@ -193,13 +193,15 @@ public class startSceneController {
 
     public void drawMediaList(List<Media> medias, FlowPane flowPane) {
         flowPane.getChildren().clear();
-        if (medias.size() == 0) {
+        if (medias.size() == 0) {    //Tjekker om der er nogle film der overholder søgekriterierne
+            //Udskriver en fejlbesked hvis der ikke er
             Label errorLabel = new Label("No media matches the search criteria, try again.");
             errorLabel.setTextFill(Color.web("WHITE"));
             errorLabel.setFont(new Font(16));
             errorLabel.setPadding(new Insets(0,5,5,5));
             flowPane.getChildren().add(errorLabel);
         } else {
+            //Tegner filmene hvis der er
             for (Media c : medias) {
                 Button newButton = new Button();
                 newButton.setGraphic(new ImageView(c.getCover()));
