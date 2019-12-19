@@ -34,6 +34,7 @@ public class RegisterController {
         userModel = UserModel.getInstanceOf();
         registerErrorMessage.setText("All fields must be filled");
         //Gør så der kun kan skrives tal i alderfeltet
+        //TODO skal måske have en kildeangivelse?
         registerAgeField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
                 registerAgeField.setText(newValue.replaceAll("[^\\d]", ""));

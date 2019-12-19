@@ -52,7 +52,7 @@ public class startSceneController {
     private boolean underAged     = false;
 
     public void homeClicked() {
-        startSceneHomeButton.setStyle("-fx-background-color: TRANSPERANT");
+        startSceneHomeButton.setStyle("-fx-background-color: D9D9D9");
         superController.setMoviesClicked(false);
         superController.setShowsClicked(false);
         superController.setMyProfileList(false);
@@ -85,9 +85,9 @@ public class startSceneController {
     }
 
     public void moviesClicked() {
-        startSceneHomeButton.setStyle("-fx-background-color: TRANSPERANT");
+        startSceneHomeButton.setStyle("-fx-background-color:  #F1F1F1");
         startSceneMovieButton.setStyle("-fx-background-color: D9D9D9");
-        startSceneShowsButton.setStyle("-fx-background-color: TRANSPERANT");
+        startSceneShowsButton.setStyle("-fx-background-color:  #F1F1F1");
         superController.setMoviesClicked(true);
         superController.setShowsClicked(false);
         searchChecker();
@@ -95,9 +95,9 @@ public class startSceneController {
     }
 
     public void showsClicked() {
-        startSceneHomeButton.setStyle("-fx-background-color: TRANSPERANT");
+        startSceneHomeButton.setStyle("-fx-background-color:  #F1F1F1");
         startSceneShowsButton.setStyle("-fx-background-color: D9D9D9");
-        startSceneMovieButton.setStyle("-fx-background-color: TRANSPERANT");
+        startSceneMovieButton.setStyle("-fx-background-color:  #F1F1F1");
         superController.setMoviesClicked(false);
         superController.setShowsClicked(true);
         searchChecker();
@@ -130,7 +130,9 @@ public class startSceneController {
 
     public void myProfileClicked() {
         homeClicked();
-        startSceneHomeButton.setStyle("-fx-background-color: TRANSPERANT");
+        startSceneHomeButton.setStyle("-fx-background-color:  #F1F1F1");
+        startSceneMovieButton.setStyle("-fx-background-color:  #F1F1F1");
+        startSceneShowsButton.setStyle("-fx-background-color:  #F1F1F1");
         startSceneMyProfileButton.setStyle("-fx-background-color: D9D9D9");
         superController.setMyProfileList(true);
         searchChecker();
@@ -257,9 +259,9 @@ public class startSceneController {
             startSceneyearSearchlabel.setText("Search by year");
 
             startSceneHomeButton.setStyle("-fx-background-color: D9D9D9");
-            startSceneMovieButton.setStyle("-fx-background-color: TRANSPERANT");
-            startSceneShowsButton.setStyle("-fx-background-color: TRANSPERANT");
-            startSceneMyProfileButton.setStyle("-fx-background-color: TRANSPERANT");
+            startSceneMovieButton.setStyle("-fx-background-color:  #F1F1F1");
+            startSceneShowsButton.setStyle("-fx-background-color:  #F1F1F1");
+            startSceneMyProfileButton.setStyle("-fx-background-color:  #F1F1F1");
 
             startSceneGenreMenu.setText("Genres");
             if (userModel.getSelectedUser().getSelectedProfile().isUnderAged()){
