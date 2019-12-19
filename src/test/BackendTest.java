@@ -16,10 +16,7 @@ public class BackendTest {
         //initializeContent
 
         //TESTAREA
-        test.searchByTitle("br");
-        test.searchForShows();
-        System.out.println("----");
-        test.searchForMovies();
+        test.display();
     }
 }
 

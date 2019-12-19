@@ -5,9 +5,8 @@ import SubModel.Movie;
 import SubModel.Profile;
 import SubModel.Show;
 import javafx.scene.image.Image;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+
+import java.io.*;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -61,39 +60,46 @@ public class MediaModel {
 
         try {
             //movie scanner
-            Scanner mReader = new Scanner(new File("out/movies/#movies.txt"));
-            mReader.useDelimiter(";");
 
-            while (mReader.hasNext()) {
-                String      title = mReader.next().trim();
-                int         year = Integer.parseInt(mReader.next().trim());
-                String      genre = mReader.next().trim();
+            InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream("movies.txt");
+            assert stream != null;
+            BufferedReader mReader = new BufferedReader(new InputStreamReader(stream));
+            String line;
+
+            while (mReader.readLine() != null) {
+                String[] movieContainer =  mReader.readLine().split("; ");
+                String      title = movieContainer[0].trim();
+                int         year = Integer.parseInt(movieContainer[1].trim());
+                String      genre = movieContainer[2].trim();
                 String[]    arrOfGenres = genre.split(Pattern.quote(", ").trim());
-                double      rating = Double.parseDouble(mReader.next().trim().replaceAll(",", "."));
+                double      rating = Double.parseDouble(movieContainer[3].trim().replaceAll(",", "."));
                 Image       cover = new Image(new FileInputStream("out/movies/" + title + ".jpg"));
 
                 media.add(new Movie(title, arrOfGenres, rating, cover, year));
-                mReader.nextLine();
             }
             mReader.close();
         } catch (IOException e) {
-            /*System.out.println("There was a problem reading from the #movies.txt file");*/
+            System.out.println("hjækp");
         }
 
         try {
             //shows scanner
-            Scanner sReader = new Scanner(new File("out/shows/#shows.txt"));
-            sReader.useDelimiter(";");
+            InputStream stream = Thread.currentThread().getContextClassLoader().getResourceAsStream("movies.txt");
+            assert stream != null;
+            BufferedReader sReader = new BufferedReader(new InputStreamReader(stream));
+            String line;
             //splitter strengen op hver gang den møder semi-kolon
-            while (sReader.hasNext()) {
-                String      title = sReader.next().trim();
-                String      runtime = sReader.next().trim();
+            while ((line = sReader.readLine()) != null) {
+                String[]    showContainer =  sReader.readLine().split("; ");
+
+                String      title = showContainer[0].trim();
+                String      runtime = showContainer[1].trim();
                 int         startYear = Integer.parseInt(runtime.substring(0, 4));
                 int         endYear;
-                String      genre = sReader.next().trim();
+                String      genre = showContainer[2].trim();
                 String[]    arrOfGenres = genre.split(Pattern.quote(", ").trim());
-                double      rating = Double.parseDouble(sReader.next().trim().replaceAll(",", "."));
-                String      seasons = sReader.next().trim();
+                double      rating = Double.parseDouble(showContainer[3].trim().replaceAll(",", "."));
+                String      seasons = showContainer[4].trim();
                 Image       cover = new Image(new FileInputStream("out/shows/" + title + ".jpg"));
 
                 if (runtime.length() > 5) {
@@ -136,6 +142,11 @@ public class MediaModel {
     }
 
     // DISPLAY USED FOR TESTING
+    public void display(){
+        for(Media m: media){
+            System.out.println(m.getTitle());
+        }
+    }
 
     //SEARCH METODER
     public ArrayList searchByRating(double sTerm) {
